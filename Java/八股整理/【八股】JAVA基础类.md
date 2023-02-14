@@ -59,11 +59,48 @@ Integer a2 = 100;
 
 回到此题，两个 `Integer` 对象，因为值都是 100，并且默认通过装箱机制调用了 `valueOf()` 方法，从 `IntegerCache` 中拿到了两个完全相同的 `Integer` 实例，因此为 `true`。
 
-> 注意：`Character` 的缓存区间是`[0, 127]`之间，其余（`Integer`，`Long`等）都是 `[-128, 127]`之间，同时，`Float` 和 `Doulbe` 没有缓存。
+> 注意：
+>
+> `Byte`,`Short`,`Integer`,`Long` 这 4 种包装类默认创建了数值 **[-128，127]** 的相应类型的缓存数据，`Character` 创建了数值在 **[0,127]** 范围的缓存数据，`Boolean` 直接返回 `True` or `False`。同时，`Float` 和 `Doulbe` 没有缓存。
 
 同时需要注意，如果不走 `valueOf()` 方法（或者自动装箱），而是使用 `new Integer()` 来创建对象，结果就会有所区别：
 
 ![image-20230211194231336](/Users/mac/Desktop/%E9%9D%A2%E5%90%91%E5%B0%B1%E4%B8%9A%E5%AD%A6%E4%B9%A0/%E3%80%905%E3%80%91%E5%85%AB%E8%82%A1/JAVA%E5%9F%BA%E7%A1%80/%E3%80%90%E5%85%AB%E8%82%A1%E3%80%91JAVA%E5%9F%BA%E7%A1%80%E7%B1%BB.assets/3c0ve5.png)
+
+### 1.4 超过 long 整型的数据应该如何表示？
+
+基本数值类型都有一个表达范围，如果超过这个范围就会有数值溢出的风险。
+
+在 Java 中，64 位 long 整型是最大的整数类型。
+
+```java
+long l = Long.MAX_VALUE;
+System.out.println(l + 1); // -9223372036854775808
+System.out.println(l + 1 == Long.MIN_VALUE); // true
+```
+
+`BigInteger` 内部使用 `int[]` 数组来存储任意大小的整形数据。相对于常规整数类型的运算来说，`BigInteger` 运算的效率会相对较低。
+
+### 1.5 如何解决浮点数运算的精度丢失问题？
+
+《阿里巴巴 Java 开发手册》中提到：**“为了避免精度丢失，可以使用 `BigDecimal` 来进行浮点数的运算”。**
+
+`BigDecimal` 可以 **实现对浮点数的运算，不会造成精度丢失。**通常情况下，大部分需要浮点数精确运算结果的业务场景（比如涉及到钱的场景）都是通过 `BigDecimal` 来做的。
+
+```java
+BigDecimal a = new BigDecimal("1.0");
+BigDecimal b = new BigDecimal("0.9");
+BigDecimal c = new BigDecimal("0.8");
+
+BigDecimal x = a.subtract(b);
+BigDecimal y = b.subtract(c);
+
+System.out.println(x); /* 0.1 */
+System.out.println(y); /* 0.1 */
+System.out.println(Objects.equals(x, y)); /* true */
+```
+
+https://javaguide.cn/java/basis/bigdecimal.html#bigdecimal-%E7%AD%89%E5%80%BC%E6%AF%94%E8%BE%83%E9%97%AE%E9%A2%98
 
 ## 2 Object类
 

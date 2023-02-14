@@ -136,11 +136,68 @@ public synchronized boolean add(E e) {
 2. 然后，使用 `Arrays.copyOf()` 方法，把老数组里面的数据拷贝到新的数组里面
 3. 扩容完成之后，再把当前需要添加的元素加入到新数组里面
 
+### 1.4 `Arrays.copyOf()` 与 `System.arraycopy()` 区别？
 
+首先来看看 `Arrays.copyOf()`：
 
+```java
+public static int[] copyOf(int[] original, int newLength) {
+	// 申请一个新的数组
+    int[] copy = new int[newLength];
+// 调用System.arraycopy,将源数组中的数据进行拷贝,并返回新的数组
+    System.arraycopy(original, 0, copy, 0,
+                     Math.min(original.length, newLength));
+    return copy;
+}
+```
 
+发现里面实际上还是调用了 `System.arraycopy()`:
 
+    // 我们发现 arraycopy 是一个 native 方法,接下来我们解释一下各个参数的具体意义
+    /**
+    *   复制数组
+    * @param src 源数组
+    * @param srcPos 源数组中的起始位置
+    * @param dest 目标数组
+    * @param destPos 目标数组中的起始位置
+    * @param length 要复制的数组元素的数量
+    */
+    public static native void arraycopy(Object src,  int  srcPos,
+                                        Object dest, int destPos,
+                                        int length);
 
+**联系：**
+
+看两者源代码可以发现 `copyOf()` 内部实际调用了 `System.arraycopy()` 方法
+
+**区别：**
+
+`arraycopy()` 需要目标数组，将原数组拷贝到你自己定义的数组里或者原数组，而且可以选择拷贝的起点和长度以及放入新数组中的位置 `copyOf()` 是系统自动在内部新建一个数组，并返回该数组。
+
+## 2 LinkedList
+
+### 2.1 LinkedList的底层是如何实现的？有什么特点？
+
+`LinkedList` 的内部是由 **双向链表** 实现的，它同时实现了 `List`、`Deque`、`Queue` 接口，因此可以作为 **队列、双端队列 和 栈** 进行使用。由于是基于双向链表的逻辑结构进行实现，因此：
+
+- 可按需分配空间，不需要预先分配很多空间
+- 不支持随机访问，按照索引位置访问的效率也比较低
+- 在双端添加、删除元素效率很高
+- 在中间插入、删除元素效率很低
+
+### 2.2 Queue接口中，添加、删除、取首元素的方法均有两个，有什么区别？
+
+在 `Queue` 接口中：
+
+- 添加元素：`add`、`offer`
+- 删除元素：`remove`、`poll`
+- 取首元素：`element`、`peek`
+
+他们的用法一致，区别在于 **对特殊情况的处理方式不同，即在队列为空或队列为满的情况下，处理方式有差异。**
+
+**`add`、`remove` 和 `element` 在特殊情况下会抛出异常，而剩下的则不会！**
+
+> 注意：在 `LinkedList` 中，队列长度是没有限制的，因此不存在满的情况，但在别的 `Queue` 实现类中可能有限制。
 
 
 

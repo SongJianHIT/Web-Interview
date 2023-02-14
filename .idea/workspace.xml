@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="" />
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="0214">
+      <change beforePath="$PROJECT_DIR$/Java/八股整理/【八股】JAVA基础类.md" beforeDir="false" afterPath="$PROJECT_DIR$/Java/八股整理/【八股】JAVA基础类.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/八股整理/【八股】Java容器.md" beforeDir="false" afterPath="$PROJECT_DIR$/Java/八股整理/【八股】Java容器.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,6 +43,8 @@
       <recent name="$PROJECT_DIR$/Java" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Java/容器类源码分析" />
+      <recent name="$PROJECT_DIR$/Java/八股整理" />
       <recent name="$PROJECT_DIR$/Java" />
     </key>
   </component>
@@ -51,8 +56,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676378203792</updated>
-      <workItem from="1676378205030" duration="879000" />
+      <workItem from="1676378205030" duration="1653000" />
     </task>
+    <task id="LOCAL-00001" summary="0214">
+      <created>1676379254632</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1676379254632</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -68,5 +81,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="0214" />
+    <option name="LAST_COMMIT_MESSAGE" value="0214" />
   </component>
 </project>
