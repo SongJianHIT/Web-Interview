@@ -53,7 +53,7 @@ Integer a2 = 100;
 
 首先看运行结果：
 
-![image-20230210202951346](/Users/mac/Desktop/%E9%9D%A2%E5%90%91%E5%B0%B1%E4%B8%9A%E5%AD%A6%E4%B9%A0/%E3%80%905%E3%80%91%E5%85%AB%E8%82%A1/JAVA%E5%9F%BA%E7%A1%80/%E3%80%90%E5%85%AB%E8%82%A1%E3%80%91JAVA%E5%9F%BA%E7%A1%80%E7%B1%BB.assets/sfoxe5.png)
+![image-20230210202951346](https://p.ipic.vip/xv5hcq.png)
 
 这是因为在 `Integer` 内部的设计中，使用了 **享元模式** 的设计。它的核心思想是 **通过复用对象，减少对象的创建数量，从而减少内存占用，提升性能。** `Integer` 内部中有一个 `IntegerCache`，它缓存了 `[-128, 127]` 对应的 `Integer` 类型。一旦程序调用了 `valueOf()` 方法，就直接从 cache 中获取 `Integer` 对象，否则就创建一个新的对象。
 
@@ -65,7 +65,7 @@ Integer a2 = 100;
 
 同时需要注意，如果不走 `valueOf()` 方法（或者自动装箱），而是使用 `new Integer()` 来创建对象，结果就会有所区别：
 
-![image-20230211194231336](/Users/mac/Desktop/%E9%9D%A2%E5%90%91%E5%B0%B1%E4%B8%9A%E5%AD%A6%E4%B9%A0/%E3%80%905%E3%80%91%E5%85%AB%E8%82%A1/JAVA%E5%9F%BA%E7%A1%80/%E3%80%90%E5%85%AB%E8%82%A1%E3%80%91JAVA%E5%9F%BA%E7%A1%80%E7%B1%BB.assets/3c0ve5.png)
+![image-20230211194231336](https://p.ipic.vip/aru3ls.png)
 
 ### 1.4 超过 long 整型的数据应该如何表示？
 
@@ -104,7 +104,7 @@ https://javaguide.cn/java/basis/bigdecimal.html#bigdecimal-%E7%AD%89%E5%80%BC%E6
 
 ## 2 Object类
 
-![image-20230210202540001](/Users/mac/Desktop/%E9%9D%A2%E5%90%91%E5%B0%B1%E4%B8%9A%E5%AD%A6%E4%B9%A0/%E3%80%905%E3%80%91%E5%85%AB%E8%82%A1/JAVA%E5%9F%BA%E7%A1%80/%E3%80%90%E5%85%AB%E8%82%A1%E3%80%91JAVA%E5%9F%BA%E7%A1%80%E7%B1%BB.assets/thw5xr.png)
+![image-20230210202540001](https://p.ipic.vip/cno98c.png)
 
 常考的就是 `equals()` 和 `hashcode()`
 
@@ -116,7 +116,7 @@ https://javaguide.cn/java/basis/bigdecimal.html#bigdecimal-%E7%AD%89%E5%80%BC%E6
 
 采取重写 `hashcode()` 方法，先进行 `hashcode` 比较，如果不同，那么就没必要在进行 `equals()` 的比较了，这样就大大减少了 `equals()` 比较的次数。
 
-![image-20230210202435039](/Users/mac/Desktop/%E9%9D%A2%E5%90%91%E5%B0%B1%E4%B8%9A%E5%AD%A6%E4%B9%A0/%E3%80%905%E3%80%91%E5%85%AB%E8%82%A1/JAVA%E5%9F%BA%E7%A1%80/%E3%80%90%E5%85%AB%E8%82%A1%E3%80%91JAVA%E5%9F%BA%E7%A1%80%E7%B1%BB.assets/g02kq7.png)
+![image-20230210202435039](https://p.ipic.vip/9o53sh.png)
 
 2、**为了保证同一个对象在 `equals()` 相同的情况下 `hashcode` 值必定相同**
 
@@ -174,7 +174,7 @@ private final char value[];
 
 ### 3.3 常量字符串考点
 
-![image-20230211204339644](/Users/mac/Desktop/%E9%9D%A2%E5%90%91%E5%B0%B1%E4%B8%9A%E5%AD%A6%E4%B9%A0/%E3%80%905%E3%80%91%E5%85%AB%E8%82%A1/JAVA%E5%9F%BA%E7%A1%80/%E3%80%90%E5%85%AB%E8%82%A1%E3%80%91JAVA%E5%9F%BA%E7%A1%80%E7%B1%BB.assets/62bpwh.png)
+![image-20230211204339644](https://p.ipic.vip/asxjp4.png)
 
 字符串常量被保存在 **字符串常量池** 中，每个常量只会保存一份。
 
