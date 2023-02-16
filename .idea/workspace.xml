@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="Nginx" />
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="分库分表">
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】Nginx.md" beforeDir="false" afterPath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】Nginx.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,6 +66,7 @@
       <workItem from="1676546684089" duration="351000" />
       <workItem from="1676548874517" duration="11000" />
       <workItem from="1676548913992" duration="296000" />
+      <workItem from="1676549270546" duration="273000" />
     </task>
     <task id="LOCAL-00001" summary="0214">
       <created>1676379254632</created>
@@ -149,7 +152,28 @@
       <option name="project" value="LOCAL" />
       <updated>1676549017629</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="JWT">
+      <created>1676549288584</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1676549288584</updated>
+    </task>
+    <task id="LOCAL-00014" summary="线程池">
+      <created>1676549321409</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1676549321409</updated>
+    </task>
+    <task id="LOCAL-00015" summary="分库分表">
+      <created>1676549410237</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1676549410237</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,8 +194,10 @@
     <MESSAGE value="0214" />
     <MESSAGE value="技术笔记" />
     <MESSAGE value="SpringSecurity" />
-    <MESSAGE value="JWT" />
     <MESSAGE value="Nginx" />
-    <option name="LAST_COMMIT_MESSAGE" value="Nginx" />
+    <MESSAGE value="JWT" />
+    <MESSAGE value="线程池" />
+    <MESSAGE value="分库分表" />
+    <option name="LAST_COMMIT_MESSAGE" value="分库分表" />
   </component>
 </project>

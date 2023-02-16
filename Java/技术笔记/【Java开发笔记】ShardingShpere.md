@@ -2,7 +2,7 @@
 
 ## 1 基本介绍
 
-![image-20230214221441360](https://p.ipic.vip/2c52rn.png)
+![image-20230214221441360](./【Java开发笔记】ShardingShpere.assets/2c52rn.png)
 
 `Apache ShardingSphere` 是一套开源的 **分布式数据库** 中间件解决方案组成的生态圈，它由 **JDBC**、Proxy 和 Sidecar（规划中）这 3 款相互独立，却又能够混合部署配合使用的产品组成。 它们均提供标准化的 **数据水平扩展、分布式事务和分布式数据库治理** 功能，可适用于如 Java 同构、异构语言、云原生等各种多样化的应用场景。
 
@@ -76,7 +76,7 @@ SELECT i.* FROM t_order_1 o JOIN t_order_item_1 i ON o.order_id=i.order_id WHERE
 
 当 Sharding-JDBC 接受到一条 SQL 语句时，会陆续执行 `SQL解析 -> 查询优化 -> SQL路由 -> SQL改写 -> SQL执行 ->结果归并` ，最终返回执行结果。
 
-![image-20230214224016156](https://p.ipic.vip/y2tucn.png)
+![image-20230214224016156](./【Java开发笔记】ShardingShpere.assets/y2tucn.png)
 
 - **SQL解析**：过程包括词法解析和语法解析。词法解析器用于将SQL拆解为不可再分的原子符号，称为Token。并根据不同数据库方言所提供的字典，将其归类为关键字、表达式、字面量和操作符。再使用语法解析器将SQL转换为抽象语法树。
 - **查询优化**：优化，提高SQL效率。
