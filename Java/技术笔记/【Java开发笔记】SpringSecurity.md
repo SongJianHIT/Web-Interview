@@ -30,7 +30,7 @@
 
 #### 主体、资源、权限的关系
 
-<img src="https://p.ipic.vip/6qcnjm.png" alt="image-20230215210912833" style="zoom:50%;" />
+<img src="./【Java开发笔记】SpringSecurity.assets/6qcnjm.png" alt="image-20230215210912833" style="zoom:50%;" />
 
 根据上图关系，可以做出下列 **数据模型（表）**：
 
@@ -41,11 +41,11 @@
 
 #### 主体、资源、权限的表结构关系
 
-![image-20230215211208724](https://p.ipic.vip/tx6fjc.png)
+![image-20230215211208724](./【Java开发笔记】SpringSecurity.assets/tx6fjc.png)
 
 你会发现权限中包含了一个资源ID，多个权限可指向一个资源，我们是否可以直接在权限信息中把资源信息包含进来呢？当然，这也是很多企业开发中的做法，将权限和资源合并为 `权限(权限ID、权限标识、权限名称、资源名称、资源访问地址、...)`
 
-![image-20230215211153539](https://p.ipic.vip/61nfex.png) 
+![image-20230215211153539](./【Java开发笔记】SpringSecurity.assets/61nfex.png) 
 
 ### 1.3 RBAC权限模型
 
@@ -55,7 +55,7 @@
 
 RBAC 基于角色的访问控制（Role-Based Access Control）是按角色进行授权，比如：主体的角色为总经理可以查询企业运营报表，查询员工工资信息等，访问控制流程如下： 
 
-<img src="https://p.ipic.vip/nj2ykj.png" alt="image-20230215211744077" style="zoom:50%;" />
+<img src="./【Java开发笔记】SpringSecurity.assets/nj2ykj.png" alt="image-20230215211744077" style="zoom:50%;" />
 
 根据上图中的判断逻辑，授权代码可表示如下： 
 
@@ -83,7 +83,7 @@ if(主体.hasRole("总经理角色标识") || 主体.hasRole("部门经理角色
 
 **RBAC 基于资源的访问控制 (Resource-Based Access Control)** 是按 **资源（或权限）**进行授权。
 
-<img src="https://p.ipic.vip/yytooa.png" alt="image-20230215211945385" style="zoom:50%;" />
+<img src="./【Java开发笔记】SpringSecurity.assets/yytooa.png" alt="image-20230215211945385" style="zoom:50%;" />
 
  同样是上面的需求，这时候我们的代码变成了
 
@@ -109,7 +109,7 @@ B. 服务端验证后，创建一个 Session 记录用户登录信息 ，并且�
 
 C. 下次客户端再发起请求，自动带上 cookie 信息，服务端通过 cookie 获取 Session 信息进行校验；
 
-<img src="https://p.ipic.vip/hziqeo.png" alt="image-20230215212336471" style="zoom:50%;" />
+<img src="./【Java开发笔记】SpringSecurity.assets/hziqeo.png" alt="image-20230215212336471" style="zoom:50%;" />
 
  **弊端**
 
@@ -134,7 +134,7 @@ D. 下次客户端再次发起请求，将 Token 附加到 header 中；
 
 E. 服务端获取 header 中的 Token ，通过相同的算法对 Token 进行验证，**如果验证结果相同，则说明这个请求是正常的，没有被篡改。这个过程可以完全不涉及到查询 Redis 或其他存储。**
 
-<img src="https://p.ipic.vip/7gwfcz.png" alt="image-20230215212712979" style="zoom:50%;" />
+<img src="./【Java开发笔记】SpringSecurity.assets/7gwfcz.png" alt="image-20230215212712979" style="zoom:50%;" />
 
 **优点**
 
@@ -161,7 +161,7 @@ C. jwt 载荷部分可以存储业务相关的信息（非敏感的），例如�
 
 #### 对称加密
 
-![image-20230216110800578](https://p.ipic.vip/ry6531.png)
+![image-20230216110800578](./【Java开发笔记】SpringSecurity.assets/ry6531.png)
 
 对称加密，指 **加密和解密使用 相同密钥 的加密算法**。
 
@@ -172,7 +172,7 @@ C. jwt 载荷部分可以存储业务相关的信息（非敏感的），例如�
 
 #### 非对称加密
 
-![image-20230216110935306](https://p.ipic.vip/rjtngk.png)
+![image-20230216110935306](./【Java开发笔记】SpringSecurity.assets/rjtngk.png)
 
 非对称加密，指 **加密和解密使用 不同密钥 的加密算法，也称为公私钥加密**。
 
@@ -198,7 +198,7 @@ C. jwt 载荷部分可以存储业务相关的信息（非敏感的），例如�
 
 MD5 是比较常见的加密算法，广泛的应用于软件开发中的密码加密，通过 MD5 生成的密文，是无法解密得到明文密码的。但是现在在大数据背景下，很多的网站通过大数据可以将简单的 MD5 加密的密码破解。
 
-![image-20230216111444937](https://p.ipic.vip/89ndxk.png)
+![image-20230216111444937](./【Java开发笔记】SpringSecurity.assets/89ndxk.png)
 
 网址： https://www.cmd5.com/
 
@@ -245,7 +245,7 @@ System.out.println(matches);//返回值为true, 则代表验证通过; 反之, �
 
 ## 3 SpringSecurity基本介绍
 
-![image-20230215213219250](https://p.ipic.vip/w99yq4.png)
+![image-20230215213219250](./【Java开发笔记】SpringSecurity.assets/w99yq4.png)
 
 Spring Security 是为基于 Spring 的企业应用系统提供 **声明式（即配置或注解）** 的安全访问控制解决方案的安全框架（包含: 认证、授权两个方面）。它提供了完整的安全性解决方案，可以在 Web 请求级别和方法调用级别处理身份认证和授权充分利用了 Spring IOC，DI（控制反转 Inversion of Control ,DI:Dependency Injection 依赖注入）和 AOP（面向切面编程）功能，为应用系统提供声明式的安全访问控制功能。
 
@@ -257,7 +257,7 @@ Spring Security 是为基于 Spring 的企业应用系统提供 **声明式（�
 
 创建一个新的 Spring 项目：
 
-![image-20230215213507864](https://p.ipic.vip/z5tfx1.png)
+![image-20230215213507864](./【Java开发笔记】SpringSecurity.assets/z5tfx1.png)
 
 依赖：
 
@@ -309,11 +309,11 @@ public class HelloController {
 
 在 `localhost:8080` 访问：
 
-![image-20230215214238123](https://p.ipic.vip/zv0szr.png)
+![image-20230215214238123](./【Java开发笔记】SpringSecurity.assets/zv0szr.png)
 
 这是 SpringSecurity 内置的页面，密码在idea命令行有所展示。
 
-![image-20230215214349325](https://p.ipic.vip/j3v4tg.png)
+![image-20230215214349325](./【Java开发笔记】SpringSecurity.assets/j3v4tg.png)
 
 集成完毕。
 
@@ -513,7 +513,7 @@ INSERT INTO `tb_user` VALUES (1, 'itcast', '$2a$10$f43iK9zKD9unmgLao1jqI.VluZ.Rr
 INSERT INTO `tb_user` VALUES (2, 'itheima', '$2a$10$f43iK9zKD9unmgLao1jqI.VluZ.Rr/XijizVEA73HeOu9xswaUBXC', 'ROLE_SELLER,O1');
 ```
 
-![image-20230216113057146](https://p.ipic.vip/4t4miq.png) 
+![image-20230216113057146](./【Java开发笔记】SpringSecurity.assets/4t4miq.png) 
 
 **A. pom.xml**
 
@@ -738,13 +738,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 整体访问流程如下：
 
-![image-20230216113423288](https://p.ipic.vip/nqqiqz.png)
+![image-20230216113423288](./【Java开发笔记】SpringSecurity.assets/nqqiqz.png)
 
 ### 3.4 认证原理分析
 
 Spring Security 所解决的问题就是安全访问控制，而 **安全访问控制功能其实就是对所有进入系统的请求进行拦截，校验每个请求是否能够访问它所期望的资源。**因此，可以通过 Filter 或 AOP 等技术来实现，**Spring Security 对 Web 资源的保护是靠 Filter 实现的**，所以从这个 Filter 来入手，逐步深入 Spring Security 原理。 当初始化 Spring Security 时，会创建一个名为 `SpringSecurityFilterChain的Servlet` 过滤器，类型为 `org.springframework.security.web.FilterChainProxy`，它实现了 `javax.servlet.Filter` ，因此外部的请求会经过此类，下图是 Spring Security 过虑器链结构图：
 
-![image-20210314174535436](https://p.ipic.vip/a4b2ng.png)
+![image-20210314174535436](./【Java开发笔记】SpringSecurity.assets/a4b2ng.png)
 
 FilterChainProxy 是一个代理，真正起作用的是 FilterChainProxy 中 SecurityFilterChain 所包含的各个 Filter，同时 这些 Filter 作为 Bean 被 Spring 管理，它们是 Spring Security 核心，各有各的职责，但他们并不直接处理用户的认证，也不直接处理用户的授权，而是把它们交给了 **认证管理器（AuthenticationManager）**和 **决策管理器 （AccessDecisionManager）**进行处理。
 
@@ -761,7 +761,7 @@ SpringSecurity 提供了 **基于 form 表单认证** 的方式，那如何实�
 
 通过研究 `UsernamePasswordAuthenticationFilter` 内置认证过滤器，我们可以仿照这个登录过滤器自定义认证规则：
 
-![1646216930155](https://p.ipic.vip/npwpx1.png)
+![1646216930155](./【Java开发笔记】SpringSecurity.assets/npwpx1.png)
 
 ### 4.1 自定义Security认证过滤器
 
