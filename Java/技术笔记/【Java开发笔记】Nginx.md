@@ -2,7 +2,7 @@
 
 ## 基本介绍
 
-![image-20210829234142590](https://tva1.sinaimg.cn/large/008vxvgGgy1h94argl2g8j306t01pgli.jpg)
+![image-20230216194240576](./【Java开发笔记】Nginx.assets/image-20230216194240576.png)
 
 Nginx是一款轻量级的Web服务器/反向代理服务器及电子邮件（IMAP/POP3）代理服务器。其特点是 **占用内存少，并发能力强** ，事实上nginx的并发能力在同类型的网页服务器中表现较好，中国大陆使用nginx的网站有：百度、京东、新浪、网易、腾讯、淘宝等。
 
@@ -61,7 +61,7 @@ make & make install
 tree nginx
 ```
 
-![image-20221215105501138](https://tva1.sinaimg.cn/large/008vxvgGgy1h94b4rluhlj30cd0gnmxz.jpg)
+![image-20230216194315790](./【Java开发笔记】Nginx.assets/image-20230216194315790.png)
 
 重点目录和文件如下: 
 
@@ -83,17 +83,17 @@ tree nginx
 ./nginx -v
 ```
 
-![image-20221215105944652](https://tva1.sinaimg.cn/large/008vxvgGgy1h94b9o0pbxj30bj01jglj.jpg)
+![image-20230216194334225](./【Java开发笔记】Nginx.assets/image-20230216194334225.png)
 
 ### 检查配置文件
 
-修改了nginx.conf核心配置文件之后，在启动Nginx服务之前，可以先检查一下conf/nginx.conf文件配置的是否有错误，命令如下：
+修改了 nginx.conf 核心配置文件之后，在启动 Nginx 服务之前，可以先检查一下 conf/nginx.conf 文件配置的是否有错误，命令如下：
 
 ```
 ./nginx -t
 ```
 
-![image-20221215110032374](https://tva1.sinaimg.cn/large/008vxvgGgy1h94bai3a0ej30qd02at91.jpg)
+![image-20230216194351985](./【Java开发笔记】Nginx.assets/image-20230216194351985.png)
 
 ### 启动
 
@@ -103,13 +103,13 @@ tree nginx
 
 启动之后，我们可以通过 `ps -ef` 指令来查看nginx的进程是否存在。
 
-![image-20221215110225003](https://tva1.sinaimg.cn/large/008vxvgGgy1h94bcfthdoj30r303m74t.jpg)
+![image-20230216194450426](./【Java开发笔记】Nginx.assets/image-20230216194450426.png)
 
-> 注意： nginx服务启动后，默认就会有两个进程。
+> 注意： nginx 服务启动后，默认就会有两个进程。
 
-启动之后，我们可以直接访问 Nginx 的80端口， http://192.168.223.130
+启动之后，我们可以直接访问 Nginx 的 80 端口， http://192.168.223.130
 
-![image-20221215111424945](https://tva1.sinaimg.cn/large/008vxvgGgy1h94boycbr5j30gz06qjrw.jpg)
+![image-20230216194503247](./【Java开发笔记】Nginx.assets/image-20230216194503247.png)
 
 > 要想正常访问Nginx，需要关闭防火墙或开放指定端口号，执行的指令如下： 
 >
@@ -177,7 +177,7 @@ nginx的配置文件( `conf/nginx.conf` )整体上分为三部分: 全局块、e
 | events块 | 配置和网络连接相关的配置                 |
 | http块   | 配置代理、缓存、日志记录、虚拟主机等配置 |
 
-![image-20221215115956775](https://tva1.sinaimg.cn/large/008vxvgGgy1h94d0bhawwj30lo0futae.jpg)
+![image-20230216194523699](./【Java开发笔记】Nginx.assets/image-20230216194523699.png)
 
 > 在全局块、events块以及http块中，我们经常配置的是http块。
 >
@@ -206,7 +206,7 @@ server {
 
 创建了一个 `hello.html`，放到 `html目录` 下，开启 nginx 即可访问。
 
-![image-20221215121000592](https://tva1.sinaimg.cn/large/008vxvgGgy1h94das9ix3j30cq02zgln.jpg)
+![image-20230216194537157](./【Java开发笔记】Nginx.assets/image-20230216194537157.png)
 
 ### 反向代理
 
@@ -218,13 +218,13 @@ server {
 
 正向代理一般是 **在客户端设置代理服务器**，通过代理服务器转发请求，最终访问到目标服务器。
 
-![image-20221215142016242](https://tva1.sinaimg.cn/large/008vxvgGgy1h94h2brkyrj30iy08at93.jpg)
+![image-20230216194548162](./【Java开发笔记】Nginx.assets/image-20230216194548162.png)
 
 #### 反向代理
 
 反向代理服务器位于用户与目标服务器之间，但是对于用户而言，反向代理服务器就相当于目标服务器，即用户直接访问反向代理服务器就可以获得目标服务器的资源，反向代理服务器负责将请求转发给目标服务器。用户不需要知道目标服务器的地址，也无须在用户端作任何设定，**对于用户来说，访问反向代理服务器是完全无感知的。**
 
-![image-20221215142120417](https://tva1.sinaimg.cn/large/008vxvgGgy1h94h40q2msj30oh0a63zd.jpg)
+![image-20230216194601192](./【Java开发笔记】Nginx.assets/image-20230216194601192.png)
 
 在 nginx 中，我们可以在 `nginx.conf` 中配置反向代理: 
 
@@ -248,7 +248,7 @@ server {
 
 **负载均衡器：**将用户请求根据对应的负载均衡算法分发到应用集群中的一台服务器进行处理
 
-![image-20221215143128439](https://tva1.sinaimg.cn/large/008vxvgGgy1h94hdzl8wzj30me06tdgb.jpg)
+![image-20230216194620225](./【Java开发笔记】Nginx.assets/image-20230216194620225.png)
 
 此处的负载均衡器，可以使用 Nginx 来实现，而 Nginx 的负载均衡是 **基于反向代理的**，只不过此时所代理的服务器不是一台，而是多台。
 
@@ -258,8 +258,8 @@ server {
 
 | jar                                                          | 运行端口 | 请求链接 | 响应数据 |
 | ------------------------------------------------------------ | -------- | -------- | -------- |
-| ![image-20210831081023098](https://tva1.sinaimg.cn/large/008vxvgGgy1h94hh66r8wj307g00sq2s.jpg) | 8080     | /hello   | 8080     |
-| ![image-20210831081038807](https://tva1.sinaimg.cn/large/008vxvgGgy1h94hh7bek0j307g00sq2s.jpg) | 8081     | /hello   | 8081     |
+| ![image-20210831081023098](./【Java开发笔记】Nginx.assets/68747470733a2f2f747661312e73696e61696d672e636e2f6c617267652f3030387678766747677931683934686836367238776a333037673030737132732e6a7067.jpeg) | 8080     | /hello   | 8080     |
+| ![![image-20210831081038807](./【Java开发笔记】Nginx.assets/68747470733a2f2f747661312e73696e61696d672e636e2f6c617267652f303038767876674767793168393468683762656b306a333037673030737132732e6a7067.jpeg)](https://camo.githubusercontent.com/652b0b9caea11e355a800a261174ea03616f8f72a5d9ac078009de0a1caee672/68747470733a2f2f747661312e73696e61696d672e636e2f6c617267652f303038767876674767793168393468683762656b306a333037673030737132732e6a7067) | 8081     | /hello   | 8081     |
 
 > 我们在测试时，并没有那么多服务器，我们可以在一台服务器中启动多个服务，运行在不同的端口号上进行测试。
 
@@ -267,9 +267,9 @@ server {
 
 由于我们执行 java -jar 指令会占用前台窗口，所以我们可以开启两个窗口进行测试。
 
-![image-20210831081513575](https://tva1.sinaimg.cn/large/008vxvgGgy1h94hh8ysgnj31gm0kwqdz.jpg)
+![image-20230216195108122](./【Java开发笔记】Nginx.assets/image-20230216195108122.png)
 
-![image-20210831081544582](https://tva1.sinaimg.cn/large/008vxvgGgy1h94hhblcbbj31gm0kwqdz.jpg)
+![image-20230216195341800](./【Java开发笔记】Nginx.assets/image-20230216195341800.png)
 
 **3). 在nginx中配置负载均衡**
 
@@ -293,7 +293,7 @@ server {
 
 具体的配置位置如下: 
 
-![image-20210831081939508](https://tva1.sinaimg.cn/large/008vxvgGgy1h94hhaactaj317k0h9gpp.jpg) 
+![image-20230216195430113](./【Java开发笔记】Nginx.assets/image-20230216195430113.png)
 
 **4). 重新加载nginx配置文件,访问**
 
@@ -301,11 +301,11 @@ server {
 nginx -s reload
 ```
 
-测试时,我们直接访问nginx的8080端口(http://192.168.200.200:8080), 此时nginx会根据负载均衡策略,将请求转发到后面的两台服务器。
+测试时,我们直接访问 nginx 的8080端口(http://192.168.200.200:8080), 此时 nginx 会根据负载均衡策略，将请求转发到后面的两台服务器。
 
-![image-20210831082339085](https://tva1.sinaimg.cn/large/008vxvgGgy1h94hh4r40lj30yl0b33zf.jpg) 
+![image-20230216195507402](./【Java开发笔记】Nginx.assets/image-20230216195507402.png)
 
-在上述的测试过程中，我们看到请求均衡的转发到了8080和8081，因为模式的负载均衡策略是轮询。
+在上述的测试过程中，我们看到请求均衡的转发到了 8080 和 8081，因为模式的负载均衡策略是轮询。
 
 #### 负载均衡策略
 
