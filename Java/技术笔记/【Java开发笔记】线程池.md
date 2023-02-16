@@ -10,11 +10,11 @@
 - 生成线程池中工作线程的线程工厂 `threadFactory`
 - 拒绝策略 `handler`
 
-![image-20230212144932038](https://p.ipic.vip/xj2bhl.png)
+![image-20230212144932038](./【Java开发笔记】线程池.assets/xj2bhl.png)
 
 ## 1 线程池扩容流程概述
 
-![image-20230212140140002](https://p.ipic.vip/gmojmc.png)
+![image-20230212140140002](./【Java开发笔记】线程池.assets/gmojmc.png)
 
 1. 当线程池创建完成后，**池内的线程数量为 0** ，这是因为采用了 **懒加载** 机制。
 2. 当一个任务通过 `submit()` 或 `execute()` 方法提交到线程池后：
