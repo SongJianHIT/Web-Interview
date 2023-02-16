@@ -119,7 +119,7 @@ public void testVerify(){
 
 当我们对令牌进行任何部分 `(header , payload , signature)` 任何部分进行篡改, 都会造成令牌解析失效。
 
-![image-20230215201148972](https://p.ipic.vip/t0jutp.png)
+![image-20230215201148972](./【Java开发笔记】JWT.assets/t0jutp.png)
 
 ## 4 工具类
 
