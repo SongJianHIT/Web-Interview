@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="分库分表">
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="SpringSecurity">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】Nginx.md" beforeDir="false" afterPath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】Nginx.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,7 +67,7 @@
       <workItem from="1676546684089" duration="351000" />
       <workItem from="1676548874517" duration="11000" />
       <workItem from="1676548913992" duration="296000" />
-      <workItem from="1676549270546" duration="273000" />
+      <workItem from="1676549270546" duration="1208000" />
     </task>
     <task id="LOCAL-00001" summary="0214">
       <created>1676379254632</created>
@@ -173,7 +174,28 @@
       <option name="project" value="LOCAL" />
       <updated>1676549410237</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Nginx">
+      <created>1676549546461</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1676549546461</updated>
+    </task>
+    <task id="LOCAL-00017" summary="ShardingShpere">
+      <created>1676549631239</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1676549631239</updated>
+    </task>
+    <task id="LOCAL-00018" summary="SpringSecurity">
+      <created>1676549669358</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1676549669358</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,11 +215,12 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="0214" />
     <MESSAGE value="技术笔记" />
-    <MESSAGE value="SpringSecurity" />
-    <MESSAGE value="Nginx" />
     <MESSAGE value="JWT" />
     <MESSAGE value="线程池" />
     <MESSAGE value="分库分表" />
-    <option name="LAST_COMMIT_MESSAGE" value="分库分表" />
+    <MESSAGE value="Nginx" />
+    <MESSAGE value="ShardingShpere" />
+    <MESSAGE value="SpringSecurity" />
+    <option name="LAST_COMMIT_MESSAGE" value="SpringSecurity" />
   </component>
 </project>
