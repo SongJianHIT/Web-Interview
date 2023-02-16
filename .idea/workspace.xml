@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="JWT" />
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="SpringSecurity">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,6 +59,7 @@
       <workItem from="1676426446980" duration="36000" />
       <workItem from="1676426519443" duration="649000" />
       <workItem from="1676463528783" duration="28000" />
+      <workItem from="1676519938150" duration="36000" />
     </task>
     <task id="LOCAL-00001" summary="0214">
       <created>1676379254632</created>
@@ -100,7 +103,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676463547285</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="SpringSecurity">
+      <created>1676519956439</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1676519956439</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -121,6 +131,7 @@
     <MESSAGE value="0214" />
     <MESSAGE value="技术笔记" />
     <MESSAGE value="JWT" />
-    <option name="LAST_COMMIT_MESSAGE" value="JWT" />
+    <MESSAGE value="SpringSecurity" />
+    <option name="LAST_COMMIT_MESSAGE" value="SpringSecurity" />
   </component>
 </project>

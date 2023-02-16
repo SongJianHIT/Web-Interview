@@ -755,19 +755,288 @@ FilterChainProxy 是一个代理，真正起作用的是 FilterChainProxy 中 Se
 - FilterSecurityInterceptor 是用于保护 web 资源的，使用 AccessDecisionManager 对当前用户进行授权访问，前面已经详细介绍过了；
 - ExceptionTranslationFilter 能够捕获来自 FilterChain 所有的异常，并进行处理。但是它只会处理两类异常： AuthenticationException 和 AccessDeniedException，其它的异常它会继续抛出。
 
+## 4 Web项目集成SpringSecurity
+
+SpringSecurity 提供了 **基于 form 表单认证** 的方式，那如何实现 **ajax 异步提交登录信息** 的功能呢？
+
+通过研究 `UsernamePasswordAuthenticationFilter` 内置认证过滤器，我们可以仿照这个登录过滤器自定义认证规则：
+
+![1646216930155](https://p.ipic.vip/npwpx1.png)
+
+### 4.1 自定义Security认证过滤器
+
+自定义的 Security 用户名密码认证过滤器，可以按照 `UsernamePasswordAuthenticationFilter` 的思路进行自定义。
+
+```java
+/**
+ * MyUsernamePasswordAuthenticationFilter
+ * @description 自定义认证过滤器，来获取认证时，传入的 json 数据
+ * @author SongJian
+ * @date 2023/2/16 14:08
+ * @version
+ */
+public class MyUsernamePasswordAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
+
+    private String username = "username";
+    private String password = "password";
+
+    /**
+     * 有参构造器，通过构造器，指定登入的url地址
+     * @param defaultFilterProcessesUrl 指定的登入路径
+     */
+    protected MyUsernamePasswordAuthenticationFilter(String defaultFilterProcessesUrl) {
+        super(defaultFilterProcessesUrl);
+    }
+
+    /**
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws AuthenticationException
+     * @throws IOException
+     * @throws ServletException
+     */
+    @Override
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
+        String name = null;
+        String pwd = null;
+        // 判断当前请求是否是 ajax json 方式请求
+        // equalsIgnoreCase 比较字符串时，忽略大小写
+        if ((request.getContentType().equalsIgnoreCase(MediaType.APPLICATION_JSON_VALUE)
+                || request.getContentType().equalsIgnoreCase(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                && request.getMethod().equalsIgnoreCase("POST")) {
+            // 获取请求流中的用户信息
+            ServletInputStream inputStream = request.getInputStream();
+            // 解析流，获取信息
+            HashMap<String, String> mapInfo = new ObjectMapper().readValue(inputStream, HashMap.class);
+            // 获取用户名和密码信息
+            name = mapInfo.get(username);
+            pwd = mapInfo.get(password);
+        } else {
+            name = request.getParameter("username");
+            pwd = request.getParameter("password");
+        }
+        // 将用户信息组装成 token 对象  UsernamePasswordAuthenticationToken
+        UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(name, pwd);
+        // 将组装的 token 对象委托给 认证管理器 做后续的认证处理
+      	// 认证管理器底层会调用 UserDetailService 方法获取数据库中的用户信息，
+      	// 然后与 token 对象下的信息进行密码比对
+      	// 如果一致，则将从数据库中查询的权限集合信息封装到 token 对象下
+        // 这样，用户在访问资源时，会带着这个 token 对象，访问什么资源，就从 token 中判断用户是否对资源的权限
+        return this.getAuthenticationManager().authenticate(authRequest);
+    }
+}
+```
+
+### 4.2 自定义SecurityConfig类
+
+配置默认认证过滤器，保证自定义的认证过滤器要在默认的认证过滤器之前；
+
+```java
+/**
+ * SecurityConfig
+ * @description 自定义 web 安全配置类
+ * @author SongJian
+ * @date 2023/2/15 21:49
+ * @version
+ */
+@Configuration
+// 开启 springsecurity 安全设置
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+  
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.formLogin()
+                .and()
+                .logout()
+                .permitAll()
+                .and()
+                .csrf().disable()
+                .authorizeRequests()
+                //其他的登录之后就可以访问
+                .anyRequest().authenticated();
+        // 设置自定义的认证过滤器要在默认的认证过滤器之前执行，这么做避免了自带的过滤器做无用的过滤处理
+        http.addFilterBefore(myUserNamePasswordAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class).csrf().disable();
+    }
 
 
+    @Bean
+    public MyUsernamePasswordAuthenticationFilter myUserNamePasswordAuthenticationFilter() throws Exception {
+        // 设置默认登录路径
+        MyUsernamePasswordAuthenticationFilter myfilter =
+                new MyUsernamePasswordAuthenticationFilter("/authentication/form");
+        // 设置认证管理器
+        myfilter.setAuthenticationManager(authenticationManagerBean());
+        return myfilter;
+    }
+}
+```
 
+### 4.3 认证成功后响应token实现
 
+在自定义的登录过滤器：`MyUserNamePasswordAuthenticationFilter` 内实现响应 jwt token 实现 `successfulAuthentication`，该方法在认证成功后会被执行。
 
+~~~java
+    /**
+     * 认证工程处理方法
+     * @param request
+     * @param response
+     * @param chain
+     * @param authResult
+     * @throws IOException
+     * @throws ServletException
+     */
+    @Override
+    protected void successfulAuthentication(HttpServletRequest request,
+                                            HttpServletResponse response,
+                                            FilterChain chain,
+                                            Authentication authResult) throws IOException, ServletException {
+        //认证主体信息
+        UserDetails principal = (UserDetails) authResult.getPrincipal();
+        //组装响应前端的信息
+        String username = principal.getUsername();
+        String password = principal.getPassword();
+        Collection<? extends GrantedAuthority> authorities = principal.getAuthorities();
+        // 构建 JwtToken
+      	// 根据用户名和权限生成 JwtToken
+        String token = JwtTokenUtil.createToken(username, new Gson().toJson(authorities));
+        HashMap<String, String> info = new HashMap<>();
+        info.put("name",username);
+        info.put("token",token);
+        //设置响应格式
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        response.getWriter().write(new Gson().toJson(info));
+    }
+~~~
 
+完成该方法后，当用户输入了正确的用户名和密码后（即认证通过），后端会根据 **用户信息和用户权限信息** 生成一个 **JwtToken** ，并将其发送给用户，用户后续的请求可以带上这个 **JwtToken**。
 
+### 4.4 自定义授权过滤器
 
+因此，我们只需要解析 JwtToken，然后生成 **认证凭证对象 (UsernamePasswordAuthenticationToken)** 即可。
 
+我们需要继承 `OncePerRequestFilter`，该过滤器是 Spring 内置的，每次请求只过滤一次。
 
+```java
+/**
+ * MyOncePerRequestFilter
+ * @description 过滤用户请求，获取请求头中携带的 token，用于用户的权限校验
+ * @author SongJian
+ * @date 2023/2/16 15:19
+ * @version
+ */
+public class MyOncePerRequestFilter extends OncePerRequestFilter {
+    /**
+     * 定义过滤规则
+     * @param request
+     * @param response
+     * @param filterChain 过滤链对象
+     * @throws ServletException
+     * @throws IOException
+     */
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        // 获取请求头中的 token 信息
+        String token = request.getHeader(JwtTokenUtil.TOKEN_HEADER);
+        // 判断 token 是否存在
+        if (token == null) {
+            // 如果 token 不存在，则放行请求，去完成认证登入
+            filterChain.doFilter(request, response);
+            // 终止当前操作
+            return;
+        }
+        // 如果 token 存在，解析 token，获取用户名和权限信息
+        Claims claims = JwtTokenUtil.checkJWT(token);
+        if (claims == null) {
+            // 票据无效
+            response.getWriter().write("当前票据失效！");
+            return;
+        }
+        // 获取用户名和权限信息
+        String username = JwtTokenUtil.getUsername(token);
+        // 格式如下：ROLE_ADMIN,P6
+        String permissions = JwtTokenUtil.getUserRole(token);
+        // 因此需要转化成权限集合
+        List<GrantedAuthority> authentications = AuthorityUtils.commaSeparatedStringToAuthorityList(permissions);
+        // 将用户名和权限信息组装成 UsernamePasswordAuthenticationToken 对象
+        // 参数：用户名，密码，权限集合
+        UsernamePasswordAuthenticationToken tokenObj = new UsernamePasswordAuthenticationToken(username, null, authentications);
+        // 将组装的 token 对象存入 security 上下文
+        // 那么当前请求走到哪里，security 框架都能按照需求获取
+        SecurityContextHolder.getContext().setAuthentication(tokenObj);
+        // 放行，其他过滤器进行后续操作
+        filterChain.doFilter(request, response);
+    }
+}
+```
 
+同样，需要配置成 `Bean`
 
+```java
+@Bean
+public MyOncePerRequestFilter myOncePerRequestFilter() {
+    MyOncePerRequestFilter myOncePerRequestFilter = new MyOncePerRequestFilter();
+    return myOncePerRequestFilter;
+}
+```
 
+同时，这个过滤器应该在 `MyUsernamePasswordAuthenticationFilter` 之前去执行：
+
+```java
+@Override
+protected void configure(HttpSecurity http) throws Exception {
+    http.formLogin()
+            .and()
+            .logout()
+            .permitAll()
+            .and()
+            .csrf().disable()
+            .authorizeRequests()
+            //其他的登录之后就可以访问
+            .anyRequest().authenticated();
+    // 设置自定义的认证过滤器要在默认的认证过滤器之前执行，这么做避免了自带的过滤器做无用的过滤处理
+    http.addFilterBefore(myUserNamePasswordAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+    http.addFilterBefore(myOncePerRequestFilter(), MyUsernamePasswordAuthenticationFilter.class);
+}
+```
+
+### 4.5 自定义拒绝策略
+
+自定义权限拒绝策略：
+
+```java
+@Override
+protected void configure(HttpSecurity http) throws Exception {
+    http.formLogin()
+            .and()
+            .logout()
+            .permitAll()
+            .and()
+            .csrf().disable()
+             // 禁用seesion
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER)
+            .and()
+            .authorizeRequests()
+            //其他的登录之后就可以访问
+            .anyRequest().authenticated();
+    // 设置自定义的认证过滤器要在默认的认证过滤器之前执行，这么做避免了自带的过滤器做无用的过滤处理
+    http.addFilterBefore(myUserNamePasswordAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+    http.addFilterBefore(myOncePerRequestFilter(), MyUsernamePasswordAuthenticationFilter.class);
+    // 自定义拒绝策略
+    http.exceptionHandling().accessDeniedHandler(new AccessDeniedHandler() {
+        @Override
+        public void handle(HttpServletRequest request,
+                           HttpServletResponse response,
+                           AccessDeniedException accessDeniedException) throws IOException, ServletException {
+            //权限拒绝处理策略
+            response.getWriter().write("no permission......reject....");
+        }
+    });
+}
+```
 
 
 
