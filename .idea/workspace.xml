@@ -4,13 +4,62 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="IO">
-      <change afterPath="$PROJECT_DIR$/Java/八股整理/【八股】JAVA基础类.assets/9o53sh.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/八股整理/【八股】JAVA基础类.assets/aru3ls.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/八股整理/【八股】JAVA基础类.assets/asxjp4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/八股整理/【八股】JAVA基础类.assets/cno98c.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/八股整理/【八股】JAVA基础类.assets/xv5hcq.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java/八股整理/【八股】JAVA基础类.md" beforeDir="false" afterPath="$PROJECT_DIR$/Java/八股整理/【八股】JAVA基础类.md" afterDir="false" />
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="基础类">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/八股整理/【八股】Java容器.md" beforeDir="false" afterPath="$PROJECT_DIR$/Java/八股整理/【八股】Java容器.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】JWT.assets/t0jutp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】JWT.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】Nginx.assets/68747470733a2f2f747661312e73696e61696d672e636e2f6c617267652f3030387678766747677931683934686836367238776a333037673030737132732e6a7067.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】Nginx.assets/68747470733a2f2f747661312e73696e61696d672e636e2f6c617267652f303038767876674767793168393468683762656b306a333037673030737132732e6a7067.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】Nginx.assets/image-20230216194240576.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】Nginx.assets/image-20230216194315790.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】Nginx.assets/image-20230216194334225.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】Nginx.assets/image-20230216194351985.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】Nginx.assets/image-20230216194406426.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】Nginx.assets/image-20230216194450426.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】Nginx.assets/image-20230216194503247.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】Nginx.assets/image-20230216194523699.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】Nginx.assets/image-20230216194537157.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】Nginx.assets/image-20230216194548162.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】Nginx.assets/image-20230216194601192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】Nginx.assets/image-20230216194620225.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】Nginx.assets/image-20230216195045312.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】Nginx.assets/image-20230216195108122.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】Nginx.assets/image-20230216195341800.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】Nginx.assets/image-20230216195430113.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】Nginx.assets/image-20230216195507402.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】Nginx.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】ShardingShpere.assets/2c52rn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】ShardingShpere.assets/y2tucn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】ShardingShpere.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】SpringSecurity.assets/4t4miq.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】SpringSecurity.assets/61nfex.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】SpringSecurity.assets/6qcnjm.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】SpringSecurity.assets/7gwfcz.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】SpringSecurity.assets/89ndxk.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】SpringSecurity.assets/a4b2ng.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】SpringSecurity.assets/hziqeo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】SpringSecurity.assets/j3v4tg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】SpringSecurity.assets/nj2ykj.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】SpringSecurity.assets/npwpx1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】SpringSecurity.assets/nqqiqz.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】SpringSecurity.assets/rjtngk.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】SpringSecurity.assets/ry6531.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】SpringSecurity.assets/tx6fjc.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】SpringSecurity.assets/w99yq4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】SpringSecurity.assets/yytooa.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】SpringSecurity.assets/z5tfx1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】SpringSecurity.assets/zv0szr.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】SpringSecurity.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】分库分表.assets/3myre6-20230216193630339.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】分库分表.assets/3x2758-20230216193644316.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】分库分表.assets/aooagc-20230216193638463.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】分库分表.assets/g4gqhy-20230216193646555.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】分库分表.assets/netv0a-20230216193641052.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】分库分表.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】线程池.assets/gmojmc.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】线程池.assets/xj2bhl.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】线程池.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +122,7 @@
       <workItem from="1676548913992" duration="296000" />
       <workItem from="1676549270546" duration="1934000" />
       <workItem from="1676628759187" duration="1435000" />
-      <workItem from="1676632358324" duration="553000" />
+      <workItem from="1676632358324" duration="1468000" />
     </task>
     <task id="LOCAL-00001" summary="0214">
       <created>1676379254632</created>
@@ -250,7 +299,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676632394862</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="基础类">
+      <created>1676632921518</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1676632921518</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -281,6 +337,7 @@
     <MESSAGE value="Vector" />
     <MESSAGE value="LinkedList" />
     <MESSAGE value="IO" />
-    <option name="LAST_COMMIT_MESSAGE" value="IO" />
+    <MESSAGE value="基础类" />
+    <option name="LAST_COMMIT_MESSAGE" value="基础类" />
   </component>
 </project>

@@ -199,9 +199,39 @@ public static int[] copyOf(int[] original, int newLength) {
 
 > 注意：在 `LinkedList` 中，队列长度是没有限制的，因此不存在满的情况，但在别的 `Queue` 实现类中可能有限制。
 
+## 3 HashSet
 
+### 3.1 HashSet 与 HashMap 之间的区别？
 
+`HashSet` 源码的话就应该知道：`HashSet` 底层就是基于 `HashMap` 实现的。
 
+（`HashSet` 的源码非常非常少，因为除了 `clone()`、`writeObject()`、`readObject()` 是 `HashSet` 自己不得不实现之外，其他方法都是直接调用 `HashMap` 中的方法。
+
+|               `HashMap`                |                          `HashSet`                           |
+| :------------------------------------: | :----------------------------------------------------------: |
+|           实现了 `Map` 接口            |                       实现 `Set` 接口                        |
+|               存储键值对               |                          仅存储对象                          |
+|     调用 `put()` 向 map 中添加元素     |             调用 `add()` 方法向 `Set` 中添加元素             |
+| `HashMap` 使用键（Key）计算 `hashcode` | `HashSet` 使用成员对象来计算 `hashcode` 值，对于两个对象来说 `hashcode` 可能相同，所以`equals()`方法用来判断对象的相等性 |
+
+### 3.2 Set 接口的特点有什么？
+
+`Set` 的三大特点：
+
+- 无序。无序性是指存储的数据在底层数组中 **并非按照数组索引的顺序** 添加 ，而是根据 **数据的哈希值** 决定的。
+- 去重。不可重复性是指添加的元素按照 `equals()` 判断时，返回 false，需要同时重写 `equals()` 方法和 `hashCode()` 方法。
+
+### 3.3 HashSet 的特点有什么？
+
+- 无序
+- 去重
+- **高效地添加、删除、判断元素是否存在**，效率都为 $O(1)$
+
+### 3.4 比较 HashSet、LinkedHashSet 和 TreeSet 三者的异同
+
+- `HashSet`、`LinkedHashSet` 和 `TreeSet` 都是 `Set` 接口的实现类，**都能保证元素唯一，并且都不是线程安全的**。
+- `HashSet`、`LinkedHashSet` 和 `TreeSet` 的主要区别在于底层数据结构不同。`HashSet` 的底层数据结构是 **哈希表**（基于 `HashMap` 实现）。`LinkedHashSet` 的底层数据结构是 **链表和哈希表**，元素的插入和取出顺序满足 FIFO。`TreeSet` 底层数据结构是 **红黑树**，元素是有序的，排序的方式有自然排序和定制排序。
+- 底层数据结构不同又导致这三者的应用场景不同。`HashSet` 用于不需要保证元素插入和取出顺序的场景，`LinkedHashSet` 用于保证元素的插入和取出顺序满足 FIFO 的场景，`TreeSet` 用于支持对元素自定义排序规则的场景。
 
 
 
