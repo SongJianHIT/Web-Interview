@@ -53,7 +53,7 @@ Integer a2 = 100;
 
 首先看运行结果：
 
-![image-20230210202951346](https://p.ipic.vip/xv5hcq.png)
+![image-20230210202951346](./【八股】JAVA基础类.assets/xv5hcq.png)
 
 这是因为在 `Integer` 内部的设计中，使用了 **享元模式** 的设计。它的核心思想是 **通过复用对象，减少对象的创建数量，从而减少内存占用，提升性能。** `Integer` 内部中有一个 `IntegerCache`，它缓存了 `[-128, 127]` 对应的 `Integer` 类型。一旦程序调用了 `valueOf()` 方法，就直接从 cache 中获取 `Integer` 对象，否则就创建一个新的对象。
 
@@ -65,7 +65,7 @@ Integer a2 = 100;
 
 同时需要注意，如果不走 `valueOf()` 方法（或者自动装箱），而是使用 `new Integer()` 来创建对象，结果就会有所区别：
 
-![image-20230211194231336](https://p.ipic.vip/aru3ls.png)
+![image-20230211194231336](./【八股】JAVA基础类.assets/aru3ls.png)
 
 ### 1.4 超过 long 整型的数据应该如何表示？
 
@@ -100,11 +100,11 @@ System.out.println(y); /* 0.1 */
 System.out.println(Objects.equals(x, y)); /* true */
 ```
 
-https://javaguide.cn/java/basis/bigdecimal.html#bigdecimal-%E7%AD%89%E5%80%BC%E6%AF%94%E8%BE%83%E9%97%AE%E9%A2%98
+> https://javaguide.cn/java/basis/bigdecimal.html#bigdecimal
 
 ## 2 Object类
 
-![image-20230210202540001](https://p.ipic.vip/cno98c.png)
+![image-20230210202540001](./【八股】JAVA基础类.assets/cno98c.png)
 
 常考的就是 `equals()` 和 `hashcode()`
 
@@ -116,13 +116,13 @@ https://javaguide.cn/java/basis/bigdecimal.html#bigdecimal-%E7%AD%89%E5%80%BC%E6
 
 采取重写 `hashcode()` 方法，先进行 `hashcode` 比较，如果不同，那么就没必要在进行 `equals()` 的比较了，这样就大大减少了 `equals()` 比较的次数。
 
-![image-20230210202435039](https://p.ipic.vip/9o53sh.png)
+![image-20230210202435039](./【八股】JAVA基础类.assets/9o53sh.png)
 
 2、**为了保证同一个对象在 `equals()` 相同的情况下 `hashcode` 值必定相同**
 
 如果重写了 `equals()` （修改了逻辑相等）而未重写 `hashcode()` 方法，可能就会出现两个没有关系的对象 `equals()` 相同（**因为equal都是根据对象的特征进行重写的**），但 `hashcode` 确实不相同。这就导致：此时 `equals` 比较是相同的，但是 `hashmap` 内部却仍然认为这是两个对象，导致运行结果和我们期望的不符。
 
-> **【答案】**答：如果只重写 `equals()` 方法，不重写 `hashCode()` 方法，就可能导致 `a.equals(b)` 表达式成立，但是 `hashCode` 却不相同。那么这个只重写了 `equals()` 方法的对象，在使用 **散列集合** 进行存储的时候，就会出现问题。因为散列集合是先使用 `hashCode` 进行对象比较。如果两个完全相同的对象，但是却有不同的 `hashCode`，就会 **导致这两个相同的对象存储在哈希表的不同位置**，这结果与我们的期望不符。
+> **【答案】**答：如果只重写 `equals()` 方法，不重写 `hashCode()` 方法，就可能导致 `a.equals(b)` 表达式成立，但是 `hashCode` 却不相同。那么这个只重写了 `equals()` 方法的对象，在使用 **散列集合** 进行存储的时候，就会出现问题。因为散列集合是先使用 `hashCode` 进行对象比较。如果两个属性完全相同的对象，但是却有不同的 `hashCode`，就会 **导致这两个相同的对象存储在哈希表的不同位置**，这结果与我们的期望不符。
 
 ### 2.2 equals() 与 == 之间的区别？
 
@@ -174,7 +174,7 @@ private final char value[];
 
 ### 3.3 常量字符串考点
 
-![image-20230211204339644](https://p.ipic.vip/asxjp4.png)
+![image-20230211204339644](./【八股】JAVA基础类.assets/asxjp4.png)
 
 字符串常量被保存在 **字符串常量池** 中，每个常量只会保存一份。
 
