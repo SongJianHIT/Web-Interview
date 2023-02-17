@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="SpringSecurity">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】Nginx.md" beforeDir="false" afterPath="$PROJECT_DIR$/Java/技术笔记/【Java开发笔记】Nginx.md" afterDir="false" />
-    </list>
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="Nginx" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -67,7 +64,7 @@
       <workItem from="1676546684089" duration="351000" />
       <workItem from="1676548874517" duration="11000" />
       <workItem from="1676548913992" duration="296000" />
-      <workItem from="1676549270546" duration="1208000" />
+      <workItem from="1676549270546" duration="1934000" />
     </task>
     <task id="LOCAL-00001" summary="0214">
       <created>1676379254632</created>
@@ -195,7 +192,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676549669358</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Nginx">
+      <created>1676550665265</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1676550665265</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -218,9 +222,9 @@
     <MESSAGE value="JWT" />
     <MESSAGE value="线程池" />
     <MESSAGE value="分库分表" />
-    <MESSAGE value="Nginx" />
     <MESSAGE value="ShardingShpere" />
     <MESSAGE value="SpringSecurity" />
-    <option name="LAST_COMMIT_MESSAGE" value="SpringSecurity" />
+    <MESSAGE value="Nginx" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nginx" />
   </component>
 </project>
