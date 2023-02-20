@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="LinkedHashSet" />
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="容器" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -73,6 +73,7 @@
       <workItem from="1676859818151" duration="960000" />
       <workItem from="1676864464823" duration="174000" />
       <workItem from="1676872813927" duration="339000" />
+      <workItem from="1676876548118" duration="221000" />
     </task>
     <task id="LOCAL-00001" summary="0214">
       <created>1676379254632</created>
@@ -291,7 +292,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676872848808</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="容器">
+      <created>1676876566846</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1676876566846</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -326,6 +334,7 @@
     <MESSAGE value="操作系统" />
     <MESSAGE value="HashSet" />
     <MESSAGE value="LinkedHashSet" />
-    <option name="LAST_COMMIT_MESSAGE" value="LinkedHashSet" />
+    <MESSAGE value="容器" />
+    <option name="LAST_COMMIT_MESSAGE" value="容器" />
   </component>
 </project>
