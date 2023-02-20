@@ -1,5 +1,17 @@
 # 【八股】Java容器
 
+**Collection（单列）** 重点容器类：
+
+![image-20230220142425800](./【八股】Java容器.assets/image-20230220142425800.png)
+
+**Map（双列）** 重点容器类：
+
+![image-20230220142444020](./【八股】Java容器.assets/image-20230220142444020.png)
+
+- Map 用于保存具有映射关系的数据，键值对形式存储
+- Map 中的 key 不允许重复，value 可重复
+- 当有相同的 key 插入时，会进行替换
+
 ## 1 ArrayList
 
 ### 1.1 ArrayList是线程安全的吗？
@@ -230,8 +242,10 @@ public static int[] copyOf(int[] original, int newLength) {
 ### 3.4 比较 HashSet、LinkedHashSet 和 TreeSet 三者的异同
 
 - `HashSet`、`LinkedHashSet` 和 `TreeSet` 都是 `Set` 接口的实现类，**都能保证元素唯一，并且都不是线程安全的**。
-- `HashSet`、`LinkedHashSet` 和 `TreeSet` 的主要区别在于底层数据结构不同。`HashSet` 的底层数据结构是 **哈希表**（基于 `HashMap` 实现）。`LinkedHashSet` 的底层数据结构是 **链表和哈希表**，元素的插入和取出顺序满足 FIFO。`TreeSet` 底层数据结构是 **红黑树**，元素是有序的，排序的方式有自然排序和定制排序。
+- `HashSet`、`LinkedHashSet` 和 `TreeSet` 的主要区别在于底层数据结构不同。`HashSet` 的底层数据结构是 **哈希表**（基于 `HashMap` 实现）。`LinkedHashSet` 的底层数据结构是 **双向链表和哈希表**，元素的插入和取出顺序满足 FIFO。`TreeSet` 底层数据结构是 **红黑树**，元素是有序的，排序的方式有自然排序和定制排序。
 - 底层数据结构不同又导致这三者的应用场景不同。`HashSet` 用于不需要保证元素插入和取出顺序的场景，`LinkedHashSet` 用于保证元素的插入和取出顺序满足 FIFO 的场景，`TreeSet` 用于支持对元素自定义排序规则的场景。
+
+## 4 HashMap
 
 
 
