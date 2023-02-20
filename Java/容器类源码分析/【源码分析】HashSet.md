@@ -540,3 +540,95 @@ public static void main(String[] args) {
 添加第 11 个元素，进行树化（因为目前 `64 = 64`）。
 
 ![image-20230217181017288](./【源码分析】HashSet.assets/image-20230217181017288.png)
+
+## 3 实战分析
+
+定义一个 `Student` 类，包含 `name` 和 `age` 属性，要求：
+
+- 创建 3 个 `Student` 放入 hashset 中
+- 当 `name` 和 `age` 的值相同时，认为是相同员工，不能添加到 hashset 中
+
+### 3.1 不重写hashCode方法和euqals方法
+
+```java
+public class Student {
+    private int age;
+    private String name;
+
+    public Student(int age, String name) {
+        this.age = age;
+        this.name = name;
+    }
+}
+```
+
+![image-20230220113126240](./【源码分析】HashSet.assets/image-20230220113126240.png)
+
+可以发现，并没有达到我们去重的目的。
+
+### 3.2 只重写euqals方法
+
+```java
+public class Student {
+    private int age;
+    private String name;
+
+    public Student(int age, String name) {
+        this.age = age;
+        this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Student student = (Student) o;
+        return age == student.age && Objects.equals(name, student.name);
+    }
+}
+```
+
+发现结果还是一样，没有去重。
+
+![image-20230220113359141](./【源码分析】HashSet.assets/image-20230220113359141.png)
+
+这是因为 没有重写 `hashCode()` 方法，导致 `equals()` 认为相同的对象，却有不同的哈希值，不同的哈希值导致定位数组的 index 位置不同；同时，由于 `&&` 运算的短路规则，不会造成添加失败的错误。
+
+### 3.3 重写了equals方法与hashCode方法
+
+```java
+public class Student {
+    private int age;
+    private String name;
+
+    public Student(int age, String name) {
+        this.age = age;
+        this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Student student = (Student) o;
+        return age == student.age && Objects.equals(name, student.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(age, name);
+    }
+}
+```
+
+![image-20230220113743369](./【源码分析】HashSet.assets/image-20230220113743369.png)
+
+所以还是那句话，在使用散列结构时，重写 `equals()` 方法则必须重写 `hashCode()` 方法。
