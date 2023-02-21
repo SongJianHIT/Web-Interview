@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="Hashtable">
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="进程管理">
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发】SpringCloud.assets/image-20230221201233194.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发】SpringCloud.assets/image-20230221201304256.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发】SpringCloud.assets/image-20230221201328548.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发】SpringCloud.assets/image-20230221203538173.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发】SpringCloud.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,21 +31,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/mac/IdeaProjects/Web-Interview/Java/技术笔记",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/mac/IdeaProjects/Web-Interview/Java/技术笔记&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Java/技术笔记" />
@@ -79,6 +84,8 @@
       <workItem from="1676876548118" duration="221000" />
       <workItem from="1676894480724" duration="1362000" />
       <workItem from="1676899433162" duration="772000" />
+      <workItem from="1676954089967" duration="1092000" />
+      <workItem from="1676983749197" duration="126000" />
     </task>
     <task id="LOCAL-00001" summary="0214">
       <created>1676379254632</created>
@@ -325,7 +332,21 @@
       <option name="project" value="LOCAL" />
       <updated>1676899451642</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Docker">
+      <created>1676954118020</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1676954118020</updated>
+    </task>
+    <task id="LOCAL-00037" summary="进程管理">
+      <created>1676983798845</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1676983798845</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -363,6 +384,8 @@
     <MESSAGE value="容器" />
     <MESSAGE value="HashMap" />
     <MESSAGE value="Hashtable" />
-    <option name="LAST_COMMIT_MESSAGE" value="Hashtable" />
+    <MESSAGE value="Docker" />
+    <MESSAGE value="进程管理" />
+    <option name="LAST_COMMIT_MESSAGE" value="进程管理" />
   </component>
 </project>
