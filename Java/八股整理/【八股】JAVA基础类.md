@@ -154,7 +154,7 @@ Java 中包括了 **基本数据类型** 和 **引用数据类型**，`==`在这
 
 ## 3 String类
 
-### 3.1 String的底层是如何实现的？为什么String是不可变类？
+### 3.1 String的底层是如何实现的？为什么String是不可变类？不可变有什么优缺点？
 
 > 什么是不可变对象呢？
 >
@@ -163,10 +163,25 @@ Java 中包括了 **基本数据类型** 和 **引用数据类型**，`==`在这
 `String` 底层是一个 **字符数组** `value[]`。（注意：`Java 9` 后使用的是 **字节数组** `byte[]`）
 
 ```java
-private final char value[];
+public final class String
+    implements java.io.Serializable, Comparable<String>, CharSequence {
+  
+    /** The value is used for character storage. */
+    private final char value[];
+}
 ```
 
-因为这个 `value[]` 数组被 `final` 修饰，因此初始化后就无法引用别的对象。`String` 类被 `final` 修饰，因此无法被继承。而在 `String` 类中并没有提供相关的 `get/set` 方法去修改 `value[]`。
+因为：
+
+- 这个 `value[]` 数组被 `final` 修饰，因此初始化后就无法引用别的对象，被 `private` 修饰，并且没有提供相关的 `get/set` 方法去修改 `value[]`。
+- `String` 类被 `final` 修饰，进而避免了子类破坏 `String` 的不可变。
+
+**不可变的优点** ：
+
+- **线程安全**：在并发场景下，多个线程读取同一个资源，是不会引发竟态条件的。只有在对资源进行些操作时才有危险。不可变对象不能被修改，所以是线程安全的。
+- **节省空间，提高效率**：String 还有字符串常量池的属性，在大量使用字符串的情况下，可节省内存空间。
+
+**不可变的缺点**：每次对 String 类型进行改变的时候，都会生成一个新的 String 对象，然后将指针指向新的 String 对象。
 
 ### 3.2 String是不可变类，那它内部的字符串操作方法如何实现的？
 
@@ -181,3 +196,44 @@ private final char value[];
 当通过常量的形式使用一个字符串的时候，使用的是常量池中的那个对应的 `String` 类型的对象。
 
 如果不是通过常量直接赋值，而是使用 `new` 创建，就会不同了。
+
+### 3.4 Java 9 为何要将 `String` 的底层实现由 `char[]` 改成 `byte[]` ？
+
+新版的 String 其实支持两个编码方案：Latin-1 和 UTF-16。如果字符串中包含的汉字没有超过 Latin-1 可表示范围内的字符，那就会使用 Latin-1 作为编码方案。
+
+Latin-1 编码方案下，**`byte` 占一个字节( 8 位)，`char` 占用 2 个字节（ 16 位）**，`byte` 相较 `char` 节省一半的内存空间。
+
+如果字符串中包含的汉字超过 Latin-1 可表示范围内的字符，`byte` 和 `char` 所占用的空间是一样的。
+
+### 3.5 String、StringBuilder、StringBuffer的比较？
+
+#### 线程安全性比较
+
+`String` 中的对象是不可变的，也就可以理解为 **常量，线程安全**。
+
+`AbstractStringBuilder` 是 `StringBuilder` 与 `StringBuffer` 的公共父类，定义了一些字符串的基本操作，如 `expandCapacity`、`append`、`insert`、`indexOf` 等公共方法。
+
+`StringBuffer` 对方法加了同步锁或者对调用的方法加了 **同步锁**，所以是 **线程安全** 的。
+
+`StringBuilder` 并没有对方法进行加同步锁，所以是 **非线程安全** 的。 
+
+#### 性能比较
+
+每次对 `String` 类型进行改变的时候，都会生成一个新的 `String` 对象，然后将指针指向新的 `String` 对象。
+
+`StringBuffer` 每次都会对 `StringBuffer` **对象本身进行操作**，而 **不是生成新的对象并改变对象引用**。相同情况下使用 `StringBuilder` 相比使用 `StringBuffer` 仅能获得 10%~15% 左右的性能提升，但却要冒多线程不安全的风险。
+
+**对于三者使用的总结：**
+
+1. 操作少量的数据: 适用 `String`
+2. **单线程** 操作字符串缓冲区下操作大量数据: 适用 `StringBuilder`
+3. **多线程** 操作字符串缓冲区下操作大量数据: 适用 `StringBuffer`
+
+
+
+
+
+
+
+
+

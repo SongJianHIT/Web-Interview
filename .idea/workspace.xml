@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="SpringCloud">
+      <change afterPath="$PROJECT_DIR$/业务场景/【八股】业务场景.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/数据库/【八股】Redis.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/八股整理/【八股】JAVA基础类.md" beforeDir="false" afterPath="$PROJECT_DIR$/Java/八股整理/【八股】JAVA基础类.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +84,7 @@
       <workItem from="1676899433162" duration="772000" />
       <workItem from="1676954089967" duration="1092000" />
       <workItem from="1676983749197" duration="789000" />
+      <workItem from="1677053855040" duration="1064000" />
     </task>
     <task id="LOCAL-00001" summary="0214">
       <created>1676379254632</created>
@@ -348,7 +352,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676983911329</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="SpringCloud">
+      <created>1677053878852</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1677053878852</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
