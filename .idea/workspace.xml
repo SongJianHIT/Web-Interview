@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="进程管理">
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发】SpringCloud.assets/image-20230221201233194.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发】SpringCloud.assets/image-20230221201304256.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发】SpringCloud.assets/image-20230221201328548.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发】SpringCloud.assets/image-20230221203538173.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发】SpringCloud.md" afterDir="false" />
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="SpringCloud">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -85,7 +80,7 @@
       <workItem from="1676894480724" duration="1362000" />
       <workItem from="1676899433162" duration="772000" />
       <workItem from="1676954089967" duration="1092000" />
-      <workItem from="1676983749197" duration="126000" />
+      <workItem from="1676983749197" duration="789000" />
     </task>
     <task id="LOCAL-00001" summary="0214">
       <created>1676379254632</created>
@@ -346,7 +341,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676983798845</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="SpringCloud">
+      <created>1676983911329</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1676983911329</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -386,6 +388,7 @@
     <MESSAGE value="Hashtable" />
     <MESSAGE value="Docker" />
     <MESSAGE value="进程管理" />
-    <option name="LAST_COMMIT_MESSAGE" value="进程管理" />
+    <MESSAGE value="SpringCloud" />
+    <option name="LAST_COMMIT_MESSAGE" value="SpringCloud" />
   </component>
 </project>
