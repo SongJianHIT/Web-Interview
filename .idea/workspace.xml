@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="SpringCloud">
-      <change afterPath="$PROJECT_DIR$/业务场景/【八股】业务场景.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/数据库/【八股】Redis.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java/八股整理/【八股】JAVA基础类.md" beforeDir="false" afterPath="$PROJECT_DIR$/Java/八股整理/【八股】JAVA基础类.md" afterDir="false" />
-    </list>
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="java基础类" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -84,7 +79,7 @@
       <workItem from="1676899433162" duration="772000" />
       <workItem from="1676954089967" duration="1092000" />
       <workItem from="1676983749197" duration="789000" />
-      <workItem from="1677053855040" duration="1064000" />
+      <workItem from="1677053855040" duration="1090000" />
     </task>
     <task id="LOCAL-00001" summary="0214">
       <created>1676379254632</created>
@@ -359,7 +354,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677053878852</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="java基础类">
+      <created>1677068822064</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1677068822064</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -400,6 +402,7 @@
     <MESSAGE value="Docker" />
     <MESSAGE value="进程管理" />
     <MESSAGE value="SpringCloud" />
-    <option name="LAST_COMMIT_MESSAGE" value="SpringCloud" />
+    <MESSAGE value="java基础类" />
+    <option name="LAST_COMMIT_MESSAGE" value="java基础类" />
   </component>
 </project>
