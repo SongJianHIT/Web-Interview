@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="容器">
-      <change afterPath="$PROJECT_DIR$/业务场景/【八股】业务场景.assets/format,png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/业务场景/【八股】业务场景.md" beforeDir="false" afterPath="$PROJECT_DIR$/业务场景/【八股】业务场景.md" afterDir="false" />
-    </list>
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="如何设计一个扫码登入功能？" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -83,7 +80,7 @@
       <workItem from="1676954089967" duration="1092000" />
       <workItem from="1676983749197" duration="789000" />
       <workItem from="1677053855040" duration="1090000" />
-      <workItem from="1677072633633" duration="2139000" />
+      <workItem from="1677072633633" duration="2166000" />
     </task>
     <task id="LOCAL-00001" summary="0214">
       <created>1676379254632</created>
@@ -379,7 +376,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677075890014</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="如何设计一个扫码登入功能？">
+      <created>1677078277048</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1677078277048</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -422,6 +426,7 @@
     <MESSAGE value="java基础类" />
     <MESSAGE value="StringBuilder" />
     <MESSAGE value="容器" />
-    <option name="LAST_COMMIT_MESSAGE" value="容器" />
+    <MESSAGE value="如何设计一个扫码登入功能？" />
+    <option name="LAST_COMMIT_MESSAGE" value="如何设计一个扫码登入功能？" />
   </component>
 </project>
