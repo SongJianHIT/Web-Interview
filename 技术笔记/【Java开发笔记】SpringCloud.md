@@ -952,7 +952,1169 @@ Nacos 和 Eureka 整体结构类似，服务注册、服务拉取、心跳等待
 > - A：可用性
 > - P：分区容错性
 
+## 7 Nacos配置管理
 
+### 7.1 统一配置管理
+
+当微服务部署的实例越来越多，达到数十、数百时，逐个修改微服务配置就会让人抓狂，而且很容易出错。
+
+我们需要一种 **统一配置管理方案，可以集中管理所有实例的配置。**
+
+![image-20210714164426792](./【Java开发笔记】SpringCloud.assets/rokry3.png)
+
+> Nacos 一方面可以 **将配置集中管理**，另一方可以 在配置变更时，及时通知微服务，实现配置的 **热更新**。
+
+#### 在 Nacos 中添加配置文件
+
+如何在 Nacos 中管理配置呢？
+
+![image-20210714164742924](./【Java开发笔记】SpringCloud.assets/image-20210714164742924.png)
+
+然后在弹出的表单中，填写配置信息：
+
+![image-20210714164856664](./【Java开发笔记】SpringCloud.assets/66lvtx.png)
+
+> 注意：**项目的核心配置，需要热更新的配置才有放到 Nacos 管理的必要**。基本不会变更的一些配置还是保存在微服务本地比较好。
+
+#### 微服务从 Nacos 拉取配置
+
+微服务要拉取 Nacos 中管理的配置，并且与本地的 `application.yml` 配置合并，才能完成项目启动。
+
+但如果尚未读取 `application.yml` ，又如何得知 Nacos 地址呢？
+
+因此 spring 引入了一种新的配置文件：`bootstrap.yaml` 文件，会在 `application.yml` 之前被读取，流程如下：
+
+![img](./【Java开发笔记】SpringCloud.assets/u7a9g6.png)
+
+1. **引入 Nacos-config 依赖**
+
+```xml
+<!--nacos配置管理依赖-->
+<dependency>
+    <groupId>com.alibaba.cloud</groupId>
+    <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+</dependency>
+```
+
+2. **在微服务的 resource 目录中添加 `bootstrap.yaml`**
+
+`bootstrap.yaml` 的优先级高于 `application.yml`：
+
+```yaml
+spring:
+  application:
+    name: userservice # 服务名称
+  profiles:
+    active: dev #开发环境，这里是dev 
+  cloud:
+    nacos:
+      server-addr: localhost:8848 # Nacos地址
+      config:
+        file-extension: yaml # 文件后缀名
+```
+
+这里会根据 `spring.cloud.nacos.server-addr` 获取 Nacos 地址，再根据
+
+ `${spring.application.name}-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}` 作为文件 id，来读取配置。本例中，就是去读取 `userservice-dev.yaml` ：
+
+![image-20210714170845901](./【Java开发笔记】SpringCloud.assets/j9b23j.png)
+
+3. **读取 Nacos 配置**
+
+在 user-service 中的 UserController 中添加业务逻辑，读取 pattern.dateformat 配置：
+
+```java
+@Slf4j
+@RestController
+@RequestMapping("/user")
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+  	// 通过 Value 注解读取配置
+    @Value("${pattern.dateformat}")
+    private String dateformat;
+
+    /**
+     * 路径： /user/110
+     *
+     * @param id 用户id
+     * @return 用户
+     */
+    @GetMapping("/{id}")
+    public User queryById(@PathVariable("id") Long id) {
+        return userService.queryById(id);
+    }
+
+    @GetMapping("now")
+    public String now(){
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern(dateformat));
+    }
+}
+```
+
+访问 `loaclhost:8081/user/now`：
+
+![image-20230223094243357](./【Java开发笔记】SpringCloud.assets/image-20230223094243357.png)
+
+### 7.2 配置热更新
+
+修改 Nacos 中的配置后，微服务中无需重启即可让配置生效，也就是 **配置热更新**。
+
+#### 方式一：Value+RefreshScope注解
+
+在 `@Value` 注入的变量所在类上添加注解 `@RefreshScope` ：
+
+![image-20230223094702879](./【Java开发笔记】SpringCloud.assets/image-20230223094702879.png)
+
+#### 方式二：配置类+ConfigurationProperties注解
+
+使用 `@ConfigurationProperties` 注解代替 `@Value` 注解。
+
+在 user-service 服务中，添加一个类，读取 `patterrn.dateformat` 属性：
+
+```java
+/**
+ * PartternProperties
+ * @description
+ * @author SongJian
+ * @date 2023/2/23 09:49
+ * @version
+ */
+@Component
+@Data
+@ConfigurationProperties(prefix = "pattern")
+public class PartternProperties {
+    
+    private String dateformat;
+}
+```
+
+然后在 UserController 中使用这个类代替 `@Value` ：
+
+![image-20230223095316030](./【Java开发笔记】SpringCloud.assets/image-20230223095316030.png)
+
+### 7.3 多环境配置共享
+
+其实微服务启动时，会去 Nacos 读取多个配置文件，例如：
+
+- `[spring.application.name]-[spring.profiles.active].yaml`，例如：userservice-dev.yaml
+- `[spring.application.name].yaml`，例如：userservice.yaml
+
+而 `[spring.application.name].yaml` **不包含环境，因此可以被多个环境共享**。
+
+1. **添加环境共享配置**
+
+在 Nacos 中添加一个 `userservice.yaml` 文件。注意，配置名称不需要带 `profiles`
+
+![image-20230223100830112](./【Java开发笔记】SpringCloud.assets/image-20230223100830112.png)
+
+2. **在user-service中去读共享配置**
+
+在user-service服务中，修改 PatternProperties 类，读取新添加的属性：
+
+```java
+@Component
+@Data
+@ConfigurationProperties(prefix = "pattern")
+public class PartternProperties {
+
+    private String dateformat;
+
+    private String envSharedValue;
+}
+```
+
+在user-service服务中，修改 UserController，添加一个方法：
+
+```java
+@GetMapping("prop")
+public Object prop(){
+    return partternProperties;
+}
+```
+
+![image-20230223101635436](./【Java开发笔记】SpringCloud.assets/image-20230223101635436.png)
+
+3. **运行两个UserApplication，使用不同的profile**
+
+修改 UserApplication2 这个启动项，改变其 profile 值：
+
+![image-20210714173538538](./【Java开发笔记】SpringCloud.assets/image-20210714173538538.png)
+
+![image-20230223101455966](./【Java开发笔记】SpringCloud.assets/image-20230223101455966.png)
+
+这样，UserApplication(8081) 使用的 profile 是 dev，UserApplication2(8082) 使用的 profile 是test。
+
+启动 UserApplication 和 UserApplication2 :
+
+![image-20230223102001827](./【Java开发笔记】SpringCloud.assets/image-20230223102001827.png)
+
+可以看出来，不管是 dev，还是 test 环境，都读取到了 envSharedValue 这个属性的值。
+
+### 7.4 配置共享的优先级
+
+当 **Nacos、服务本地 同时出现相同属性** 时，优先级有高低之分：
+
+![image-20210714174623557](./【Java开发笔记】SpringCloud.assets/image-20210714174623557.png)
+
+## 8 Nacos集群搭建(案例)
+
+官方给出的 Nacos 集群图：
+
+![image-20210409210621117](./【Java开发笔记】SpringCloud.assets/image-20210409210621117.png)
+
+其中包含 3 个 nacos 节点，然后一个负载均衡器代理 3 个 Nacos。这里负载均衡器可以使用 nginx。
+
+我们计划的集群结构：
+
+![image-20210409211355037](./【Java开发笔记】SpringCloud.assets/d2ata0.png)
+
+三个 nacos 节点的地址：
+
+| 节点   | ip            | port |
+| ------ | ------------- | ---- |
+| nacos1 | 192.168.150.1 | 8846 |
+| nacos2 | 192.168.150.1 | 8850 |
+| nacos3 | 192.168.150.1 | 8853 |
+
+> 注意：Nacos 2.x 版本每个节点除了服务端口之外，会额外占用两个连续的端口号。因此，单机模拟 nacos 集群部署时，每个节点的服务端口号不能连续，否则端口号被占用的节点启动不成功。
+
+### 8.1 配置Nacos并启动
+
+复制多个 nacos 目录：
+
+![image-20230223104128461](./【Java开发笔记】SpringCloud.assets/image-20230223104128461.png)
+
+进入 nacos 的 conf 目录，修改配置文件 `cluster.conf.example` ，重命名为 `cluster.conf` ：
+
+然后将里面的内容清空，再添加如下内容：
+
+```
+127.0.0.1:8846
+127.0.0.1:8850
+127.0.0.1:8853
+```
+
+![image-20230223111244633](./【Java开发笔记】SpringCloud.assets/image-20230223111244633.png)
+
+然后把这个 `cluster.conf` 拷贝到每个 nacos 的 conf 中。
+
+然后修改每个 nacos 的 `application.properties` 文件，添加数据库配置，同时记得修改对应的端口：
+
+```properties
+server.port=8846
+spring.datasource.platform=mysql
+db.num=1
+db.url.0=jdbc:mysql://127.0.0.1:3306/nacos?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useUnicode=true&useSSL=false&serverTimezone=UTC
+db.user.0=root
+db.password.0=123
+```
+
+![image-20230223104629121](./【Java开发笔记】SpringCloud.assets/image-20230223104629121.png)
+
+修改 `application.properties` 文件，配置 nacos 使用的本机IP地址：
+
+```properties
+### Specify local server's IP:
+nacos.inetutils.ip-address=127.0.0.1
+```
+
+然后分别启动三个 nacos 节点：
+
+![image-20230223111217130](./【Java开发笔记】SpringCloud.assets/image-20230223111217130.png)
+
+### 8.2 数据库环境搭建
+
+创建 `nacos` 数据库，在其中执行 sql：
+
+```sql
+CREATE TABLE `config_info` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `data_id` varchar(255) NOT NULL COMMENT 'data_id',
+  `group_id` varchar(255) DEFAULT NULL,
+  `content` longtext NOT NULL COMMENT 'content',
+  `md5` varchar(32) DEFAULT NULL COMMENT 'md5',
+  `gmt_create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `gmt_modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',
+  `src_user` text COMMENT 'source user',
+  `src_ip` varchar(50) DEFAULT NULL COMMENT 'source ip',
+  `app_name` varchar(128) DEFAULT NULL,
+  `tenant_id` varchar(128) DEFAULT '' COMMENT '租户字段',
+  `c_desc` varchar(256) DEFAULT NULL,
+  `c_use` varchar(64) DEFAULT NULL,
+  `effect` varchar(64) DEFAULT NULL,
+  `type` varchar(64) DEFAULT NULL,
+  `c_schema` text,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_configinfo_datagrouptenant` (`data_id`,`group_id`,`tenant_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='config_info';
+
+/******************************************/
+/*   数据库全名 = nacos_config   */
+/*   表名称 = config_info_aggr   */
+/******************************************/
+CREATE TABLE `config_info_aggr` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `data_id` varchar(255) NOT NULL COMMENT 'data_id',
+  `group_id` varchar(255) NOT NULL COMMENT 'group_id',
+  `datum_id` varchar(255) NOT NULL COMMENT 'datum_id',
+  `content` longtext NOT NULL COMMENT '内容',
+  `gmt_modified` datetime NOT NULL COMMENT '修改时间',
+  `app_name` varchar(128) DEFAULT NULL,
+  `tenant_id` varchar(128) DEFAULT '' COMMENT '租户字段',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_configinfoaggr_datagrouptenantdatum` (`data_id`,`group_id`,`tenant_id`,`datum_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='增加租户字段';
+
+
+/******************************************/
+/*   数据库全名 = nacos_config   */
+/*   表名称 = config_info_beta   */
+/******************************************/
+CREATE TABLE `config_info_beta` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `data_id` varchar(255) NOT NULL COMMENT 'data_id',
+  `group_id` varchar(128) NOT NULL COMMENT 'group_id',
+  `app_name` varchar(128) DEFAULT NULL COMMENT 'app_name',
+  `content` longtext NOT NULL COMMENT 'content',
+  `beta_ips` varchar(1024) DEFAULT NULL COMMENT 'betaIps',
+  `md5` varchar(32) DEFAULT NULL COMMENT 'md5',
+  `gmt_create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `gmt_modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',
+  `src_user` text COMMENT 'source user',
+  `src_ip` varchar(50) DEFAULT NULL COMMENT 'source ip',
+  `tenant_id` varchar(128) DEFAULT '' COMMENT '租户字段',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_configinfobeta_datagrouptenant` (`data_id`,`group_id`,`tenant_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='config_info_beta';
+
+/******************************************/
+/*   数据库全名 = nacos_config   */
+/*   表名称 = config_info_tag   */
+/******************************************/
+CREATE TABLE `config_info_tag` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `data_id` varchar(255) NOT NULL COMMENT 'data_id',
+  `group_id` varchar(128) NOT NULL COMMENT 'group_id',
+  `tenant_id` varchar(128) DEFAULT '' COMMENT 'tenant_id',
+  `tag_id` varchar(128) NOT NULL COMMENT 'tag_id',
+  `app_name` varchar(128) DEFAULT NULL COMMENT 'app_name',
+  `content` longtext NOT NULL COMMENT 'content',
+  `md5` varchar(32) DEFAULT NULL COMMENT 'md5',
+  `gmt_create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `gmt_modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',
+  `src_user` text COMMENT 'source user',
+  `src_ip` varchar(50) DEFAULT NULL COMMENT 'source ip',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_configinfotag_datagrouptenanttag` (`data_id`,`group_id`,`tenant_id`,`tag_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='config_info_tag';
+
+/******************************************/
+/*   数据库全名 = nacos_config   */
+/*   表名称 = config_tags_relation   */
+/******************************************/
+CREATE TABLE `config_tags_relation` (
+  `id` bigint(20) NOT NULL COMMENT 'id',
+  `tag_name` varchar(128) NOT NULL COMMENT 'tag_name',
+  `tag_type` varchar(64) DEFAULT NULL COMMENT 'tag_type',
+  `data_id` varchar(255) NOT NULL COMMENT 'data_id',
+  `group_id` varchar(128) NOT NULL COMMENT 'group_id',
+  `tenant_id` varchar(128) DEFAULT '' COMMENT 'tenant_id',
+  `nid` bigint(20) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`nid`),
+  UNIQUE KEY `uk_configtagrelation_configidtag` (`id`,`tag_name`,`tag_type`),
+  KEY `idx_tenant_id` (`tenant_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='config_tag_relation';
+
+/******************************************/
+/*   数据库全名 = nacos_config   */
+/*   表名称 = group_capacity   */
+/******************************************/
+CREATE TABLE `group_capacity` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `group_id` varchar(128) NOT NULL DEFAULT '' COMMENT 'Group ID，空字符表示整个集群',
+  `quota` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '配额，0表示使用默认值',
+  `usage` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '使用量',
+  `max_size` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '单个配置大小上限，单位为字节，0表示使用默认值',
+  `max_aggr_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '聚合子配置最大个数，，0表示使用默认值',
+  `max_aggr_size` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '单个聚合数据的子配置大小上限，单位为字节，0表示使用默认值',
+  `max_history_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '最大变更历史数量',
+  `gmt_create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `gmt_modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_group_id` (`group_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='集群、各Group容量信息表';
+
+/******************************************/
+/*   数据库全名 = nacos_config   */
+/*   表名称 = his_config_info   */
+/******************************************/
+CREATE TABLE `his_config_info` (
+  `id` bigint(64) unsigned NOT NULL,
+  `nid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `data_id` varchar(255) NOT NULL,
+  `group_id` varchar(128) NOT NULL,
+  `app_name` varchar(128) DEFAULT NULL COMMENT 'app_name',
+  `content` longtext NOT NULL,
+  `md5` varchar(32) DEFAULT NULL,
+  `gmt_create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `gmt_modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `src_user` text,
+  `src_ip` varchar(50) DEFAULT NULL,
+  `op_type` char(10) DEFAULT NULL,
+  `tenant_id` varchar(128) DEFAULT '' COMMENT '租户字段',
+  PRIMARY KEY (`nid`),
+  KEY `idx_gmt_create` (`gmt_create`),
+  KEY `idx_gmt_modified` (`gmt_modified`),
+  KEY `idx_did` (`data_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='多租户改造';
+
+
+/******************************************/
+/*   数据库全名 = nacos_config   */
+/*   表名称 = tenant_capacity   */
+/******************************************/
+CREATE TABLE `tenant_capacity` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `tenant_id` varchar(128) NOT NULL DEFAULT '' COMMENT 'Tenant ID',
+  `quota` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '配额，0表示使用默认值',
+  `usage` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '使用量',
+  `max_size` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '单个配置大小上限，单位为字节，0表示使用默认值',
+  `max_aggr_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '聚合子配置最大个数',
+  `max_aggr_size` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '单个聚合数据的子配置大小上限，单位为字节，0表示使用默认值',
+  `max_history_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '最大变更历史数量',
+  `gmt_create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `gmt_modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_tenant_id` (`tenant_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='租户容量信息表';
+
+
+CREATE TABLE `tenant_info` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `kp` varchar(128) NOT NULL COMMENT 'kp',
+  `tenant_id` varchar(128) default '' COMMENT 'tenant_id',
+  `tenant_name` varchar(128) default '' COMMENT 'tenant_name',
+  `tenant_desc` varchar(256) DEFAULT NULL COMMENT 'tenant_desc',
+  `create_source` varchar(32) DEFAULT NULL COMMENT 'create_source',
+  `gmt_create` bigint(20) NOT NULL COMMENT '创建时间',
+  `gmt_modified` bigint(20) NOT NULL COMMENT '修改时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_tenant_info_kptenantid` (`kp`,`tenant_id`),
+  KEY `idx_tenant_id` (`tenant_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='tenant_info';
+
+CREATE TABLE `users` (
+	`username` varchar(50) NOT NULL PRIMARY KEY,
+	`password` varchar(500) NOT NULL,
+	`enabled` boolean NOT NULL
+);
+
+CREATE TABLE `roles` (
+	`username` varchar(50) NOT NULL,
+	`role` varchar(50) NOT NULL,
+	UNIQUE INDEX `idx_user_role` (`username` ASC, `role` ASC) USING BTREE
+);
+
+CREATE TABLE `permissions` (
+    `role` varchar(50) NOT NULL,
+    `resource` varchar(255) NOT NULL,
+    `action` varchar(8) NOT NULL,
+    UNIQUE INDEX `uk_role_permission` (`role`,`resource`,`action`) USING BTREE
+);
+
+INSERT INTO users (username, password, enabled) VALUES ('nacos', '$2a$10$EuWPZHzz32dJN7jexM34MOeYirDdFAZm2kuWj7VEOJhhZkDrxfvUu', TRUE);
+
+INSERT INTO roles (username, role) VALUES ('nacos', 'ROLE_ADMIN');
+```
+
+![image-20230223105427862](./【Java开发笔记】SpringCloud.assets/image-20230223105427862.png)
+
+### 8.3 nginx反向代理 
+
+修改 `conf/nginx.conf` 文件，配置如下：
+
+```nginx
+upstream nacos_cluster {
+    server 127.0.0.1:8846;
+		server 127.0.0.1:8840;	
+		server 127.0.0.1:8853;
+}
+
+server {
+    listen       80;
+    server_name  localhost;
+
+    location / {
+    	proxy_set_header Host $http_host;
+    	proxy_pass http://nacos_cluster;
+    }
+}
+```
+
+![image-20230223112900373](./【Java开发笔记】SpringCloud.assets/image-20230223112900373.png)
+
+而后在浏览器访问 http://localhost/nacos 即可。
+
+![image-20230223113614309](./【Java开发笔记】SpringCloud.assets/image-20230223113614309.png)
+
+代码中 `application.yml` 文件配置如下：
+
+```yaml
+spring:
+  cloud:
+    nacos:
+      server-addr: localhost:80 # Nacos地址
+```
+
+![image-20230223113828045](./【Java开发笔记】SpringCloud.assets/image-20230223113828045.png)
+
+优化：
+
+- 实际部署时，需要给做反向代理的 nginx 服务器设置一个域名，这样后续如果有服务器迁移 Nacos 的客户端也无需更改配置.
+
+- Nacos 的各个节点应该部署到多个不同服务器，做好容灾和隔离
+
+## 9 Fegin远程调用
+
+先来看我们以前利用 `RestTemplate` 发起远程调用的代码：
+
+![image-20210714174814204](./【Java开发笔记】SpringCloud.assets/image-20210714174814204.png)
+
+存在下面的问题：
+
+- 代码可读性差，编程体验不统一
+- 参数复杂URL难以维护
+
+Feign 是一个 **声明式** 的 http 客户端，官方地址：https://github.com/OpenFeign/feign
+
+其作用就是帮助我们优雅的实现 http 请求的发送，解决上面提到的问题。
+
+![image-20210714174918088](./【Java开发笔记】SpringCloud.assets/image-20210714174918088.png)
+
+### 9.1 Feign替代RestTemplate
+
+1. **引入 Feign 依赖**
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-openfeign</artifactId>
+</dependency>
+```
+
+2. **启动类添加注解**
+
+![image-20230223115324789](./【Java开发笔记】SpringCloud.assets/image-20230223115324789.png)
+
+3. **编写 Feign 客户端接口**
+
+![image-20230223120950780](./【Java开发笔记】SpringCloud.assets/image-20230223120950780.png)
+
+这个客户端主要是基于 SpringMVC 的注解来声明远程调用的信息，比如：
+
+- 服务名称：userservice
+- 请求方式：GET
+- 请求路径：/user/{id}
+- 请求参数：Long id
+- 返回值类型：User
+
+这样，Feign 就可以帮助我们发送 http 请求，无需自己使用 RestTemplate 来发送了。
+
+4. **测试**
+
+![image-20230223115528487](./【Java开发笔记】SpringCloud.assets/image-20230223115528487.png)
+
+成功！
+
+![image-20230223121138235](./【Java开发笔记】SpringCloud.assets/image-20230223121138235.png)
+
+> 【总结】使用 Feign 的步骤
+>
+> - 引入依赖
+> - 添加 `@EnableFeignClients` 注解
+> - 编写 `FeignClient` 接口
+> - 使用 `FeignClient` 中定义的方法代替 `RestTemplate`
+
+### 9.2 自定义配置
+
+Feign可以支持很多的自定义配置，如下表所示：
+
+| 类型                   | 作用             | 说明                                                   |
+| ---------------------- | ---------------- | ------------------------------------------------------ |
+| **feign.Logger.Level** | 修改日志级别     | 包含四种不同的级别：NONE、BASIC、HEADERS、FULL         |
+| feign.codec.Decoder    | 响应结果的解析器 | http远程调用的结果做解析，例如解析json字符串为java对象 |
+| feign.codec.Encoder    | 请求参数编码     | 将请求参数编码，便于通过http请求发送                   |
+| feign.Contract         | 支持的注解格式   | 默认是SpringMVC的注解                                  |
+| feign.Retryer          | 失败重试机制     | 请求失败的重试机制，默认是没有，不过会使用Ribbon的重试 |
+
+一般情况下，默认值就能满足我们使用，如果要自定义时，只需要创建自定义的 `@Bean` 覆盖默认 Bean 即可。
+
+#### 方式一：配置文件方式
+
+基于配置文件修改 feign 的日志级别可以针对单个服务：
+
+```yaml
+feign:  
+  client:
+    config: 
+      userservice: # 针对某个微服务的配置
+        loggerLevel: FULL #  日志级别 
+```
+
+也可以针对所有服务：
+
+```yaml
+feign:  
+  client:
+    config: 
+      default: # 这里用 default 就是全局配置，如果是写服务名称，则是针对某个微服务的配置
+        loggerLevel: FULL #  日志级别 
+```
+
+而日志的级别分为四种：
+
+- NONE：不记录任何日志信息，这是默认值
+- BASIC：仅记录请求的方法，URL以及响应状态码和执行时间
+- HEADERS：在BASIC的基础上，额外记录了请求和响应的头信息
+- FULL：记录所有请求和响应的明细，包括头信息、请求体、元数据
+
+#### 方式二：代码方式注解
+
+也可以基于 Java 代码来修改日志级别，先声明一个类，然后声明一个 `Logger.Level` 的对象：
+
+```java
+public class DefaultFeignConfiguration  {
+    @Bean
+    public Logger.Level feignLogLevel(){
+        return Logger.Level.BASIC; // 日志级别为BASIC
+    }
+}
+```
+
+如果要 **全局生效**，将其放到启动类的 `@EnableFeignClients` 这个注解中：
+
+```java
+@EnableFeignClients(defaultConfiguration = DefaultFeignConfiguration.class) 
+```
+
+如果是 **局部生效**，则把它放到对应的 `@FeignClient` 这个注解中：
+
+```java
+@FeignClient(value = "userservice", configuration = DefaultFeignConfiguration.class) 
+```
+
+### 9.3 Feign性能优化
+
+Feign底层发起 http 请求，依赖于其它的框架。其底层客户端实现包括：
+
+- URLConnection：默认实现，不支持连接池
+- Apache HttpClient ：支持连接池
+- OKHttp：支持连接池
+
+> 因此提高 Feign 的性能主要手段就是使用 **连接池** 代替默认的 URLConnection。
+
+这里我们用 `Apache HttpClient` 来演示。
+
+1. **引入依赖**
+
+在 order-service 的 pom 文件中引入 Apache HttpClient 依赖：
+
+```xml
+<!--httpClient的依赖 -->
+<dependency>
+    <groupId>io.github.openfeign</groupId>
+    <artifactId>feign-httpclient</artifactId>
+</dependency>
+```
+
+2. **配置连接池**
+
+在 order-service 的 `application.yml` 中添加配置：
+
+```yaml
+feign:
+  client:
+    config:
+      default: # default全局的配置
+        loggerLevel: BASIC # 日志级别，BASIC就是基本的请求和响应信息
+  httpclient:
+    enabled: true # 开启feign对HttpClient的支持
+    max-connections: 10 # 最大的连接数
+    max-connections-per-route: 10 # 每个路径的最大连接数
+```
+
+接下来，在FeignClientFactoryBean中的loadBalance方法中打断点：
+
+![image-20210714185925910](./【Java开发笔记】SpringCloud.assets/image-20210714185925910.png)
+
+Debug 方式启动 order-service 服务，可以看到这里的 client，底层就是 Apache HttpClient：
+
+![image-20210714190041542](./【Java开发笔记】SpringCloud.assets/image-20210714190041542.png)
+
+> 总结，Feign 的优化：
+>
+> 1. 日志级别尽量用 basic
+>
+> 2. 使用 HttpClient 或 OKHttp 代替 URLConnection
+>
+> - 引入 feign-httpClient 依赖
+> - 配置文件开启 httpClient 功能，设置连接池参数
+
+### 9.4 Fegin最佳实践
+
+所谓最近实践，就是使用过程中总结的经验，最好的一种使用方式。
+
+自习观察可以发现，Feign 的客户端与服务提供者的 controller 代码非常相似：
+
+feign 客户端：
+
+![image-20210714190542730](./【Java开发笔记】SpringCloud.assets/image-20210714190542730.png)
+
+UserController：
+
+![image-20210714190528450](./【Java开发笔记】SpringCloud.assets/image-20210714190528450.png)
+
+有没有一种办法简化这种重复的代码编写呢？
+
+#### 继承方式
+
+**一样的代码可以通过继承来共享：**
+
+1. 定义一个 API 接口，利用定义方法，并基于 SpringMVC 注解做声明。
+2. Feign 客户端和 Controller 都继承/实现改接口
+
+
+
+![image-20210714190640857](./【Java开发笔记】SpringCloud.assets/image-20210714190640857.png)
+
+优点：
+
+- 简单
+- 实现了代码共享
+
+缺点：
+
+- 服务提供方、服务消费方紧耦合
+
+- **参数列表中的注解映射并不会继承**，因此 Controller 中必须再次声明方法、参数列表、注解
+
+#### 抽取方式
+
+将 Feign 的 Client 抽取为 **独立模块**，并且把接口有关的 POJO、默认的 Feign 配置都放到这个模块中，提供给所有消费者使用。例如，将 UserClient、User、Feign 的默认配置都抽取到一个 feign-api 包中，所有微服务引用该依赖包，即可直接使用。
+
+![image-20210714214041796](./【Java开发笔记】SpringCloud.assets/p3f9x8.png)
+
+#### 案例：基于抽取的方式实现最佳实践
+
+1. **抽取**
+
+首先创建一个 module，命名为 feign-api：
+
+![image-20210714204557771](./【Java开发笔记】SpringCloud.assets/image-20210714204557771.png)
+
+项目结构：
+
+![image-20210714204656214](./【Java开发笔记】SpringCloud.assets/image-20210714204656214.png)
+
+在 feign-api 中然后引入 feign 的 starter 依赖
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-openfeign</artifactId>
+</dependency>
+```
+
+然后，order-service 中编写的 `UserClient、User、DefaultFeignConfiguration` 都复制到 feign-api 项目中
+
+![image-20210714205221970](./【Java开发笔记】SpringCloud.assets/image-20210714205221970.png)
+
+2. **在 order-service 中使用 feign-api**
+
+首先，删除 order-service 中的 UserClient、User、DefaultFeignConfiguration 等类或接口。
+
+在 order-service 的pom文件中中引入 feign-api 的依赖：
+
+```xml
+<dependency>
+    <groupId>cn.itcast.demo</groupId>
+    <artifactId>feign-api</artifactId>
+    <version>1.0</version>
+</dependency>
+```
+
+修改 order-service 中的所有与上述三个组件有关的导包部分，改成导入 feign-api 中的包。
+
+3. **启动服务**
+
+重启后，发现服务报错了：
+
+![image-20210714205623048](./【Java开发笔记】SpringCloud.assets/image-20210714205623048.png)
+
+这是因为 UserClient 现在在 `cn.itcast.feign.clients` 包下，
+
+而 order-service 的 `@EnableFeignClients` 注解是在 `cn.itcast.order` 包下，不在同一个包，无法扫描到 UserClient。
+
+4. **解决扫描包问题**
+
+方式一：指定 Feign 应该扫描的包
+
+```java
+@EnableFeignClients(basePackages = "cn.itcast.feign.clients")
+```
+
+方式二：指定需要加载的 Client 接口：
+
+```java
+@EnableFeignClients(clients = {UserClient.class})
+```
+
+## 10 Gatway统一网关
+
+Spring Cloud Gateway 是 Spring Cloud 的一个全新项目，该项目是基于 Spring 5.0，Spring Boot 2.0 和 Project Reactor 等响应式编程和事件流技术开发的网关，它旨在为微服务架构提供一种简单有效的统一的 API 路由管理方式。
+
+Gateway网关是我们服务的守门神，**所有微服务的统一入口**。
+
+网关的 **核心功能特性**：
+
+- **请求路由**
+
+  一切请求都必须先经过 gateway，但网关不处理业务，而是根据某种规则，把请求转发到某个微服务，这个过程叫做路由。当然路由的目标服务有多个时，还需要做负载均衡。
+
+- **权限控制**
+
+  网关作为微服务入口，需要校验用户是是否有请求资格，如果没有则进行拦截
+
+- **限流削峰**
+
+  当请求流量过高时，在网关中按照下流的微服务能够接受的速度来放行请求，避免服务压力过大
+
+架构图：
+
+![image-20210714210131152](./【Java开发笔记】SpringCloud.assets/hqg1op.png)
+
+在 SpringCloud 中网关的实现包括两种：
+
+- gateway
+- zuul
+
+`Zuul` 是基于 `Servlet` 的实现，属于阻塞式编程。
+
+`SpringCloudGateway` 则是基于 Spring5 中提供的 `WebFlux`，属于响应式编程的实现，具备更好的性能。
+
+### 10.1 快速入门
+
+服务网关工作流程：
+
+1. 微服务启动，在注册中心进行服务注册、服务发现。因此，**注册中心保存了微服务的服务地址** ！
+2. 服务网关启动，在注册中心进行服务注册，服务发现
+3. 用户对服务网关发出请求
+4. 服务网关根据请求地址，通过 **路由规则配置** 进行路由，具体：
+   1. 先去根据微服务名称，拉取服务列表
+   2. 再根据负载均衡算法，发送请求
+5. 请求完成
+
+![image-20210714211742956](./【Java开发笔记】SpringCloud.assets/cgz2h3.png)
+
+#### 搭建服务网关基本流程
+
+1. **创建 SpringBoot 工程 gateway，引入网关依赖**
+
+创建服务：
+
+![image-20210714210919458](./【Java开发笔记】SpringCloud.assets/image-20210714210919458.png)
+
+引入依赖：
+
+```xml
+<!--网关-->
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-gateway</artifactId>
+</dependency>
+<!--nacos服务发现依赖-->
+<dependency>
+    <groupId>com.alibaba.cloud</groupId>
+    <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+</dependency>
+```
+
+2. **编写启动类**
+
+```java
+@SpringBootApplication
+public class GatewayApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(GatewayApplication.class);
+    }
+}
+```
+
+3. **编写基础配置和路由规则，以及 nacos 地址**
+
+创建 `application.yml` 文件，添加：
+
+```yml
+server:
+  port: 10010 # 网关端口
+spring:
+  application:
+    name: gateway # 服务名称
+  cloud:
+    nacos:
+      server-addr: localhost:8848 # nacos地址
+    gateway:
+      routes: # 网关路由配置
+        - id: user-service # 路由id，自定义，只要唯一即可
+          # uri: http://127.0.0.1:8081 # 路由的目标地址 http就是固定地址
+          uri: lb://userservice # 路由的目标地址 lb就是负载均衡，后面跟服务名称
+          predicates: # 路由断言，也就是判断请求是否符合路由规则的条件
+            - Path=/user/** # 这个是按照路径匹配，只要以/user/开头就符合要求
+```
+
+![image-20230223134557024](./【Java开发笔记】SpringCloud.assets/image-20230223134557024.png)
+
+我们将符合 `Path` 规则的一切请求，都代理到 `uri` 参数指定的地址。
+
+本例中，我们将 `/user/**` 开头的请求，代理到 `lb://userservice` ，lb是负载均衡，根据服务名拉取服务列表，实现负载均衡。
+
+4. **启动网关服务进行测试**
+
+![image-20230223134955619](./【Java开发笔记】SpringCloud.assets/image-20230223134955619.png)
+
+#### 总结：路由配置
+
+路由配置包括：
+
+1. 路由id：路由的唯一标示（自定义）
+
+2. 路由目标（uri）：路由的目标地址，**http 代表固定地址，lb 代表根据服务名负载均衡**
+
+3. 路由断言（predicates）：判断路由的规则
+
+4. 路由过滤器（filters）：对请求或响应做处理
+
+### 10.2 路由断言工厂
+
+> 作用：**读取用户定义的断言条件，对请求做出判断**
+
+我们在配置文件中写的 **断言规则** 只是字符串，这些字符串会被 `Route Predicate Factory` 读取并处理，转变为路由判断的条件。
+
+例如 `Path=/user/**` 是按照路径匹配，这个规则是由 
+
+`org.springframework.cloud.gateway.handler.predicate.PathRoutePredicateFactory` 类来
+
+处理的，像这样的断言工厂在 `SpringCloudGateway` 还有十几个：
+
+|  **名称**  | **说明**                       | **示例**                                                     |
+| :--------: | :----------------------------- | :----------------------------------------------------------- |
+|   After    | 是某个时间点后的请求           | `- After=2037-01-20T17:42:47.789-07:00[America/Denver]`      |
+|   Before   | 是某个时间点之前的请求         | `- Before=2031-04-13T15:14:47.433+08:00[Asia/Shanghai]`      |
+|  Between   | 是某两个时间点之前的请求       | `- Between=2037-01-20T17:42:47.789-07:00[America/Denver],  2037-01-21T17:42:47.789-07:00[America/Denver]` |
+|   Cookie   | 请求必须包含某些cookie         | `- Cookie=chocolate, ch.p`                                   |
+|   Header   | 请求必须包含某些header         | `- Header=X-Request-Id, \d+`                                 |
+|    Host    | 请求必须是访问某个host（域名） | `- Host=**.somehost.org,**.anotherhost.org`                  |
+|   Method   | 请求方式必须是指定方式         | `- Method=GET,POST`                                          |
+|    Path    | 请求路径必须符合指定规则       | `- Path=/red/{segment},/blue/**`                             |
+|   Query    | 请求参数必须包含指定参数       | `- Query=name,Jack 或者 - Query=name`                        |
+| RemoteAddr | 请求者的ip必须是指定范围       | `- RemoteAddr=192.168.1.1/24`                                |
+|   Weight   | 权重处理                       |                                                              |
+
+#### 案例
+
+![image-20230223140732284](./【Java开发笔记】SpringCloud.assets/image-20230223140732284.png)
+
+看看效果：
+
+![image-20230223140827460](./【Java开发笔记】SpringCloud.assets/image-20230223140827460.png)
+
+### 10.3 路由过滤器
+
+`GatewayFilter` 是网关中提供的一种过滤器，可以对进入网关的请求和微服务返回的响应做处理：
+
+![image-20210714212312871](./【Java开发笔记】SpringCloud.assets/image-20210714212312871.png)
+
+#### 路由过滤器的种类
+
+Spring 提供了 31 种不同的路由过滤器工厂。例如：
+
+| **名称**             | **说明**                     |
+| :------------------- | ---------------------------- |
+| AddRequestHeader     | 给当前请求添加一个请求头     |
+| RemoveRequestHeader  | 移除请求中的一个请求头       |
+| AddResponseHeader    | 给响应结果中添加一个响应头   |
+| RemoveResponseHeader | 从响应结果中移除有一个响应头 |
+| RequestRateLimiter   | 限制请求的流量               |
+
+#### 请求头过滤器
+
+下面我们以 `AddRequestHeader` 为例来讲解。
+
+> **需求**：给所有进入 `userservice` 的请求添加一个请求头：`Truth=itcast is freaking awesome!`
+
+只需要修改 gateway 服务的 `application.yml` 文件，添加路由过滤即可：
+
+```yaml
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: user-service 
+        uri: lb://userservice 
+        predicates: 
+        - Path=/user/** 
+        filters: # 过滤器
+        - AddRequestHeader=Truth,XXX is freaking awesome! # 添加请求头
+```
+
+当前过滤器写在 userservice 路由下，因此仅仅对访问 userservice 的请求有效。
+
+#### 默认过滤器
+
+如果要 **对所有的路由都生效，则可以将过滤器工厂写到 default 下**。格式如下：
+
+```yaml
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: user-service 
+        uri: lb://userservice 
+        predicates: 
+        - Path=/user/**
+      default-filters: # 默认过滤项
+      - AddRequestHeader=Truth, XXX is freaking awesome! 
+```
+
+#### 全局过滤器
+
+> Gateway 提供了 31 种过滤器，每一种过滤器的作用都是固定的。如果我们希望拦截请求，做自己的业务逻辑则没办法实现。
+
+##### 作用
+
+全局过滤器的作用也是 **处理一切进入网关的请求和微服务响应**，与 `GatewayFilter` 的作用一样。区别在于：
+
+- `GatewayFilter` 通过配置定义，处理逻辑是固定的；
+- 而 `GlobalFilter` 的逻辑需要自己写代码实现。
+
+定义方式是实现 `GlobalFilter` 接口。
+
+```java
+public interface GlobalFilter {
+    /**
+     *  处理当前请求，有必要的话通过{@link GatewayFilterChain}将请求交给下一个过滤器处理
+     *
+     * @param exchange 请求上下文，里面可以获取Request、Response等信息
+     * @param chain 用来把请求委托给下一个过滤器 
+     * @return {@code Mono<Void>} 返回标示当前过滤器业务结束
+     */
+    Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain);
+}
+```
+
+在 filter 中编写自定义逻辑，可以实现下列功能：
+
+- 登录状态判断
+- 权限校验
+- 请求限流等
+
+##### 自定义全局过滤器
+
+> 需求：定义全局过滤器，拦截请求，判断请求的参数是否满足下面条件：
+>
+> - 参数中是否有 authorization，
+>
+> - authorization 参数值是否为 admin
+>
+> 如果同时满足则放行，否则拦截。
+
+在 gateway 中定义一个过滤器，并添加 `@Order` 注解：
+
+```java
+@Order(-1)
+@Component
+public class AuthorizeFilter implements GlobalFilter {
+    @Override
+    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+        // 1.获取请求参数
+        MultiValueMap<String, String> params = exchange.getRequest().getQueryParams();
+        // 2.获取authorization参数
+        String auth = params.getFirst("authorization");
+        // 3.校验
+        if ("admin".equals(auth)) {
+            // 放行
+            return chain.filter(exchange);
+        }
+        // 4.拦截
+        // 4.1.禁止访问，设置状态码
+        exchange.getResponse().setStatusCode(HttpStatus.FORBIDDEN);
+        // 4.2.结束处理
+        return exchange.getResponse().setComplete();
+    }
+}
+```
+
+### 10.4 过滤器执行顺序
+
+请求进入网关会碰到三类过滤器：当前路由的过滤器、DefaultFilter、GlobalFilter
+
+请求路由后，会将 当前路由过滤器 和 DefaultFilter、GlobalFilter，合并到一个过滤器链（集合）中，排序后依次执行每个过滤器：
+
+![image-20210714214228409](./【Java开发笔记】SpringCloud.assets/wb860v.png)
+
+排序的规则是什么呢？
+
+- 每一个过滤器都必须指定一个 int 类型的 order 值，**order 值越小，优先级越高，执行顺序越靠前**。
+- GlobalFilter 通过实现 Ordered 接口，或者添加 `@Order` 注解来指定 order 值，由我们自己指定
+- 路由过滤器和 defaultFilter 的 order 由 Spring 指定，默认是按照声明顺序从 1 递增。
+- 当过滤器的 order 值一样时，会按照 `defaultFilter > 路由过滤器 > GlobalFilter` 的顺序执行。
+
+详细内容，可以查看源码：
+
+`org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator#getFilters()` 方法是先加载defaultFilters，然后再加载某个 route的filters，然后合并。
+
+`org.springframework.cloud.gateway.handler.FilteringWebHandler#handle()` 方法会加载全局过滤器，与前面的过滤器合并后根据 order 排序，组织过滤器链。
+
+### 10.5 跨域问题
+
+**跨域：域名不一致就是跨域**，主要包括：
+
+- 域名不同： www.taobao.com 和 www.taobao.org 和 www.jd.com 和 miaosha.jd.com
+
+- 域名相同，端口不同：localhost:8080 和 localhost8081
+
+跨域问题：浏览器禁止请求的发起者与服务端发生跨域 ajax 请求，请求被浏览器拦截的问题
+
+解决方案：CORS，这个以前应该学习过，这里不再赘述了。
+
+> 不知道的小伙伴可以查看 https://www.ruanyifeng.com/blog/2016/04/cors.html
+
+在 gateway 服务的 `application.yml` 文件中，添加下面的配置：
+
+```yaml
+spring:
+  cloud:
+    gateway:
+      # 。。。
+      globalcors: # 全局的跨域处理
+        add-to-simple-url-handler-mapping: true # 解决options请求被拦截问题
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: # 允许哪些网站的跨域请求 
+              - "http://localhost:8090"
+            allowedMethods: # 允许的跨域ajax的请求方式
+              - "GET"
+              - "POST"
+              - "DELETE"
+              - "PUT"
+              - "OPTIONS"
+            allowedHeaders: "*" # 允许在请求中携带的头信息
+            allowCredentials: true # 是否允许携带cookie
+            maxAge: 360000 # 这次跨域检测的有效期
+```
 
 
 
