@@ -4,34 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="算法">
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.assets/2jj0a5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.assets/aihnos.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.assets/ccnbc9.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.assets/en6tk8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.assets/image-20200104124440086-5602723.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.assets/image-20210723204936367.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.assets/image-20210723205932746.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.assets/image-20210723210126506.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.assets/image-20210723210427878.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.assets/image-20210723214758392.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.assets/image-20210723223008967.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.assets/image-20210723223804995.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.assets/image-20210723223845754.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.assets/image-20210723224000555.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.assets/image-20210723224354904.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.assets/image-20210723225809848.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.assets/image-20210723230020574.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.assets/image-20210723230055974.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.assets/image-20210723230216642.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.assets/kdo3sq.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.assets/moxmmc.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.assets/nd73wj.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.assets/tuqxrr.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.assets/x60s2v-20230226115902821.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.assets/x60s2v.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.assets/zcldp5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.md" beforeDir="false" afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】分布式搜索引擎.md" afterDir="false" />
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="ES">
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/1fzdry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/brq9it.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/image-20210422095356088.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/image-20210423191210349.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/image-20230226134631958.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/image-20230226140114069.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/image-20230226140411034.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/js94gb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/od8mtn.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +95,7 @@
       <workItem from="1677072633633" duration="2166000" />
       <workItem from="1677150735753" duration="1134000" />
       <workItem from="1677224014215" duration="623000" />
-      <workItem from="1677380592805" duration="683000" />
+      <workItem from="1677380592805" duration="1313000" />
     </task>
     <task id="LOCAL-00001" summary="0214">
       <created>1676379254632</created>
@@ -442,7 +426,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677380623681</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="ES">
+      <created>1677388239290</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1677388239290</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -484,8 +475,8 @@
     <MESSAGE value="如何设计一个扫码登入功能？" />
     <MESSAGE value="业务场景" />
     <MESSAGE value="SpringCloud" />
-    <MESSAGE value="ES" />
     <MESSAGE value="算法" />
-    <option name="LAST_COMMIT_MESSAGE" value="算法" />
+    <MESSAGE value="ES" />
+    <option name="LAST_COMMIT_MESSAGE" value="ES" />
   </component>
 </project>
