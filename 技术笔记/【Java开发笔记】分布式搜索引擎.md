@@ -1989,57 +1989,470 @@ GET /hotel/_search
 
 ## 8 自动补全
 
+当用户在搜索框输入字符时，我们应该提示出与该字符有关的搜索项，如图：
 
+![image-20210723204936367](./【Java开发笔记】分布式搜索引擎.assets/image-20210723204936367.png)
 
+这种根据用户输入的字母，提示完整词条的功能，就是自动补全了。
 
+因为需要根据拼音字母来推断，因此要用到拼音分词功能。
 
+### 8.1 拼音分词器
 
+要实现根据字母做补全，就 **必须对文档按照拼音分词** 。在 GitHub 上恰好有 elasticsearch 的拼音分词插件。
 
+地址：https://github.com/medcl/elasticsearch-analysis-pinyin/tree/v7.12.1
 
+![image-20210723205932746](./【Java开发笔记】分布式搜索引擎.assets/image-20210723205932746.png)
 
+安装方式与 IK 分词器一样，分三步：
 
+- 解压
+- 上传到 elasticsearch 的 plugin 目录
+- 重启 elasticsearch
 
+详细安装步骤可以参考IK分词器的安装过程。
 
+测试用法如下：
 
+```json
+POST /_analyze
+{
+  "text": "如家酒店还不错",
+  "analyzer": "pinyin"
+}
+```
 
+结果：
 
+![image-20210723210126506](./【Java开发笔记】分布式搜索引擎.assets/image-20210723210126506.png)
 
+### 8.2 自定义分词器
 
+默认的拼音分词器会将每个汉字单独分为拼音，而我们希望的是 每个词条形成一组拼音，需要对拼音分词器做个性化定制，形成自定义分词器。
 
+elasticsearch 中 **分词器（analyzer）** 的组成包含三部分：[参考地址](https://www.elastic.co/guide/en/elasticsearch/reference/7.15/analysis.html)
 
+- **character filters**：在 tokenizer 之前对文本进行处理。例如删除字符、替换字符
+- **tokenizer**：将文本按照一定的规则切割成词条（term）。例如 `keyword`，就是不分词；还有 `ik_smart`
+- **tokenizer filter**：将 tokenizer 输出的词条做进一步处理。例如大小写转换、同义词处理、拼音处理等
 
+文档分词时会依次由这三部分来处理文档：   ![image-20210723210427878](./【Java开发笔记】分布式搜索引擎.assets/image-20210723210427878.png)
 
+在 **创建索引库** 时，声明自定义分词器的语法如下：
 
+```json
+PUT /test
+{
+  "settings": {
+    "analysis": {
+      "analyzer": { // 自定义分词器
+        "my_analyzer": {  // 分词器名称
+          "tokenizer": "ik_max_word",
+          "filter": "py"	// 过滤器名称
+        }
+      },
+      "filter": { // 自定义tokenizer filter
+        "py": { // 过滤器名称
+          "type": "pinyin", // 过滤器类型，这里是pinyin
+		  		"keep_full_pinyin": false,
+          "keep_joined_full_pinyin": true,
+          "keep_original": true,
+          "limit_first_letter_length": 16,
+          "remove_duplicated_term": true,
+          "none_chinese_pinyin_tokenize": false
+        }
+      }
+    }
+  },
+  "mappings": {	
+    "properties": {
+      "name": {
+        "type": "text",
+        "analyzer": "my_analyzer",
+        "search_analyzer": "ik_smart"
+      }
+    }
+  }
+}
+```
 
+测试：
 
+![image-20210723211829150](./【Java开发笔记】分布式搜索引擎.assets/2jj0a5.png)
 
+> 需要注意的是：当输入 **中文 ，只按照中文进行搜索**，**当输入 pinyin 按照 pinyin 进行搜索**。否则，会出现：
+>
+> ![1637140344489](./【Java开发笔记】分布式搜索引擎.assets/tuqxrr.png)
+>
+> 应该注意，需要设置搜索的时候采用 ik_smart 或者 ik_max_word 分词器，建立索引的时候使用自定义的 pinyin 分词器即可。
 
+### 8.3 自动补全查询
 
+elasticsearch 提供了 [Completion Suggester](https://www.elastic.co/guide/en/elasticsearch/reference/7.6/search-suggesters.html) 查询来实现自动补全功能。**这个查询会匹配以用户输入内容开头的词条并返回**。为了提高补全查询的效率，对于文档中字段的类型有一些约束：
 
+- 参与 **补全查询的字段** 必须是 `completion` 类型。
 
+- 字段的内容一般是用来补全的多个词条形成的数组。
 
+比如，一个这样的索引库：
 
+比如，一个这样的索引库：
 
+```json
+// 创建索引库
+PUT test
+{
+  "mappings": {
+    "properties": {
+      "title":{
+        "type": "completion"
+      }
+    }
+  }
+}
+```
 
+然后插入下面的数据：
 
+```json
+// 示例数据
+POST test/_doc
+{
+  "title": ["Sony", "WH-1000XM3"]
+}
+POST test/_doc
+{
+  "title": ["SK-II", "PITERA"]
+}
+POST test/_doc
+{
+  "title": ["Nintendo", "switch"]
+}
+```
 
+查询的DSL语句如下：
 
+```json
+// 自动补全查询
+GET /test/_search
+{
+  "suggest": {
+    "title_suggest": {
+      "text": "s", // 关键字
+      "completion": {
+        "field": "title", // 补全查询的字段
+        "skip_duplicates": true, // 跳过重复的
+        "size": 10 // 获取前10条结果
+      }
+    }
+  }
+}
+```
 
+## 9 数据同步
 
+elasticsearch 中的酒店数据来自于 mysql 数据库，因此 mysql 数据发生改变时，elasticsearch 也必须跟着改变，这个就是 elasticsearch 与 mysql 之间的 **数据同步** 。
 
+![image-20210723214758392](./【Java开发笔记】分布式搜索引擎.assets/image-20210723214758392.png)
 
+### 9.1 思路分析
 
+常见的数据同步方案有三种：
 
+- 同步调用
+- 异步通知
+- 监听binlog
 
+#### 方案一：同步调用
 
+![image-20210723214931869](./【Java开发笔记】分布式搜索引擎.assets/moxmmc.png)
 
+基本步骤如下：
 
+- hotel-demo 对外提供接口，用来修改 elasticsearch 中的数据
+- 酒店管理服务在完成数据库操作后，直接通过 Feign 调用 hotel-demo 提供的接口，
 
+#### 方案二：异步通知
 
+![image-20210723215140735](./【Java开发笔记】分布式搜索引擎.assets/aihnos.png)
 
+流程如下：
 
+- hotel-admin 对 mysql 数据库数据完成增、删、改后，发送 MQ 消息
+- hotel-demo 监听 MQ，接收到消息后完成 elasticsearch 数据修改
 
+#### 方案三：监听binlog
 
+![image-20210723215518541](./【Java开发笔记】分布式搜索引擎.assets/en6tk8.png)
 
+流程如下：
 
+- 给 mysql 开启 binlog 功能
+- mysql 完成增、删、改操作都会记录在 binlog 中
+- hotel-demo 基于 canal 监听 binlog 变化，实时更新 elasticsearch 中的内容
 
+### 9.2 同步方案对比
+
+方式一：同步调用
+
+- 优点：实现简单，粗暴
+- 缺点：业务耦合度高
+
+方式二：异步通知
+
+- 优点：低耦合，实现难度一般
+- 缺点：**依赖 mq 的可靠性**
+
+方式三：监听binlog
+
+- 优点：完全解除服务间耦合
+- 缺点：开启 binlog 增加数据库负担、实现复杂度高
+
+## 10 ES集群
+
+单机的 elasticsearch 做数据存储，必然面临两个问题：**海量数据存储问题、单点故障** 问题。
+
+- `海量数据存储问题` ：将索引库从逻辑上拆分为 N 个分片（shard），存储到多个节点
+- `单点故障问题` ：将分片数据在不同节点备份（replica）
+
+**ES集群相关概念**:
+
+* **集群（cluster）**：一组拥有共同的 cluster name 的节点。
+
+* **节点（node）**：集群中的一个 Elasticearch 实例
+
+* **分片（shard）**：索引可以被拆分为不同的部分进行存储，称为分片。在集群环境下，一个索引的不同分片可以拆分到不同的节点中
+
+  解决问题：数据量太大，单点存储量有限的问题。
+
+  ![image-20200104124440086](./【Java开发笔记】分布式搜索引擎.assets/image-20200104124440086-5602723.png)
+
+  > 此处，我们把数据分成3片：shard0、shard1、shard2
+
+* 主分片（Primary shard）：相对于副本分片的定义。
+
+* 副本分片（Replica shard）每个主分片可以有一个或者多个副本，数据和主分片一样。
+
+数据备份可以保证高可用，但是每个分片备份一份，所需要的节点数量就会翻一倍，成本实在是太高了！
+
+为了在高可用和成本间寻求平衡，我们可以这样做：
+
+- 首先对 **数据分片，存储到不同节点**
+- 然后 **对每个分片进行备份，放到对方节点，完成互相备份**
+
+这样可以大大减少所需要的服务节点数量，如图，我们以 3 分片，每个分片备份一份为例：
+
+![1637397607682](./【Java开发笔记】分布式搜索引擎.assets/ccnbc9.png)
+
+**为了减少单点故障，为此我们可以将备份数据放到不同的机器上（交叉备份）**，否则即使有了备份在一台电脑上还是没法保证数据完整（比如机器直接宕机。如图：
+
+![1637397692280](./【Java开发笔记】分布式搜索引擎.assets/x60s2v-20230226115902821.png)
+
+### 10.1 搭建ES集群
+
+部署 es 集群可以直接使用 docker-compose 来完成，不过要求你的 Linux 虚拟机至少有**4G**的内存空间
+
+修改允许单个进程的最大使用内存数（已经配置了，不需要再执行）
+
+```sh
+vi /etc/sysctl.conf
+```
+
+添加
+
+```properties
+vm.max_map_count=262144
+```
+
+生效
+
+```sh
+sysctl -p
+```
+
+创建目录es
+
+```sh
+mkdir /root/es
+cd /root/es
+vi docker-compose.yml
+# 内容如下：
+version: '2.2'
+services:
+  es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.12.1
+    container_name: es01
+    environment:
+      - node.name=es01
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=es02,es03
+      - cluster.initial_master_nodes=es01,es02,es03
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - data01:/usr/share/elasticsearch/data
+    ports:
+      - 9201:9200
+    networks:
+      - elastic
+  es02:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.12.1
+    container_name: es02
+    environment:
+      - node.name=es02
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=es01,es03
+      - cluster.initial_master_nodes=es01,es02,es03
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - data02:/usr/share/elasticsearch/data
+    networks:
+      - elastic
+    ports:
+      - 9202:9200
+  es03:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.12.1
+    container_name: es03
+    environment:
+      - node.name=es03
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=es01,es02
+      - cluster.initial_master_nodes=es01,es02,es03
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - data03:/usr/share/elasticsearch/data
+    networks:
+      - elastic
+    ports:
+      - 9203:9200
+volumes:
+  data01:
+    driver: local
+  data02:
+    driver: local
+  data03:
+    driver: local
+
+networks:
+  elastic:
+    driver: bridge
+```
+
+运行：
+
+```sh
+docker-compose up
+```
+
+### 10.2 集群脑裂问题
+
+#### 10.2.1 集群指责划分
+
+elasticsearch 中集群节点有不同的职责划分：
+
+![image-20210723223008967](./【Java开发笔记】分布式搜索引擎.assets/image-20210723223008967.png)
+
+**默认情况下，集群中的任何一个节点都同时具备上述四种角色。**
+
+但是真实的集群一定要将集群职责分离：
+
+- master 节点：对 CPU 要求高，但是内存要求低
+- data 节点：对 CPU 和内存要求都高
+- coordinating 节点：对网络带宽、CPU 要求高
+
+**职责分离可以让我们根据不同节点的需求分配不同的硬件去部署，而且避免业务之间的互相干扰。**
+
+一个典型的 es 集群职责划分如图：
+
+![image-20210723223629142](./【Java开发笔记】分布式搜索引擎.assets/kdo3sq.png)
+
+#### 10.2.2 脑裂问题
+
+脑裂是因为集群中的节点失联导致的。例如一个集群中，**主节点与其它节点失联：**
+
+![image-20210723223804995](./【Java开发笔记】分布式搜索引擎.assets/image-20210723223804995.png)
+
+此时，node2 和 node3 认为 node1 宕机，就会重新选主：
+
+![image-20210723223845754](./【Java开发笔记】分布式搜索引擎.assets/image-20210723223845754.png)
+
+当 node3 当选后，集群继续对外提供服务，node2 和 node3 自成集群，node1 自成集群，两个集群数据不同步，出现数据差异。当网络恢复后，因为集群中有两个 master 节点，集群状态的不一致，出现脑裂的情况：
+
+![image-20210723224000555](./【Java开发笔记】分布式搜索引擎.assets/image-20210723224000555.png)
+
+解决脑裂的方案是：要求选票超过 `(eligible 节点数量 + 1）/ 2 ` 才能当选为主，因此 eligible 节点数量最好是奇数。对应配置项是discovery.zen.minimum_master_nodes，**在 es7.0 以后，已经成为默认配置，因此一般不会发生脑裂问题**。
+
+> 例如：3个节点形成的集群，选票必须超过 （3 + 1） / 2 ，也就是 2 票。node3 得到 node2 和 node3 的选票，当选为主。node1 只有自己 1 票，没有当选。集群中依然只有 1 个主节点，没有出现脑裂。
+
+### 10.3 集群分布式存储
+
+当新增文档时，应该保存到不同分片，**保证数据均衡**，那么 `coordinating node` **如何确定数据该存储到哪个分片呢？**
+
+elasticsearch 会通过 **hash 算法** 来计算文档应该存储到哪个分片：
+
+![image-20210723224354904](./【Java开发笔记】分布式搜索引擎.assets/image-20210723224354904.png)
+
+说明：
+
+- _routing 默认是文档的id
+- 算法与分片数量有关，因此索引库一旦创建，分片数量不能修改！
+
+新增文档的流程如下：
+
+![image-20210723225436084](./【Java开发笔记】分布式搜索引擎.assets/zcldp5.png)
+
+解读：
+
+- 新增一个 id=1 的文档
+- 对 id 做 hash 运算，假如得到的是 2，则应该存储到 shard-2
+- shard-2 的主分片在 node3 节点，将数据路由到 node3
+- 保存文档
+- 同步给 shard-2 的副本 replica-2，在 node2 节点
+- 返回结果给 coordinating-node 节点
+
+### 10.4 集群分布式查询
+
+elasticsearch 的查询分成两个阶段：
+
+- **scatter phase**：分散阶段，coordinating node 会把请求分发到每一个分片
+
+- **gather phase**：聚集阶段，coordinating node 汇总 data node 的搜索结果，并处理为最终结果集返回给用户
+
+![image-20210723225809848](./【Java开发笔记】分布式搜索引擎.assets/image-20210723225809848.png)
+
+### 10.5 集群故障转移
+
+集群的 master 节点会监控集群中的节点状态，**如果发现有节点宕机，会立即将宕机节点的分片数据迁移到其它节点** ，确保数据安全，这个叫做 **故障转移** 。
+
+1）例如一个集群结构如图：
+
+![image-20210723225945963](./【Java开发笔记】分布式搜索引擎.assets/nd73wj.png)
+
+现在，node1 是主节点，其它两个节点是从节点。
+
+2）突然，node1 发生了故障：
+
+![image-20210723230020574](./【Java开发笔记】分布式搜索引擎.assets/image-20210723230020574.png)
+
+宕机后的第一件事，需要重新选主，例如选中了 node2：
+
+![image-20210723230055974](./【Java开发笔记】分布式搜索引擎.assets/image-20210723230055974.png)
+
+node2 成为主节点后，会检测集群监控状态，发现：shard-1、shard-0 没有副本节点。因此需要将 node1 上的数据迁移到node2、node3：
+
+![image-20210723230216642](./【Java开发笔记】分布式搜索引擎.assets/image-20210723230216642.png)
