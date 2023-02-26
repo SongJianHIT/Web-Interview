@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="SpringCloud">
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="ES">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/技术笔记/【Java开发笔记】SpringCloud.md" beforeDir="false" afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】SpringCloud.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,6 +84,7 @@
       <workItem from="1677053855040" duration="1090000" />
       <workItem from="1677072633633" duration="2166000" />
       <workItem from="1677150735753" duration="1134000" />
+      <workItem from="1677224014215" duration="623000" />
     </task>
     <task id="LOCAL-00001" summary="0214">
       <created>1676379254632</created>
@@ -401,7 +401,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677150998888</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="ES">
+      <created>1677224036845</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1677224036845</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -420,7 +427,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="JWT" />
     <MESSAGE value="线程池" />
     <MESSAGE value="分库分表" />
     <MESSAGE value="ShardingShpere" />
@@ -445,6 +451,7 @@
     <MESSAGE value="如何设计一个扫码登入功能？" />
     <MESSAGE value="业务场景" />
     <MESSAGE value="SpringCloud" />
-    <option name="LAST_COMMIT_MESSAGE" value="SpringCloud" />
+    <MESSAGE value="ES" />
+    <option name="LAST_COMMIT_MESSAGE" value="ES" />
   </component>
 </project>
