@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="ES">
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/1fzdry.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/brq9it.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/image-20210422095356088.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/image-20210423191210349.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/image-20230226134631958.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/image-20230226140114069.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/image-20230226140411034.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/js94gb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/od8mtn.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.md" afterDir="false" />
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="MQ">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -96,6 +86,7 @@
       <workItem from="1677150735753" duration="1134000" />
       <workItem from="1677224014215" duration="623000" />
       <workItem from="1677380592805" duration="1313000" />
+      <workItem from="1677396794277" duration="743000" />
     </task>
     <task id="LOCAL-00001" summary="0214">
       <created>1676379254632</created>
@@ -433,7 +424,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677388239290</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="MQ">
+      <created>1677396808857</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1677396808857</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -452,7 +450,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="分库分表" />
     <MESSAGE value="ShardingShpere" />
     <MESSAGE value="SpringSecurity" />
     <MESSAGE value="Nginx" />
@@ -477,6 +474,7 @@
     <MESSAGE value="SpringCloud" />
     <MESSAGE value="算法" />
     <MESSAGE value="ES" />
-    <option name="LAST_COMMIT_MESSAGE" value="ES" />
+    <MESSAGE value="MQ" />
+    <option name="LAST_COMMIT_MESSAGE" value="MQ" />
   </component>
 </project>

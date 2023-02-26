@@ -423,6 +423,322 @@ spring:
 
 ![image-20230226153116903](./【Java开发笔记】MQ.assets/image-20230226153116903.png)
 
+### 3.3 发布/订阅模式
+
+发布订阅的模型如图：
+
+![image-20210717165309625](./【Java开发笔记】MQ.assets/til0yb.png)
+
+可以看到，在订阅模型中，多了一个 exchange 角色，而且过程略有变化：
+
+- `Publisher` ：生产者，也就是要发送消息的程序，但是不再发送到队列中，而是发给X（交换机）
+- `Exchange` ：**交换机**。一方面，接收生产者发送的消息。另一方面，知道如何处理消息，例如递交给某个特别队列、递交给所有队列、或是将消息丢弃。到底如何操作，取决于 Exchange 的类型。Exchange 有以下 3 种类型：
+  - `Fanout` ：广播，将消息交给所有绑定到交换机的队列
+  - `Direct` ：定向，把消息交给符合指定 routing key 的队列
+  - `Topic` ：通配符，把消息交给符合 routing pattern（路由模式） 的队列
+- `Consumer` ：消费者，与以前一样，订阅队列，没有变化
+- `Queue` ：消息队列也与以前一样，接收消息、缓存消息。
+
+**Exchange（交换机）只负责转发消息，不具备存储消息的能力**，因此如果没有任何队列与 Exchange 绑定，或者没有符合路由规则的队列，那么消息会丢失！
+
+### 3.4 Fanout
+
+Fanout，英文翻译是扇出，我觉得在 MQ 中叫广播更合适。
+
+![image-20210717165438225](./【Java开发笔记】MQ.assets/zdkla0.png)
+
+在广播模式下，消息发送流程是这样的：
+
+- 可以有多个队列
+- 每个队列都要绑定到 Exchange（交换机）
+- 生产者发送的消息，只能发送到交换机，交换机来决定要发给哪个队列，生产者无法决定
+- 交换机把消息发送给绑定过的所有队列
+- 订阅队列的消费者都能拿到消息
+
+1. **声明队列和交换机**
+
+在 **consumer** 中创建一个类，声明队列和交换机，需要使用 `@Configuration` 注解：
+
+```java
+@Configuration
+public class FanoutConfig {
+
+    /**
+     * 声明交换机
+     * @return
+     */
+    @Bean
+    public FanoutExchange fanoutExchange() {
+        return new FanoutExchange("one.fanout");
+    }
+
+    /**
+     * 声明队列
+     * @return
+     */
+    @Bean
+    public Queue queue1() {
+        return new Queue("fanout.queue1");
+    }
+
+    @Bean
+    public Queue queue2() {
+        return new Queue("fanout.queue2");
+    }
+
+    /**
+     * 绑定关系
+     * @return
+     */
+    @Bean
+    public Binding fanoutQueue1Binding() {
+        return BindingBuilder.bind(queue1()).to(fanoutExchange());
+    }
+
+    @Bean
+    public Binding fanoutQueue2Binding() {
+        return BindingBuilder.bind(queue2()).to(fanoutExchange());
+    }
+}
+```
+
+2. **消息接收**
+
+在 **consumer** 中定义两个消费者：
+
+```java
+@RabbitListener(queues = "fanout.queue1")
+public void listenFanoutQueue1(String msg) {
+    System.out.println("消费者 1 接收到fanout消息：【" + msg +"】" + LocalTime.now());
+}
+
+@RabbitListener(queues = "fanout.queue2")
+public void listenFanoutQueue2(String msg) {
+    System.out.println("消费者 2 接收到fanout消息：【" + msg +"】" + LocalTime.now());
+}
+```
+
+3. 消息发送
+
+在 **publisher** 服务中编写：
+
+```java
+@Test
+public void testFanoutExchange() {
+    String exchangeName = "one.fanout";
+    String msg = "hello! fanout message!";
+
+    // 三个参数：交换机名称、路由key、消息内容
+    // 因为是广播交换机，因此不需要特定的路由规则
+    rabbitTemplate.convertAndSend(exchangeName, "", msg);
+}
+```
+
+4. **测试**
+
+![image-20230226223106672](./【Java开发笔记】MQ.assets/image-20230226223106672.png)
+
+### 3.5 Direct
+
+在 Fanout 模式中，**一条消息，会被所有订阅的队列都消费**。但是，在某些场景下，我们希望不同的消息被不同的队列消费。这时就要用到 Direct 类型的 Exchange。
+
+![image-20210717170041447](./【Java开发笔记】MQ.assets/b504z1.png)
+
+ 在 Direct 模型下：
+
+- 队列与交换机的绑定，不能是任意绑定了，而是要指定一个 `RoutingKey`（路由key）
+- 消息的发送方在向 Exchange 发送消息时，也必须指定消息的 `RoutingKey`。
+- Exchange不再把消息交给每一个绑定的队列，而是根据消息的 `Routing Key` 进行判断，只有队列的 `Routingkey` 与消息的 `Routing key` 完全一致，才会接收到消息
+
+1. **基于注解声明队列和交换机**
+
+基于 `@Bean` 的方式声明队列和交换机比较麻烦，Spring 还提供了基于注解方式来声明。
+
+在 **consumer** 的 SpringRabbitListener 中添加两个消费者，同时基于注解来声明队列和交换机：
+
+消费者 1 订阅 `red, blue` 队列；消费者 2 订阅 `red, yellow` 队列。
+
+```java
+@RabbitListener(bindings = @QueueBinding(
+        value = @Queue(name = "direct.queue1"),
+        exchange = @Exchange(name = "song.direct", type = ExchangeTypes.DIRECT),
+        key = {"red, blue"}
+))
+public void listenDirectQueue1(String msg) {
+    System.out.println("消费者 1 接收到direct消息：【" + msg +"】" + LocalTime.now());
+}
+
+@RabbitListener(bindings = @QueueBinding(
+        value = @Queue(name = "direct.queue1"),
+        exchange = @Exchange(name = "song.direct", type = ExchangeTypes.DIRECT),
+        key = {"red, yellow"}
+))
+public void listenDirectQueue2(String msg) {
+    System.out.println("消费者 2 接收到direct消息：【" + msg +"】" + LocalTime.now());
+}
+```
+
+2. **消息发送**
+
+```java
+@Test
+public void testDirectExchange() {
+    String exchangeName = "song.direct";
+    String msg = "hello! direct message!";
+
+    // 三个参数：交换机名称、路由key、消息内容
+    rabbitTemplate.convertAndSend(exchangeName, "yellow", msg);
+}
+```
+
+3. **测试**
+
+`routingKey` 是 `red`，则两个消费者都接收到：
+
+![image-20230226225108694](./【Java开发笔记】MQ.assets/image-20230226225108694.png)
+
+`rountingKey` 是 `yellow`，由消费者 2 接收：
+
+![image-20230226225159489](./【Java开发笔记】MQ.assets/image-20230226225159489.png)
+
+### 3.6 Topic
+
+`Topic` 类型的 `Exchange` 与 `Direct` 相比，都是可以根据 `RoutingKey` 把消息路由到不同的队列。
+
+只不过 `Topic` 类型 `Exchange` 可以让队列在绑定 `Routing key` 的时候使用 **通配符**！
+
+`Routingkey` 一般都是有一个或多个单词组成，多个单词之间以 ”.” 分割，例如： `item.insert`
+
+通配符规则：
+
+- `#`：匹配一个或多个词
+
+- `*`：匹配不多不少恰好 1 个词
+
+举例：
+
+- `item.#`：能够匹配`item.spu.insert` 或者 `item.spu`
+
+- `item.*`：只能匹配`item.spu`     
+
+![image-20210717170705380](./【Java开发笔记】MQ.assets/6erx9p.png)
+
+解释：
+
+- Queue1：绑定的是 `china.#` ，因此凡是以 `china.` 开头的 `routing key` 都会被匹配到。包括 china.news 和china.weather
+- Queue2：绑定的是 `#.news` ，因此凡是以 `.news` 结尾的 `routing key` 都会被匹配。包括 china.news 和japan.news
+
+1. **消息接收**
+
+```java
+@RabbitListener(bindings = @QueueBinding(
+        value = @Queue(name = "topic.queue1"),
+        exchange = @Exchange(name = "song.topic", type = ExchangeTypes.TOPIC),
+        key = "china.#"
+))
+public void listenTopicQueue1(String msg){
+    System.out.println("消费者接收到topic.queue1的消息：【" + msg + "】");
+}
+
+@RabbitListener(bindings = @QueueBinding(
+        value = @Queue(name = "topic.queue2"),
+        exchange = @Exchange(name = "song.topic", type = ExchangeTypes.TOPIC),
+        key = "#.news"
+))
+public void listenTopicQueue2(String msg){
+    System.out.println("消费者接收到topic.queue2的消息：【" + msg + "】");
+}
+```
+
+2. **消息发送**
+
+```java
+@Test
+public void testTopicExchange() {
+    String exchangeName = "song.topic";
+    String msg = "hello! topic message!";
+
+    // 三个参数：交换机名称、路由key、消息内容
+    String routingKey = "china.news";
+    rabbitTemplate.convertAndSend(exchangeName, routingKey, msg);
+}
+```
+
+3. **测试**
+
+两个都接收：
+
+![image-20230226230254153](./【Java开发笔记】MQ.assets/image-20230226230254153.png)
+
+topic.queue2 收到消息：
+
+![image-20230226230407305](./【Java开发笔记】MQ.assets/image-20230226230407305.png)
+
+### 3.7 消息转换器
+
+Spring 会把发送的消息 **序列化为字节** 发送给 MQ，接收消息的时候，还会把 **字节反序列化** 为 Java 对象。
+
+![image-20200525170410401](./【Java开发笔记】MQ.assets/image-20200525170410401.png)
+
+只不过，默认情况下 **Spring 采用的序列化方式是 JDK 序列化**。众所周知，JDK序列化存在下列问题：
+
+- 数据体积过大
+- 有安全漏洞
+- 可读性差
+
+我们来测试一下。我们修改消息发送的代码，发送一个 Map 对象：
+
+```java
+@Test
+public void testSendMap() throws InterruptedException {
+    // 准备消息
+    Map<String,Object> msg = new HashMap<>();
+    msg.put("name", "Jack");
+    msg.put("age", 21);
+    // 发送消息
+    rabbitTemplate.convertAndSend("simple.queue","", msg);
+}
+```
+
+停止 consumer 服务，发送消息后查看控制台：
+
+![image-20210422232835363](./【Java开发笔记】MQ.assets/0mlslx.png)
+
+#### 配置 JSON 转换器
+
+显然，JDK 序列化方式并不合适。我们希望消息体的体积更小、可读性更高，因此可以使用 **JSON 方式** 来做序列化和反序列化。
+
+在 publisher 和 consumer 两个服务中都引入依赖：
+
+```xml
+<dependency>
+    <groupId>com.fasterxml.jackson.dataformat</groupId>
+    <artifactId>jackson-dataformat-xml</artifactId>
+    <version>2.9.10</version>
+</dependency>
+```
+
+配置消息转换器，在启动类中添加一个 Bean 即可：
+
+```java
+@Bean
+public MessageConverter jsonMessageConverter(){
+    return new Jackson2JsonMessageConverter();
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
