@@ -5,7 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="MQ">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/0mlslx-20230226230835873.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/0mlslx.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/6erx9p.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/b504z1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/image-20200525170410401.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/image-20230226223106672.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/image-20230226225108694.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/image-20230226225159489.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/image-20230226230254153.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/image-20230226230407305.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/til0yb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】MQ.assets/zdkla0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/技术笔记/【Java开发笔记】微服务保护-Sentinel.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,13 +99,7 @@
       <workItem from="1677224014215" duration="623000" />
       <workItem from="1677380592805" duration="1313000" />
       <workItem from="1677396794277" duration="743000" />
-    </task>
-    <task id="LOCAL-00001" summary="0214">
-      <created>1676379254632</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1676379254632</updated>
+      <workItem from="1677425571835" duration="527000" />
     </task>
     <task id="LOCAL-00002" summary="0214">
       <created>1676383274344</created>
@@ -431,7 +437,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677396808857</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="MQ">
+      <created>1677425589835</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1677425589836</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
