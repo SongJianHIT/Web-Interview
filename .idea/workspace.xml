@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="Mysql" />
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="分布式事务" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -88,13 +88,7 @@
       <workItem from="1677425571835" duration="1908000" />
       <workItem from="1677497130147" duration="131000" />
       <workItem from="1677548351664" duration="1780000" />
-    </task>
-    <task id="LOCAL-00008" summary="SpringSecurity">
-      <created>1676534760229</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1676534760229</updated>
+      <workItem from="1677671881554" duration="211000" />
     </task>
     <task id="LOCAL-00009" summary="JWT">
       <created>1676535042266</created>
@@ -432,7 +426,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677553889202</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="分布式事务">
+      <created>1677671906107</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1677671906107</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -451,7 +452,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Vector" />
     <MESSAGE value="LinkedList" />
     <MESSAGE value="IO" />
     <MESSAGE value="基础类" />
@@ -476,6 +476,7 @@
     <MESSAGE value="微服务保护-Sentinel" />
     <MESSAGE value="Jmeter" />
     <MESSAGE value="Mysql" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mysql" />
+    <MESSAGE value="分布式事务" />
+    <option name="LAST_COMMIT_MESSAGE" value="分布式事务" />
   </component>
 </project>
