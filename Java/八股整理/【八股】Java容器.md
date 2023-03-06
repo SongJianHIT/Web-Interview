@@ -316,5 +316,43 @@ JDK 1.8 中，是通过 `hashCode()` 的 **高 16 位异或低 16 位实现的**
 - HashMap 是线程不安全的，HashTable 是线程安全的；
 - 由于线程安全，所以 HashTable 的效率比不上 HashMap；
 - **HashMap 最多只允许一条记录的键为 null，允许多条记录的值为 null，而 HashTable 不允许；**
-- HashMap 默认初始化数组的大小为 16，HashTable 为 11，前者扩容时 `扩大两倍`，后者 `扩大两倍 + 1`；
+- HashMap 默认初始化数组的大小为 `16`，HashTable 为 `11`，前者扩容时 `扩大两倍`，后者 `扩大两倍 + 1`；
 - **HashMap 需要重新计算 hash 值，而 HashTable 直接使用对象的 hashCode**
+- HashTable 不会转红黑树
+
+## 5、ConcurentHashMap
+
+### 5.1、HashTable与ConcurentHashMap的区别
+
+HashTable 和 ConcurrentHashMap 都是 Java 中的 **线程安全哈希表** ，它们之间的区别如下：
+
+1. 线程安全性：HashTable 和 ConcurrentHashMap 都是线程安全的，但是它们 **实现线程安全的方式** 不同。
+
+   HashTable 使用 `synchronized` 关键字来保证线程安全，而 ConcurrentHashMap 使用了一种更加高效的 **锁分段** 技术。
+
+2. 并发性能：由于 ConcurrentHashMap 使用了 **锁分段** 技术，因此它 **可以支持多个线程同时进行读操作，而只有在写操作时才会进行加锁，从而提高了并发性能**。而 HashTable 的所有操作都是串行的，无法支持高并发访问。
+
+3. 扩容机制：在进行扩容时，HashTable 会将所有元素重新散列，并重新分配到新的桶中。这个过程可能比较耗时，而且 **扩容时需要锁定整个 HashTable**。而 ConcurrentHashMap 使用了一种更加高效的扩容机制，可以 **同时进行扩容和读操作**，不会造成阻塞。
+
+4. 迭代器支持：ConcurrentHashMap 的迭代器是弱一致性的，可以在迭代时进行并发的修改操作。而 HashTable 的迭代器不支持并发修改操作，如果在迭代时进行修改操作，可能会抛出 ConcurrentModificationException 异常。
+
+5. 空值和空键的支持：HashTabl e不允许使用 null 值和 null 键，而 ConcurrentHashMap 可以使用 null 值和 null 键。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

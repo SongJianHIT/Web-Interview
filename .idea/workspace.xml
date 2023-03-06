@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="分布式事务" />
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="更新">
+      <change afterPath="$PROJECT_DIR$/Java/八股整理/【八股】JVM.assets/image-20230306110555625.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Java/八股整理/【八股】JVM.assets/image-20230306110558577.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/八股整理/【八股】JVM.md" beforeDir="false" afterPath="$PROJECT_DIR$/Java/八股整理/【八股】JVM.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -89,13 +94,7 @@
       <workItem from="1677497130147" duration="131000" />
       <workItem from="1677548351664" duration="1780000" />
       <workItem from="1677671881554" duration="211000" />
-    </task>
-    <task id="LOCAL-00009" summary="JWT">
-      <created>1676535042266</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1676535042266</updated>
+      <workItem from="1678071690904" duration="1113000" />
     </task>
     <task id="LOCAL-00010" summary="Nginx">
       <created>1676547027927</created>
@@ -433,7 +432,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677671906107</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="更新">
+      <created>1678071708861</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1678071708861</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -452,7 +458,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="LinkedList" />
     <MESSAGE value="IO" />
     <MESSAGE value="基础类" />
     <MESSAGE value="技术笔记" />
@@ -477,6 +482,7 @@
     <MESSAGE value="Jmeter" />
     <MESSAGE value="Mysql" />
     <MESSAGE value="分布式事务" />
-    <option name="LAST_COMMIT_MESSAGE" value="分布式事务" />
+    <MESSAGE value="更新" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新" />
   </component>
 </project>
