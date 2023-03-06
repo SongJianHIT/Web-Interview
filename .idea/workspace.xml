@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="Java" />
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="策略模式">
+      <change afterPath="$PROJECT_DIR$/设计模式/【设计模式】观察者模式.assets/image-20230306221112101.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/设计模式/【设计模式】观察者模式.assets/image-20230306223903445.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/设计模式/【设计模式】观察者模式.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,13 +96,8 @@
       <workItem from="1677671881554" duration="211000" />
       <workItem from="1678071690904" duration="1113000" />
       <workItem from="1678080400637" duration="36000" />
-    </task>
-    <task id="LOCAL-00011" summary="Nginx">
-      <created>1676548942276</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1676548942276</updated>
+      <workItem from="1678110928497" duration="1311000" />
+      <workItem from="1678114033367" duration="14000" />
     </task>
     <task id="LOCAL-00012" summary="Nginx">
       <created>1676549017629</created>
@@ -435,7 +435,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678080421573</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="策略模式">
+      <created>1678110940985</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1678110940986</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -454,7 +461,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="基础类" />
     <MESSAGE value="技术笔记" />
     <MESSAGE value="操作系统" />
     <MESSAGE value="HashSet" />
@@ -479,6 +485,7 @@
     <MESSAGE value="分布式事务" />
     <MESSAGE value="更新" />
     <MESSAGE value="Java" />
-    <option name="LAST_COMMIT_MESSAGE" value="Java" />
+    <MESSAGE value="策略模式" />
+    <option name="LAST_COMMIT_MESSAGE" value="策略模式" />
   </component>
 </project>
