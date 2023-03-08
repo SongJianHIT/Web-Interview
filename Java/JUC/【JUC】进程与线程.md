@@ -68,7 +68,6 @@ public class Sync {
         FileReader.read(Constants.MP4_FULL_PATH);
         log.debug("do other things ...");
     }
-
 }
 ```
 
