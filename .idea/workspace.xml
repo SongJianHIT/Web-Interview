@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="容器">
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="JUC">
+      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】Java内存模型.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java/JUC/【JUC】管程.md" beforeDir="false" afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,13 +100,7 @@
       <workItem from="1678199587696" duration="1253000" />
       <workItem from="1678238229316" duration="1207000" />
       <workItem from="1678244224939" duration="1591000" />
-    </task>
-    <task id="LOCAL-00019" summary="Nginx">
-      <created>1676550665265</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1676550665265</updated>
+      <workItem from="1678256153857" duration="964000" />
     </task>
     <task id="LOCAL-00020" summary="HashSet">
       <created>1676628778644</created>
@@ -444,7 +438,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678244245603</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="JUC">
+      <created>1678256165742</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1678256165742</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -485,9 +486,9 @@
     <MESSAGE value="背包问题" />
     <MESSAGE value="JVM" />
     <MESSAGE value="JAVA线程" />
-    <MESSAGE value="JUC" />
     <MESSAGE value="背包" />
     <MESSAGE value="容器" />
-    <option name="LAST_COMMIT_MESSAGE" value="容器" />
+    <MESSAGE value="JUC" />
+    <option name="LAST_COMMIT_MESSAGE" value="JUC" />
   </component>
 </project>
