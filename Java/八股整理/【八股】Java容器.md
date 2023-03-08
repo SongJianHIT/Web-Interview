@@ -338,7 +338,19 @@ HashTable 和 ConcurrentHashMap 都是 Java 中的 **线程安全哈希表** ，
 
 5. 空值和空键的支持：HashTabl e不允许使用 null 值和 null 键，而 ConcurrentHashMap 可以使用 null 值和 null 键。
 
+## 6、Vector
 
+### 6.1 为什么Vector的性能较差？
+
+Vector 的性能较差的主要原因在于它的 **线程安全机制** 。
+
+Vector 是线程安全的集合类，因此在每个方法上添加了 `synchronized` 关键字，被修饰的方法会 **对整个 Vector 对象进行同步，以确保在多线程环境下对 Vector 的并发访问是安全的** 。这种同步机制会导致额外的开销，从而降低了 Vector 的性能。
+
+除此之外，Vector 的扩容机制也会影响其性能。当 Vector 中的元素数量超过其容量时，Vector 会自动增加容量，以容纳更多的元素。在扩容时，Vector 需要创建一个新的更大的数组，并将原有数组中的元素复制到新数组中。
+
+因此，如果不需要线程安全的支持，建议使用 `ArrayList` 而非 Vector，以获得更好的性能。
+
+如果在多线程并发的情况下，可以考虑使用 `CopyOnWriteArrayList` 。
 
 
 

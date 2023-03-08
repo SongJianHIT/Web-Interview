@@ -12,7 +12,8 @@ Note：
 
 - `ArrayList` 可以存放所有元素，包括 `null` 
 - 底层是由数组实现的
-- 基本等同于 `Vector` ，除了 `ArrayList` 是非线程安全的。多线程时，建议使用 `vector` 
+- 基本等同于 `Vector` ，除了 `ArrayList` 是非线程安全的
+- 多线程时，建议使用 `vector` 或者 `CopyOnWriteArrayList` 或者 `SynchronizedList`
 
 ## 2 ArrayList的扩容
 
@@ -265,3 +266,45 @@ public ArrayList(int initialCapacity) {
 ```
 
 也就是，如果指定了大小，它直接创建了一个长度为指定大小的 `Object` 数组。
+
+## 4 ArrayList的元素删除
+
+主要看看 `remove()` 方法：
+
+```java
+public E remove(int index) {
+  	// 首先确认 index 是否合法
+    rangeCheck(index);
+		
+    modCount++;
+  	// 保存旧值
+    E oldValue = elementData(index);
+		
+  	// 计算需要进行移动的元素个数
+    int numMoved = size - index - 1;
+    if (numMoved > 0)
+      	// 使用 System.arraycopy 进行元素移动（复制）
+        System.arraycopy(elementData, index+1, elementData, index,
+                         numMoved);
+  
+  	// 减少 size，并且设置最后元素为 null，以便垃圾收集
+    elementData[--size] = null; // clear to let GC do its work
+
+    return oldValue;
+}
+```
+
+判断 index 是否合法的函数：
+
+```java
+private void rangeCheck(int index) {
+    if (index >= size)
+      	// 如果大于当前数组长度，则 IndexOutOfBoundsException
+        throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
+}
+```
+
+
+
+
+

@@ -4,50 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="JAVA线程">
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307160738973.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307160805740.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307160826008.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307161008157.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307162420592.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307162443098.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307170611213.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307190403669.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307190626456.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307191517780.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307192852005.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307192858745.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307192859913.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307192913130.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307193416163.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307194549228.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307194711225.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307201720058.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307201928984.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307202102197.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307202225140.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307202355570.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307203342039.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307203538350.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307210906037.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307210949306.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307211609660.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307211711576.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307212002432.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307212021293.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307213422434.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307220017058.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307220352408.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307220515343.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307222248756.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307222317701.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.assets/image-20230307222853394.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】管程.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/八股整理/【八股】JUC.assets/image-20230307225353134.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/八股整理/【八股】JUC.assets/image-20230307225355253.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/八股整理/【八股】JUC.md" afterDir="false" />
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="背包">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java/JUC/【JUC】进程与线程.md" beforeDir="false" afterPath="$PROJECT_DIR$/Java/JUC/【JUC】进程与线程.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/容器类源码分析/【源码分析】ArrayList.md" beforeDir="false" afterPath="$PROJECT_DIR$/Java/容器类源码分析/【源码分析】ArrayList.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,20 +98,7 @@
       <workItem from="1678114033367" duration="1309000" />
       <workItem from="1678161971142" duration="700000" />
       <workItem from="1678199587696" duration="1253000" />
-    </task>
-    <task id="LOCAL-00016" summary="Nginx">
-      <created>1676549546461</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1676549546461</updated>
-    </task>
-    <task id="LOCAL-00017" summary="ShardingShpere">
-      <created>1676549631239</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1676549631239</updated>
+      <workItem from="1678238229316" duration="1207000" />
     </task>
     <task id="LOCAL-00018" summary="SpringSecurity">
       <created>1676549669358</created>
@@ -483,7 +429,21 @@
       <option name="project" value="LOCAL" />
       <updated>1678161988640</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="JUC">
+      <created>1678238254922</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1678238254923</updated>
+    </task>
+    <task id="LOCAL-00066" summary="背包">
+      <created>1678238280590</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1678238280590</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -502,8 +462,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="HashMap" />
-    <MESSAGE value="Hashtable" />
     <MESSAGE value="Docker" />
     <MESSAGE value="进程管理" />
     <MESSAGE value="java基础类" />
@@ -527,6 +485,8 @@
     <MESSAGE value="背包问题" />
     <MESSAGE value="JVM" />
     <MESSAGE value="JAVA线程" />
-    <option name="LAST_COMMIT_MESSAGE" value="JAVA线程" />
+    <MESSAGE value="JUC" />
+    <MESSAGE value="背包" />
+    <option name="LAST_COMMIT_MESSAGE" value="背包" />
   </component>
 </project>
