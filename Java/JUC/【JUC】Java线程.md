@@ -393,17 +393,72 @@ public class TestState {
 
 ![image-20230307115413233](./【JUC】Java线程.assets/image-20230307115413233.png)
 
+#### 状态转换过程
 
+假设有线程 `Thread t`：
 
+1. 情况一：`NEW -> RUNNABLE`
+   - 调用 `t.start()` 后，就会从 `NEW` 进入 `RUNNABLE`
 
+2. 情况二：`RUNNABLE <-> WAITING`
 
+   **t** **线程** 用 synchronized(obj) 获取了对象锁后：
 
+   - 调用 `obj.wait()` 方法，会从 `RUNNABLE -> WAITING`
+   - 调用 `obj.notify()`、`obj.notifyAll()`、`t.interrupt()` 时：
+     - 竞争锁成功，**t 线程** 从 `WAITING -> RUNNABLE`
+     - 竞争锁失败，**t 线程** 从 `WAITING -> BLOCKED`
 
+3. 情况三：`RUNNABLE <-> WAITING`
 
+   **当前线程** 调用 `t.join()` 方法时，**当前线程 **从 `RUNNABLE --> WAITING`
 
+   - 注意是 **当前线程** 在 **t 线程对象** 的监视器上等待
 
+   **t 线程** 运行结束，或调用了 **当前线程** 的 `interrupt()` 时，**当前线程** 从 `WAITING --> RUNNABLE`
 
+4. 情况四：`RUNNABLE <-> WAITING`
 
+   - 当前线程调用 `LockSupport.park()` 方法会让当前线程从 `RUNNABLE --> WAITING`
+   - 调用 `LockSupport.unpark(目标线程)` 或调用了线程的 `interrupt()` ，会让目标线程从 `WAITING --> RUNNABLE`
+
+5. 情况五：`RUNNABLE <-> TIMED_WAITING`
+
+   **t** **线程** 用 synchronized(obj) 获取了对象锁后：
+
+   - 调用 `obj.wait(n)` 方法，会从 `RUNNABLE -> TIMED_WAITING`
+   - 调用 `obj.notify()`、`obj.notifyAll()`、`t.interrupt()` 时：
+     - 竞争锁成功，**t 线程** 从 `TIMED_WAITING -> RUNNABLE`
+     - 竞争锁失败，**t 线程** 从 `TIMED_WAITING -> BLOCKED`
+
+6. 情况六：`RUNNABLE <-> TIMED_WAITING`
+
+   **当前线程** 调用 `t.join(n)` 方法时，**当前线程 **从 `RUNNABLE --> TIMED_WAITING`
+
+   - 注意是 **当前线程** 在 **t 线程对象** 的监视器上等待
+
+   **t 线程** 运行结束，或调用了 **当前线程** 的 `interrupt()` 时，**当前线程** 从 `TIMED_WAITING --> RUNNABLE`
+
+7. 情况七：`RUNNABLE <-> TIMED_WAITING`
+
+   **当前线程** 调用 `Thread.sleep(long n) ` 方法时，**当前线程 **从 `RUNNABLE --> TIMED_WAITING`
+
+   **当前线程** 等待超过 n 毫秒，从 `TIMED_WAITING --> RUNNABLE`
+
+8. 情况八：`RUNNABLE <-> TIMED_WAITING`
+
+   当前线程调用 `LockSupport.parkNanos(long nanos)` 或 `LockSupport.parkUntil(long millis)` 时，**当前线程**从 `RUNNABLE --> TIMED_WAITING`
+
+   调用 `LockSupport.unpark(目标线程)` 或调用了线程 的 `interrupt()` ，或是等待超时，会让目标线程从`TIMED_WAITING--> RUNNABLE`
+
+9. 情况九：`RUNNABLE <-> BLOCKED`
+
+   - **t** **线程** 用 synchronized(obj) 获取了对象锁时如果竞争失败，从 `RUNNABLE --> BLOCKED`
+   - 持 obj 锁线程的同步代码块执行完毕，会唤醒该对象上所有 `BLOCKED` 的线程重新竞争，如果其中 **t** **线程** 竞争成功，从 `BLOCKED --> RUNNABLE` ，其它失败的线程仍然 `BLOCKED`
+
+10. 情况十：`RUNNABLE <-> TERMINATED`
+
+    当前线程所有代码运行完毕，进入 `TERMINATED`
 
 
 

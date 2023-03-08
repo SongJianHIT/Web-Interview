@@ -429,7 +429,7 @@ Monitor，常被称为 **监视器** 或 **管程** 。
 2. 当 Thread-2 执行 `synchronized(obj)` 就会将 Monitor 的所有者 Owner 置为 Thread-2，Monitor 中只能有一个 **Owner**
 3. 在 Thread-2 上锁的过程中，如果 Thread-3，Thread-4，Thread-5 也来执行 `synchronized(obj)`，就会进入 **EntryList** ，并设置状态为 **BLOCKED**
 4. Thread-2 执行完同步代码块的内容，然后 **唤醒** **EntryList** 中等待的线程来竞争锁，竞争时是非公平的
-5. 图中 **WaitSet** 中的 Thread-0，Thread-1 是之前获得过锁，但条件不满足进入 **WAITING** 状态的线程
+5. 图中 **WaitSet** 中的 Thread-0，Thread-1 是之前获得过锁，但条件不满足，进入 **WAITING** 状态的线程
 
 > 注意！
 >
@@ -662,4 +662,133 @@ public class TestLockEliminate {
 关闭锁消除：
 
 ![image-20230307222853394](./【JUC】管程.assets/image-20230307222853394.png)
+
+## 7 wait与notify
+
+这里就是对上面 Monitor 的回顾：
+
+![image-20230307193416163](./【JUC】管程.assets/image-20230307193416163.png)
+
+有的线程获得锁之后，发现条件不满足（还有别的资源没有得到），那么这时不要一直占用着锁，而是进入 `WaitSet` 进行等待。
+
+- Owner 线程发现条件不满足，调用 `wait` 方法，即可进入 **WaitSet** 变为 **WAITING** 状态
+- **BLOCKED** 和 **WAITING** 的线程都处于 **阻塞状态** ，不占用 CPU 时间片
+- **BLOCKED** 线程会在 Owner 线程 **释放锁** 时唤醒
+- **WAITING** 线程会在 Owner 线程调用 `notify` 或 `notifyAll` 时唤醒
+  - 但 **唤醒后并不意味者立刻获得锁，仍需进入 EntryList 重新竞争**
+
+### 相关API
+
+- `obj.wait()` 让进入 object 监视器的线程到 waitSet 等待
+- `obj.notify()` 在 object 上正在 waitSet 等待的线程中挑一个唤醒
+- `obj.notifyAll()` 让 object 上正在 waitSet 等待的线程全部唤醒
+
+### 与sleep比较
+
+sleep(long n) 和 wait(long n) 的区别：
+
+- sleep 是 **Thread** 方法，而 wait 是 **Object** 的方法
+- sleep 不需要强制和 synchronized 配合使用，但 wait 需要和 synchronized 一起用
+- sleep 在睡眠的同时，不会释放对象锁的，但 wait 在等待的时候会释放对象锁
+- 它们状态都是 **TIMED_WAITING**
+
+## 8 多把锁
+
+一间大屋子有两个功能：睡觉、学习，互不相干。现在小南要学习，小女要睡觉，但如果只用一间屋子（一个对象锁）的话，那么并发度很低。解决方法是准备多个房间（多个对象锁）：
+
+```java
+public class TestMultiLock {
+    public static void main(String[] args) {
+        BigRoom bigRoom = new BigRoom();
+        new Thread(() -> {
+            bigRoom.study();
+        },"小南").start();
+        new Thread(() -> {
+            bigRoom.sleep();
+        },"小女").start();
+    }
+}
+
+@Slf4j(topic = "c.BigRoom")
+class BigRoom {
+		
+  	// 在 bigroom 的基础上，细粒度划分多把锁
+    private final Object studyRoom = new Object();
+
+    private final Object bedRoom = new Object();
+
+    public void sleep() {
+        synchronized (bedRoom) {
+            log.debug("sleeping 2 小时");
+            Sleeper.sleep(2);
+        }
+    }
+
+    public void study() {
+        synchronized (studyRoom) {
+            log.debug("study 1 小时");
+            Sleeper.sleep(1);
+        }
+    }
+}
+```
+
+> 注意，将锁的粒度细分：
+>
+> - 优点：**可以增强并发度**
+> - 缺点：**如果一个线程需要同时获得多把锁，就容易发生死锁**
+
+## 9 线程的活跃性
+
+线程的活跃性主要包括：死锁、活锁、饥饿
+
+### 9.1 死锁
+
+一个线程需要 **同时获取多把锁** ，这时就容易发生死锁。
+
+举个例子：**t1 线程** 获得 **A对象** 锁，接下来想获取 B对象 的锁，**t2 线程** 获得 **B对象** 锁，接下来想获取 A对象 的锁。
+
+#### 如何定位死锁？
+
+检测死锁可以使用 **jconsole** 工具，或者使用 jps 定位进程 id，再用 **jstack** 定位死锁。
+
+![image-20230308121159367](./【JUC】管程.assets/image-20230308121159367.png)
+
+另外，如果由于某个线程进入了死循环，导致其它线程一直等待，对于这种情况 linux 下可以通过 `top` 先定位到 CPU 占用高的 Java 进程，再利用 `top -Hp 进程id` 来定位是哪个线程，最后再用 **jstack** 排查。
+
+### 9.2 活锁
+
+活锁出现在 **两个线程互相改变对方的结束条件，最后谁也无法结束** ，例如：
+
+```java
+public class TestLiveLock {
+    static volatile int count = 10;
+    static final Object lock = new Object();
+
+    public static void main(String[] args) {
+        new Thread(() -> {
+            // 期望减到 0 退出循环
+            while (count > 0) {
+                sleep(0.2);
+                count--;
+                log.debug("count: {}", count);
+            }
+        }, "t1").start();
+        new Thread(() -> {
+            // 期望超过 20 退出循环
+            while (count < 20) {
+                sleep(0.2);
+                count++;
+                log.debug("count: {}", count);
+            }
+        }, "t2").start();
+    }
+}
+```
+
+### 9.3 饥饿
+
+线程饥饿：一个线程由于优先级太低，始终得不到 CPU 调度执行，也不能够结束。
+
+解决：ReentrantLock
 
