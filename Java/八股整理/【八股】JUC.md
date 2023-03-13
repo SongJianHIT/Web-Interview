@@ -60,11 +60,15 @@ JDK1.6 对锁的实现引入了大量的优化，如 **偏向锁、轻量级锁�
 
 
 
+## 2 ReentrantLock
 
+### 2.1 Synchronized和ReentrantLock的区别？
 
-
-
-
+1. 获取锁和释放锁的机制不同：ReentrantLock **显式** 地获得、释放锁；Synchronized **隐式** 地获得、释放锁
+2. 响应中断不同：ReentrantLock **可响应中断**，可轮回；Synchronized **不可响应中断**
+3. 底层实现不同：ReentrantLock 是通过 **AQS（AbstractQueuedSynchronizer）程序级别的 API 实现**；synchronized 是 **JVM 层面通过监视器（Monitor）实现的**
+4. 锁类型不同：ReentrantLock 可以实现 **公平和非公平锁**；Synchronized 只是非公平锁
+5. 用法不同：ReentrantLock 只能用于代码块；synchronized 可以用来修饰普通方法、静态方法和代码块。
 
 
 

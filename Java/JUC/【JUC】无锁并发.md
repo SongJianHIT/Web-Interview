@@ -4,7 +4,7 @@
 
 CompareAndSet，称为 CAS，它保证 **比较和设置两个操作具有原子性** 。
 
-CAS 操作包含三个操作数，内存位置（V）、预期原值（A）和新值（B）。如果 **内存位置的值与预期原值** 相匹配，那么处理器会自动将该位置值更新为新值。否则，处理器不做任何操作。
+CAS 操作包含三个操作数，`内存位置（V）、预期原值（A）和新值（B）`。如果 **内存位置的值与预期原值** 相匹配，那么处理器会自动将该位置值更新为新值。否则，处理器不做任何操作。
 
 ![image-20230308191744447](./【JUC】无锁并发.assets/image-20230308191744447.png)
 
@@ -224,34 +224,107 @@ JDK 提供了两个类 `AtomicStampedReference`、`AtomicMarkableReference` 来�
 - 分散操作热点，使用 `LongAdder` 替代基础原子类 `AtomicLong`。
 - 使用队列削峰，将发生 CAS 争用的线程加入一个队列中排队，降低 CAS 争用的激烈程度。JUC 中非常重要的基础类 AQS（抽象队列同步器）就是这么做的。
 
-## 2 LongAdder
+## 2 Unsafe
 
-LongAdder 的基本思路就是 **分散热点**，如果有竞争的话，内部维护了多个 Cell 变量，每个 Cell 里面有一个初始值为 0 的 long 型变量， 不同线程会命中到数组的不同 Cell（槽）中，各个线程只对自己 Cell（槽）中的那个值进行 CAS 操作。这样热点就被分散了，冲突的概率就小很多。
+`Unsafe` 对象提供了非常底层的，操作内存、线程的方法，`theUnsafe` 对象不能直接调用，**只能通过反射获得**。
+
+由于 Java 方法无法直接访问底层系统，需要通过本地（Native）方法来访问，Unsafe 相当于一个后门，基于该类可以直接操作特定的内存数据。Unsafe 类存在 sun.misc 包中，其内部方法操作可以像 C 的指针一样直接操作内存，**因为 Java 中的 CAS 操作的执行依赖于 Unsafe 类的方法。** 
+
+> 这里的 unsafe 指的 **并不是线程不安全**，而是说 **它提供了很多操作线程、内存的方法，误用可能会导致不安全的发生** 。
+
+上述中提供的「原子类型」都是基于 `Unsafe` 来实现的！
+
+```java
+private static final Unsafe unsafe = Unsafe.getUnsafe();
+```
+
+提供了许多原子 JNI ：
+
+```java
+public final native boolean compareAndSwapObject(Object var1, long var2, Object var4, Object var5);
+
+public final native boolean compareAndSwapInt(Object var1, long var2, int var4, int var5);
+
+public final native boolean compareAndSwapLong(Object var1, long var2, long var4, long var6);
+```
+
+### 2.1 Unsafe的获取
+
+为什么只能通过反射来获得呢？来看看下面的代码：
+
+```java
+public class demo {
+    public static void main(String[] args) {
+        Unsafe unsafe = Unsafe.getUnsafe();
+        System.out.println(unsafe);
+    }
+}
+```
+
+![image-20230313112025388](./【JUC】无锁并发.assets/image-20230313112025388.png)
+
+`Unsafe` 暴露了一个 `getUnsafe()` 方法，你以为能够获得吗，并不能！因为这里存在类加载器的检查！
+
+> Java 自带三种类加载器，bootstrap 类加载器是 JVM 启动的时候负责加载 `jre/lib/rt.jar` 这个类是 c++ 写的，在java 中看不到。其它两个是 `ExtClassLoader` 和 `AppClassLoader` 都是继承 `ClassLoader` 类。
+>
+> isSystemDomainLoader 会进行判断如果传入的 null 返回 true，否则返回 false。
+>
+> 在启动阶段，加载 `rt.jar` 所有类的是 `bootstrap` 类加载器，所以调用 `caller.getClassLoader()` 会返回 null，isSystemDomainLoader 就会返回 true。
+>
+> 但是在我们自己写的类代码中直接调用这个类就不行了，此时是 AppClassLoader，会返回 false，直接抛异常。
+
+```java
+@CallerSensitive
+public static Unsafe getUnsafe() {
+    Class var0 = Reflection.getCallerClass();
+  	// VM.isSystemDomainLoader 检查类加载器
+    if (!VM.isSystemDomainLoader(var0.getClassLoader())) {
+        throw new SecurityException("Unsafe");
+    } else {
+        return theUnsafe;
+    }
+}
+```
+
+> jvm 的开发者认为这些方法危险，不希望开发者调用，就把这种危险的方法用 `@CallerSensitive` 修饰，并在“jvm”级别检查。
+
+所以，要想使用，只能通过反射获取到！
+
+```java
+public class demo {
+    public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
+        // Unsafe unsafe = Unsafe.getUnsafe();
+        Field f = Unsafe.class.getDeclaredField("theUnsafe");
+        // setAccessible 获取私有字段的值
+        f.setAccessible(true);
+        Unsafe unsafe = (Unsafe)f.get(null);
+        System.out.println(unsafe);
+    }
+}
+```
+
+![image-20230313112253548](./【JUC】无锁并发.assets/image-20230313112253548.png)
+
+### 2.2 使用Unsafe中的CAS方法
+
+这里还是以 `AtomicInteger` 为例：
 
 ```java
 /**
- * cell表，当非空时，大小是2的幂。  
+ * Atomically sets to the given value and returns the old value.
+ * 原子性地更新新值，并返回旧值
+ * @param newValue the new value
+ * @return the previous value
  */
-transient volatile Cell[] cells;
- 
-/**
- * 基础值，主要在没有争用时使用
- * 在没有争用时使用 CAS 更新这个值
- */
-transient volatile long base;
-
-/**
- * 自旋锁(通过CAS锁定) 在调整大小和/或创建 cell 时使用,
- * 为 0 表示 cells 数组 没有 处于创建、扩容阶段，反之为 1
- */
-transient volatile int cellsBusy;
+public final int getAndSet(int newValue) {
+  	// 使用unsafe提供的原子方法
+    return unsafe.getAndSetInt(this, valueOffset, newValue);
+}
 ```
 
-在 **没有竞争** 的情况下，要累加的数通过 CAS 累加到 **base** 上。如果要获得完整的 LongAdder 存储的值，只要将各个槽中的变量值累加，后的值即可。
 
-![image-20230308205029929](./【JUC】无锁并发.assets/image-20230308205029929.png)
 
-在没有竞争的情况，cells 数组为 null ，这时只使用 base 做累加；而一旦发生竞争，cells 数组就上场了。
+
 
 
 
