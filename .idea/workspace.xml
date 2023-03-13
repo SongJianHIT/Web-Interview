@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="JUC">
-      <change afterPath="$PROJECT_DIR$/Java/JUC/【JUC】Java内存模型.md" afterDir="false" />
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="juc">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -101,13 +100,8 @@
       <workItem from="1678238229316" duration="1207000" />
       <workItem from="1678244224939" duration="1591000" />
       <workItem from="1678256153857" duration="964000" />
-    </task>
-    <task id="LOCAL-00020" summary="HashSet">
-      <created>1676628778644</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1676628778644</updated>
+      <workItem from="1678273338028" duration="126000" />
+      <workItem from="1678273467207" duration="81000" />
     </task>
     <task id="LOCAL-00021" summary="ArrayList">
       <created>1676629108997</created>
@@ -445,7 +439,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678256165742</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="juc">
+      <created>1678273353538</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1678273353538</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -464,7 +465,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Docker" />
     <MESSAGE value="进程管理" />
     <MESSAGE value="java基础类" />
     <MESSAGE value="StringBuilder" />
@@ -489,6 +489,7 @@
     <MESSAGE value="背包" />
     <MESSAGE value="容器" />
     <MESSAGE value="JUC" />
-    <option name="LAST_COMMIT_MESSAGE" value="JUC" />
+    <MESSAGE value="juc" />
+    <option name="LAST_COMMIT_MESSAGE" value="juc" />
   </component>
 </project>
