@@ -25,10 +25,10 @@
 | [122.买卖股票的最佳时机 II](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/) | dp / 贪心，可「买卖多次」 | dp方法，每一天分两状态求解                      |
 | [123.买卖股票的最佳时机 III](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iii/) | dp，只「买卖两次」        | dp方法，按照「买卖*第(1, 2)次」分为四种状态讨论 |
 | [188.买卖股票的最佳时机 IV](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iv/) | dp，最多「买卖k次」       | dp方法，按照「买卖*第k次」分为2K种状态讨论      |
-|                                                              |                           |                                                 |
-|                                                              |                           |                                                 |
+| [309.最佳买卖股票时机含冷冻期](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-cooldown/) | dp                        | 花里胡哨，多了一个状态而已                      |
+| [714.买卖股票的最佳时机含手续费](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/description/) | dp                        | 花里胡哨，多了一个手续费而已                    |
 
-
+![image-20230314205519426](./【算法】经典DP问题.assets/image-20230314205519426.png)
 
 
 
