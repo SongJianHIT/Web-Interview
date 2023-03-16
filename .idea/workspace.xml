@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="更新" />
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="JUC">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/JUC/【JUC】J.U.C.md" beforeDir="false" afterPath="$PROJECT_DIR$/Java/JUC/【JUC】J.U.C.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/算法/【算法】序列DP.md" beforeDir="false" afterPath="$PROJECT_DIR$/算法/【算法】序列DP.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -103,13 +107,8 @@
       <workItem from="1678670983256" duration="1293000" />
       <workItem from="1678696360052" duration="227000" />
       <workItem from="1678798740714" duration="28000" />
-    </task>
-    <task id="LOCAL-00025" summary="IO">
-      <created>1676632394862</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1676632394862</updated>
+      <workItem from="1678804149552" duration="654000" />
+      <workItem from="1678843649622" duration="172000" />
     </task>
     <task id="LOCAL-00026" summary="基础类">
       <created>1676632921518</created>
@@ -447,7 +446,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678798756393</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="JUC">
+      <created>1678804173660</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1678804173660</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -488,9 +494,9 @@
     <MESSAGE value="JAVA线程" />
     <MESSAGE value="背包" />
     <MESSAGE value="容器" />
-    <MESSAGE value="JUC" />
     <MESSAGE value="juc" />
     <MESSAGE value="更新" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新" />
+    <MESSAGE value="JUC" />
+    <option name="LAST_COMMIT_MESSAGE" value="JUC" />
   </component>
 </project>

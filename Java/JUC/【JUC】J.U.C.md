@@ -600,19 +600,537 @@ private void doSignal(AbstractQueuedSynchronizer.Node first) {
 
 ![image-20230314222644539](./【JUC】J.U.C.assets/image-20230314222644539.png)
 
-Thread-1 释放锁，进入 unlock 流程，略
+Thread-1 释放锁，进入 unlock 流程，略。
+
+## 3 读写锁
+
+### 3.1 ReentrantReadWriteLock
+
+#### 应用
+
+当读操作远远高于写操作时，这时候使用 **读写锁** 让 **读-读** 可以并发，提高性能。 
+
+提供一个 **数据容器类** 内部分别使用读锁保护数据的 `read()` 方法，写锁保护数据的 `write()` 方法，例如：
+
+```java
+class DataContainer {
+    private Object data;
+    private ReentrantReadWriteLock rw = new ReentrantReadWriteLock();
+    private ReentrantReadWriteLock.ReadLock r = rw.readLock();
+    private ReentrantReadWriteLock.WriteLock w = rw.writeLock();
+  	
+  	// 读取操作，使用读锁 r 保护
+    public Object read() {
+        log.debug("获取读锁...");
+        r.lock();
+        try {
+            log.debug("读取");
+            sleep(1);
+            return data;
+        } finally {
+            log.debug("释放读锁..."); r.unlock();
+        }
+    }
+  	// 写入操作，使用写锁 w 保护
+    public void write() {
+        log.debug("获取写锁...");
+        w.lock();
+        try {
+            log.debug("写入");
+            sleep(1);
+        } finally {
+            log.debug("释放写锁...");
+            w.unlock();
+        }
+    }
+}
+```
+
+测试**「读-读」**可以并发：
+
+```java
+DataContainer dataContainer = new DataContainer();
+new Thread(() -> {
+    dataContainer.read();
+}, "t1").start();
+new Thread(() -> {
+    dataContainer.read();
+}, "t2").start();
+```
+
+![image-20230315095410922](./【JUC】J.U.C.assets/image-20230315095410922.png)
+
+「读-写」是互斥的：
+
+![image-20230315095330994](./【JUC】J.U.C.assets/image-20230315095330994.png)
+
+「写-写」是互斥的：
+
+![image-20230315095443106](./【JUC】J.U.C.assets/image-20230315095443106.png)
+
+> 注意：
+>
+> - **读锁不支持条件变量**
+> - **重入时升级不支持**：即「持有读锁」的情况下去「获取写锁」，会导致获取写锁永久等待
+> - **重入时降级支持**：即「持有写锁」的情况下去「获取读锁」
+
+#### 原理
+
+「读写锁」用的是 **同一个 Sycn 同步器**，因此等待队列、state 等也是同一个！
+
+1. `t1 w.lock，t2 r.lock`
+
+```java
+// 子类重写父类的方法：尝试加「写锁」
+protected final boolean tryAcquire(int acquires) {
+    Thread current = Thread.currentThread();
+    int c = getState();
+    int w = exclusiveCount(c);
+    if (c != 0) {
+      	// 表示有可能加了写锁或者读锁
+      	// w == 0，表示现在有人加了 「读锁」，并且当前线程并没有获得过锁（读或写）
+        if (w == 0 || current != getExclusiveOwnerThread())
+          	// 加锁失败
+            return false;
+      	// 加写锁重入溢出
+        if (w + exclusiveCount(acquires) > MAX_COUNT)
+            throw new Error("Maximum lock count exceeded");
+        // 重入写锁
+        setState(c + acquires);
+        return true;
+    }
+  	// 现在还没有加锁
+    if (writerShouldBlock() ||
+        !compareAndSetState(c, c + acquires))
+      	// 如果 CAS 操作失败，则返回 false，加写锁失败
+        return false;
+  	// 加锁成功
+    setExclusiveOwnerThread(current);
+    return true;
+}
+```
+
+- t1 成功上锁，流程与 ReentrantLock 加锁相比没有特殊之处，不同是写锁状态占了 state 的低 16 位，而读锁
+
+  使用的是 state 的高 16 位 
+
+![image-20230315101638277](./【JUC】J.U.C.assets/image-20230315101638277.png)
+
+- t2 执行 r.lock，这时进入读锁的 `sync.acquireShared(1)` 流程，首先会进入 tryAcquireShared 流程。如果有写锁占据，那么 tryAcquireShared 返回 -1 表示失败
+
+  > tryAcquireShared 返回值表示: -1 表示失败；0 表示成功，但后继节点不会继续唤醒；正数表示成功，而且数值是还有几个后继节点需要唤醒，读写锁返回 1
+
+![image-20230315103645675](./【JUC】J.U.C.assets/image-20230315103645675.png)
+
+```java
+public final void acquireShared(int arg) {
+    if (tryAcquireShared(arg) < 0)
+        doAcquireShared(arg);
+}
+
+// 子类重写父类的方法：尝试加「读锁」
+protected final int tryAcquireShared(int unused) {
+  	// 获取当前线程、当前状态
+    Thread current = Thread.currentThread();
+    int c = getState();
+  	// 检查当前资源状态是否被「写锁」独占，并且独占的线程不是当前线程
+    if (exclusiveCount(c) != 0 &&
+        getExclusiveOwnerThread() != current)
+      	// 被别人独占了，自己加共享的「读锁」就失败了
+      	// 案例中，t2 在这里返回 -1
+        return -1;
+    int r = sharedCount(c);
+    if (!readerShouldBlock() &&
+        r < MAX_COUNT &&
+        compareAndSetState(c, c + SHARED_UNIT)) {
+        if (r == 0) {
+            firstReader = current;
+            firstReaderHoldCount = 1;
+        } else if (firstReader == current) {
+            firstReaderHoldCount++;
+        } else {
+            HoldCounter rh = cachedHoldCounter;
+            if (rh == null || rh.tid != getThreadId(current))
+                cachedHoldCounter = rh = readHolds.get();
+            else if (rh.count == 0)
+                readHolds.set(rh);
+            rh.count++;
+        }
+        return 1;
+    }
+    return fullTryAcquireShared(current);
+}
 
 
+```
+
+- 这时会进入 sync.doAcquireShared(1) 流程，首先也是调用 addWaiter 添加节点，不同之处在于节点被设置为`Node.SHARED` 模式 **而非** `Node.EXCLUSIVE` 模式，**注意此时 t2 仍处于活跃状态**
+
+```java
+private void doAcquireShared(int arg) {
+  	// 这里加入的节点状态是 Node.SHARED 共享
+    final Node node = addWaiter(Node.SHARED);
+    boolean failed = true;
+    try {
+        boolean interrupted = false;
+        for (;;) {
+            final Node p = node.predecessor();
+            if (p == head) {
+              	// 如果自己是老二，则再次尝试争抢锁
+                int r = tryAcquireShared(arg);
+              	// 争抢成功的逻辑：
+                if (r >= 0) {
+                    setHeadAndPropagate(node, r);
+                    p.next = null; // help GC
+                    if (interrupted)
+                        selfInterrupt();
+                    failed = false;
+                    return;
+                }
+            }
+          	// 竞争读锁失败
+            if (shouldParkAfterFailedAcquire(p, node) &&
+                parkAndCheckInterrupt())
+                interrupted = true;
+        }
+    } finally {
+        if (failed)
+            cancelAcquire(node);
+    }
+}
+```
+
+![image-20230315104214297](./【JUC】J.U.C.assets/image-20230315104214297.png)
+
+- t2 会看看自己的节点是不是老二，如果是，还会再次调用 tryAcquireShared(1) 来尝试获取锁
+- 如果没有成功，在 doAcquireShared 内 `for (;;)` 循环一次，把前驱节点的 waitStatus 改为 -1，再 `for (;;)` 循环一次尝试 tryAcquireShared(1) 如果还不成功，那么在 `parkAndCheckInterrupt()` 处 park
+
+> 相当于，一个老二线程决定 `park` 之前，会 **尝试三次** 竞争锁！
+
+![image-20230315104409572](./【JUC】J.U.C.assets/image-20230315104409572.png)
+
+2. `t3 r.lock，t4 w.lock`
+
+这种状态下，假设又有 t3 加读锁和 t4 加写锁，这期间 t1 仍然持有锁，就变成了下面的样子:
+
+![image-20230315104459904](./【JUC】J.U.C.assets/image-20230315104459904.png)
+
+3. `t1 w.unlock()`
+
+这时会走到写锁的 `sync.release(1)` 流程，调用 `sync.tryRelease(1)` 成功，变成下面的样子：
+
+![image-20230315104643181](./【JUC】J.U.C.assets/image-20230315104643181.png)
+
+```java
+ public static class WriteLock implements Lock, java.io.Serializable {
+   
+   // 写锁的同步器
+   private final Sync sync;
+
+   // ReentrantReadWriteLock
+   protected WriteLock(ReentrantReadWriteLock lock) {
+     sync = lock.sync;
+   }
+
+  // 写锁释放
+  public void unlock() {
+      sync.release(1);
+  }
+   
+  // 调用父类 AQS 
+  public final boolean release(int arg) {
+        if (tryRelease(arg)) {
+          	// 如果释放成功
+            Node h = head;
+            if (h != null && h.waitStatus != 0)
+              	// 唤醒后继节点
+                unparkSuccessor(h);
+            return true;
+        }
+        return false;
+    }
+   
+   // 尝试释放锁
+   protected final boolean tryRelease(int releases) {
+      if (!isHeldExclusively())
+          throw new IllegalMonitorStateException();
+      int nextc = getState() - releases;
+      boolean free = exclusiveCount(nextc) == 0;
+      if (free)
+        	// 释放锁成功，设置 Owner 为 null
+          setExclusiveOwnerThread(null);
+      setState(nextc);
+      return free;
+  }
+	
+   // ...
+ 
+}
+```
+
+- 接下来执行唤醒流程 sync.unparkSuccessor，即让老二恢复运行，这时 t2 在 doAcquireShared 内  `parkAndCheckInterrupt()` 处恢复运行
+- 这回再来一次 `for (;;)` 执行 `tryAcquireShared` 成功则让读锁计数加一
+
+![image-20230315110033341](./【JUC】J.U.C.assets/image-20230315110033341.png)
+
+- 这时 t2 已经恢复运行，接下来 t2 调用 `setHeadAndPropagate(node, 1)` ，它原本所在节点被置为头节点
+
+![image-20230315110124271](./【JUC】J.U.C.assets/image-20230315110124271.png)
+
+- 事情还没完，在 setHeadAndPropagate 方法内 **还会检查下一个节点是否是 shared** ，如果是则调用 `doReleaseShared()` 将 head 的状态从 -1 改为 0 并唤醒老二，这时 t3 在 `doAcquireShared` 内 `parkAndCheckInterrupt()` 处恢复运行
+
+![image-20230315110218076](./【JUC】J.U.C.assets/image-20230315110218076.png)
+
+- 这回再来一次 `for (;;)` 执行 `tryAcquireShared` 成功则让读锁计数加一
+
+![image-20230315110234210](./【JUC】J.U.C.assets/image-20230315110234210.png)
+
+- 这时 t3 已经恢复运行，接下来 t3 调用 `setHeadAndPropagate(node, 1)` ，它原本所在节点被置为头节点
+
+![image-20230315110306209](./【JUC】J.U.C.assets/image-20230315110306209.png)
+
+- 下一个节点不是 `shared` 了，因此 **不会继续唤醒 t4** 所在节点
+
+3. `t2 r.unlock，t3 r.unlock`
+
+```java
+// 读锁类
+public static class ReadLock implements Lock, java.io.Serializable {
+	
+  // 读锁释放
+  public void unlock() {
+      sync.releaseShared(1);
+  }
+  
+  // 释放锁
+  public final boolean releaseShared(int arg) {
+    	 // 尝试释放锁
+       if (tryReleaseShared(arg)) {
+           doReleaseShared();
+           return true;
+       }
+       return false;
+   }
+    protected final boolean tryReleaseShared(int unused) {
+      Thread current = Thread.currentThread();
+      if (firstReader == current) {
+          // assert firstReaderHoldCount > 0;
+          if (firstReaderHoldCount == 1)
+              firstReader = null;
+          else
+              firstReaderHoldCount--;
+      } else {
+          HoldCounter rh = cachedHoldCounter;
+          if (rh == null || rh.tid != getThreadId(current))
+              rh = readHolds.get();
+          int count = rh.count;
+          if (count <= 1) {
+              readHolds.remove();
+              if (count <= 0)
+                  throw unmatchedUnlockException();
+          }
+          --rh.count;
+      }
+      for (;;) {
+          int c = getState();
+          int nextc = c - SHARED_UNIT;
+          if (compareAndSetState(c, nextc))
+              // Releasing the read lock has no effect on readers,
+              // but it may allow waiting writers to proceed if
+              // both read and write locks are now free.
+              return nextc == 0;
+      }
+  }
+  // ....
+}
+```
+
+- t2 进入 `sync.releaseShared(1)` 中，调用 `tryReleaseShared(1)` 让计数减一，但由于 **计数state** 还不为零
+
+![image-20230315110536023](./【JUC】J.U.C.assets/image-20230315110536023.png)
+
+- t3 进入 `sync.releaseShared(1)` 中，调用 `tryReleaseShared(1)` 让计数减一，这回计数为零了，进入 `doReleaseShared()` 将头节点从 -1 改为 0 并唤醒老二，即
+
+![image-20230315110602926](./【JUC】J.U.C.assets/image-20230315110602926.png)
+
+- 之后 t4 在 `acquireQueued` 中 `parkAndCheckInterrupt` 处恢复运行，再次 `for (;;)` 这次自己是老二，并且没有其他竞争，`tryAcquire(1)` 成功，修改头结点，流程结束
+
+![image-20230315111257754](./【JUC】J.U.C.assets/image-20230315111257754.png)
+
+#### 代码分析
+
+1. 「**写锁**」加/解锁流程
+
+```java
+// 写锁类
+public static class WriteLock implements Lock, java.io.Serializable {
+    private static final long serialVersionUID = -4992448646407690164L;
+  
+  	// 同步器
+    private final Sync sync;
+		
+  	// 同步器使用的是 ReentrantReadWriteLock 中的同步器
+    protected WriteLock(ReentrantReadWriteLock lock) {
+        sync = lock.sync;
+    }
+  	
+  	// 上锁
+		public void lock() {
+      	// 调用同步器继承自 AQS 的方法 acquire 获取锁
+    		sync.acquire(1);
+		}
+  	
+  	// 释放锁
+    public void unlock() {
+      	sync.release(1);
+  	}
+  	// ...
+}
+
+// 非公平同步器
+static final class NonfairSync extends Sync {
+    // ... 省略无关代码
+
+    // AQS 继承过来的方法, 方便阅读, 放在此处
+    public final void acquire(int arg) {
+        if (// 尝试获得写锁失败
+            !tryAcquire(arg) &&
+            // 将当前线程关联到一个 Node 对象上, 模式为独占模式
+            // 进入 AQS 队列阻塞
+             acquireQueued(addWaiter(Node.EXCLUSIVE), arg)) {
+            selfInterrupt();
+        }
+    }
+
+    // Sync 继承过来的方法, 方便阅读, 放在此处
+    protected final boolean tryAcquire(int acquires) {
+        // 获得低 16 位, 代表写锁的 state 计数
+        Thread current = Thread.currentThread();
+        int c = getState();int w = exclusiveCount(c);
+
+        if (c != 0) {
+            if (
+                // c != 0 and w == 0 表示有读锁, 或者
+                    w == 0 ||
+                            // 如果 exclusiveOwnerThread 不是自己
+                            current != getExclusiveOwnerThread()
+            ) {
+                // 获得锁失败
+                return false;
+            }
+            // 写锁计数超过低 16 位, 报异常
+            if (w + exclusiveCount(acquires) > MAX_COUNT)
+                throw new Error("Maximum lock count exceeded");
+            // 写锁重入, 获得锁成功
+            setState(c + acquires);
+            return true;
+        }
+        if (
+            // 判断写锁是否该阻塞, 或者
+                writerShouldBlock() ||
+                        // 尝试更改计数失败
+                        !compareAndSetState(c, c + acquires)
+        ) {
+            // 获得锁失败
+            return false;
+        }
+        // 获得锁成功
+        setExclusiveOwnerThread(current);
+        return true;
+    }
+		
+  	
+  	// Sync 继承过来的方法, 方便阅读, 放在此处
+    protected final boolean tryRelease(int releases) {
+        if (!isHeldExclusively())
+            throw new IllegalMonitorStateException();
+        int nextc = getState() - releases;
+      
+        // 因为可重入的原因, 写锁计数为 0, 才算释放成功
+        boolean free = exclusiveCount(nextc) == 0;
+      
+        if (free) {
+          	// 设置 Owner
+            setExclusiveOwnerThread(null);
+        }
+        setState(nextc);
+        return free;
+    }
+  	
+    // 非公平锁 writerShouldBlock 总是返回 false, 无需阻塞
+    final boolean writerShouldBlock() {
+        return false;
+    }
+}
+```
+
+2. 「读锁」加锁/释放锁
+
+```java
+public static class ReadLock implements Lock, java.io.Serializable {
+  	private final Sync sync;
 
 
-
-
-
-
-
-
-
-
+    protected ReadLock(ReentrantReadWriteLock lock) {
+        sync = lock.sync;
+    }
+  	
+  	// 读锁上锁
+  	public void lock() {
+        sync.acquireShared(1);
+    }
+  	
+  	// 继承自 AQS 实现
+  	public final void acquireShared(int arg) {
+      	// tryAcquireShared 返回负数, 表示获取读锁失败
+        if (tryAcquireShared(arg) < 0)
+            doAcquireShared(arg);
+    }
+  	
+  	// 继承自 Sync 实现
+  	protected final int tryAcquireShared(int unused) {
+        // 当前节点，当前状态
+        Thread current = Thread.currentThread();
+        int c = getState();
+      
+      	// 如果是其它线程持有写锁, 获取读锁失败
+        if (exclusiveCount(c) != 0 &&
+            getExclusiveOwnerThread() != current)
+            return -1;
+        int r = sharedCount(c);
+      	
+      	// 读锁不该阻塞(如果老二是写锁，读锁该阻塞), 并且
+      	// 小于读锁计数, 并且
+      	// 尝试增加计数成功
+        if (!readerShouldBlock() &&
+            r < MAX_COUNT &&
+            compareAndSetState(c, c + SHARED_UNIT)) {
+            if (r == 0) {
+                firstReader = current;
+                firstReaderHoldCount = 1;
+            } else if (firstReader == current) {
+                firstReaderHoldCount++;
+            } else {
+                HoldCounter rh = cachedHoldCounter;
+                if (rh == null || rh.tid != getThreadId(current))
+                    cachedHoldCounter = rh = readHolds.get();
+                else if (rh.count == 0)
+                    readHolds.set(rh);
+                rh.count++;
+            }
+            return 1;
+        }
+        return fullTryAcquireShared(current);
+    }
+  
+  	// 非公平锁 readerShouldBlock 看 AQS 队列中第一个节点是否是写锁
+		// true 则该阻塞, false 则不阻塞
+    final boolean readerShouldBlock() {
+        return apparentlyFirstQueuedIsExclusive();
+    }
+ 
+}
+```
 
 
 

@@ -6,19 +6,35 @@
 
 序列 dp 是一类 `最长，最多的子序列` 的相关问题。
 
-状态转移方程中 `dp[i]` 表示前 `i` 个元素 `a[0],a[1],…,a[i-1]` 的某种性质, 坐标型 dp 状态转移方程中 `f[i]` 表示以元素 `a[i]` 结尾的某种性质。
+状态转移方程中 `dp[i]` 表示前 `i` 个元素 `a[0],a[1],…,a[i-1]` 的某种性质。
+
+- 坐标型 dp 状态转移方程中 `f[i]` 表示以元素 `a[i]` 结尾的某种性质。
+- 两个数组、序列、字符串的dp，通常设置 `dp[i][j]` 表示串1中以 `i-1` 结尾，并且串2中以 `j-1` 结尾的某种性质。 
 
 ## 1 经典题单
 
 ### 1.1 LCS & LIS
+
+这类题需要注意一个概念上的区别：
+
+- 子序列：不要求连续
+- 子数组：要求连续
+
+> 具体的定义根据题意进行推理！
+
+| 题目                                                         | 类型   | 描述                                                         |
+| :----------------------------------------------------------- | ------ | ------------------------------------------------------------ |
+| [300.最长递增子序列](https://leetcode.cn/problems/longest-increasing-subsequence/description/) | 序列DP | 常规的dp方法可设置dp[i]为以i结尾的最长子序列长度，该方法 $O(N^2)$ |
+| [674.最长连续递增序列](https://leetcode.cn/problems/longest-continuous-increasing-subsequence/) | 序列DP | 是300的简单版本，只需要考虑连续即可，对每一个i，只能从i-1转移而来 |
+| [718.最长重复子数组](https://leetcode.cn/problems/maximum-length-of-repeated-subarray/) | 序列DP | 两个数组中求解某种性质，二维dp                               |
+
+[300.最长递增子序列](https://leetcode.cn/problems/longest-increasing-subsequence/description/) 存在最优解，即使用「贪心+二分+DP」使时间复杂度降低至 $O(NlogN)$ 。
 
 
 
 ### 1.2 编辑距离
 
 
-
-### 1.3 打家劫舍类
 
 
 
