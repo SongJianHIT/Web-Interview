@@ -22,11 +22,15 @@
 
 > 具体的定义根据题意进行推理！
 
-| 题目                                                         | 类型   | 描述                                                         |
-| :----------------------------------------------------------- | ------ | ------------------------------------------------------------ |
-| [300.最长递增子序列](https://leetcode.cn/problems/longest-increasing-subsequence/description/) | 序列DP | 常规的dp方法可设置dp[i]为以i结尾的最长子序列长度，该方法 $O(N^2)$ |
-| [674.最长连续递增序列](https://leetcode.cn/problems/longest-continuous-increasing-subsequence/) | 序列DP | 是300的简单版本，只需要考虑连续即可，对每一个i，只能从i-1转移而来 |
-| [718.最长重复子数组](https://leetcode.cn/problems/maximum-length-of-repeated-subarray/) | 序列DP | 两个数组中求解某种性质，二维dp                               |
+| 题目                                                         | 类型       | 描述                                                         |
+| :----------------------------------------------------------- | ---------- | ------------------------------------------------------------ |
+| [300.最长递增子序列](https://leetcode.cn/problems/longest-increasing-subsequence/description/) | 序列DP     | 常规的dp方法可设置dp[i]为以i结尾的最长子序列长度，该方法 $O(N^2)$ |
+| [674.最长连续递增序列](https://leetcode.cn/problems/longest-continuous-increasing-subsequence/) | 序列DP     | 是300的简单版本，只需要考虑连续即可，对每一个i，只能从i-1转移而来 |
+| [718.最长重复子数组](https://leetcode.cn/problems/maximum-length-of-repeated-subarray/) | 二维序列DP | 两个数组中求解某种性质，二维dp                               |
+| [1143.最长公共子序列](https://leetcode.cn/problems/longest-common-subsequence/) | 二维序列DP | 思路一样，都是讨论以...结尾的性质                            |
+| [1035.不相交的线](https://leetcode.cn/problems/uncrossed-lines/) | 二维序列DP | 就是1143的变体，一模一样                                     |
+| [53. 最大子序和](https://leetcode.cn/problems/maximum-subarray/description/) | 序列DP     | 跟买股票一次买卖的一样，可以使用DP，也可以使用贪心+前缀和    |
+|                                                              |            |                                                              |
 
 [300.最长递增子序列](https://leetcode.cn/problems/longest-increasing-subsequence/description/) 存在最优解，即使用「贪心+二分+DP」使时间复杂度降低至 $O(NlogN)$ 。
 
