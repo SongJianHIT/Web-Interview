@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="MYSQL">
-      <change beforePath="$PROJECT_DIR$/数据库/【MySQL】InnoDB存储引擎.md" beforeDir="false" afterPath="$PROJECT_DIR$/数据库/【MySQL】InnoDB存储引擎.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/算法/【算法】序列DP.md" beforeDir="false" afterPath="$PROJECT_DIR$/算法/【算法】序列DP.md" afterDir="false" />
-    </list>
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="数位dp" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -109,20 +106,7 @@
       <workItem from="1678804149552" duration="654000" />
       <workItem from="1678843649622" duration="172000" />
       <workItem from="1678974310666" duration="637000" />
-    </task>
-    <task id="LOCAL-00027" summary="技术笔记">
-      <created>1676633940733</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1676633940733</updated>
-    </task>
-    <task id="LOCAL-00028" summary="技术笔记">
-      <created>1676634040971</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1676634040971</updated>
+      <workItem from="1679276460817" duration="103000" />
     </task>
     <task id="LOCAL-00029" summary="操作系统">
       <created>1676862293709</created>
@@ -453,7 +437,21 @@
       <option name="project" value="LOCAL" />
       <updated>1678974340510</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="更新">
+      <created>1679276533940</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1679276533940</updated>
+    </task>
+    <task id="LOCAL-00077" summary="数位dp">
+      <created>1679276558494</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1679276558494</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -472,7 +470,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="java基础类" />
     <MESSAGE value="StringBuilder" />
     <MESSAGE value="如何设计一个扫码登入功能？" />
     <MESSAGE value="业务场景" />
@@ -494,9 +491,10 @@
     <MESSAGE value="背包" />
     <MESSAGE value="容器" />
     <MESSAGE value="juc" />
-    <MESSAGE value="更新" />
     <MESSAGE value="JUC" />
     <MESSAGE value="MYSQL" />
-    <option name="LAST_COMMIT_MESSAGE" value="MYSQL" />
+    <MESSAGE value="更新" />
+    <MESSAGE value="数位dp" />
+    <option name="LAST_COMMIT_MESSAGE" value="数位dp" />
   </component>
 </project>
