@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="数位dp" />
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="事务">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -107,13 +109,8 @@
       <workItem from="1678843649622" duration="172000" />
       <workItem from="1678974310666" duration="637000" />
       <workItem from="1679276460817" duration="103000" />
-    </task>
-    <task id="LOCAL-00029" summary="操作系统">
-      <created>1676862293709</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1676862293709</updated>
+      <workItem from="1679460902091" duration="467000" />
+      <workItem from="1679486816246" duration="852000" />
     </task>
     <task id="LOCAL-00030" summary="HashSet">
       <created>1676864477092</created>
@@ -451,7 +448,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679276558494</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="事务">
+      <created>1679460930297</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1679460930297</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -470,7 +474,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="StringBuilder" />
     <MESSAGE value="如何设计一个扫码登入功能？" />
     <MESSAGE value="业务场景" />
     <MESSAGE value="SpringCloud" />
@@ -495,6 +498,7 @@
     <MESSAGE value="MYSQL" />
     <MESSAGE value="更新" />
     <MESSAGE value="数位dp" />
-    <option name="LAST_COMMIT_MESSAGE" value="数位dp" />
+    <MESSAGE value="事务" />
+    <option name="LAST_COMMIT_MESSAGE" value="事务" />
   </component>
 </project>

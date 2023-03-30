@@ -13,7 +13,7 @@
 
 ## 1 经典题单
 
-### 1.1 LCS & LIS
+### 1.1 LCS & LIS 类
 
 这类题需要注意一个概念上的区别：
 
@@ -36,9 +36,14 @@
 
 
 
-### 1.2 编辑距离
+### 1.2 编辑距离类
 
-
+| 题目                                                         | 类型   | 描述                               |
+| ------------------------------------------------------------ | ------ | ---------------------------------- |
+| [392.判断子序列](https://leetcode.cn/problems/is-subsequence/description/) | 序列dp | 只考虑删除情况                     |
+| [115.不同的子序列](https://leetcode.cn/problems/distinct-subsequences/description/) | 序列dp | s中有多少种删除方式，使得s变成t    |
+| [583.两个字符串的删除操作](https://leetcode.cn/problems/delete-operation-for-two-strings/) | 序列dp | 只考虑删除情况；方法二可由LCS 改出 |
+| [72.编辑距离](https://leetcode.cn/problems/edit-distance/)   | 序列dp | 三种情况，增删改                   |
 
 
 
