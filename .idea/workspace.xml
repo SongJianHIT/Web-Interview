@@ -4,11 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="更新笔记" />
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="系统性能调优分析">
+      <change afterPath="$PROJECT_DIR$/JVM/java/tech/songjian/classloader/MyClassLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/java/tech/songjian/classloader/Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/java/tech/songjian/classloader/TestMyClassLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/java/tech/songjian/classloader/lib/Test.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230605170852902.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230605172312334.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230605173838325.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230605174248063.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230605175142092.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web-Interview.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Web-Interview.iml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -24,32 +45,56 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/mac/IdeaProjects/Web-Interview/Java/技术笔记",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/mac/IdeaProjects/Web-Interview/Java/技术笔记&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Java/技术笔记" />
       <recent name="$PROJECT_DIR$/Java" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/JVM/java/tech/songjian/classloader/lib" />
       <recent name="$PROJECT_DIR$/Java/容器类源码分析" />
       <recent name="$PROJECT_DIR$/Java/八股整理" />
       <recent name="$PROJECT_DIR$/Java" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="tech.songjian.classloader" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="TestMyClassLoader" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="tech.songjian.classloader.TestMyClassLoader" />
+      <module name="Web-Interview" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tech.songjian.classloader.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.TestMyClassLoader" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -112,13 +157,7 @@
       <workItem from="1679486816246" duration="852000" />
       <workItem from="1680174912454" duration="1303000" />
       <workItem from="1685946318951" duration="33000" />
-    </task>
-    <task id="LOCAL-00032" summary="容器">
-      <created>1676876566846</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1676876566846</updated>
+      <workItem from="1685955222137" duration="2231000" />
     </task>
     <task id="LOCAL-00033" summary="HashMap">
       <created>1676894501651</created>
@@ -456,7 +495,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685946342547</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="系统性能调优分析">
+      <created>1685955244949</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1685955244949</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -475,7 +521,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="业务场景" />
     <MESSAGE value="SpringCloud" />
     <MESSAGE value="ES" />
     <MESSAGE value="MQ" />
@@ -500,6 +545,7 @@
     <MESSAGE value="事务" />
     <MESSAGE value="算法" />
     <MESSAGE value="更新笔记" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新笔记" />
+    <MESSAGE value="系统性能调优分析" />
+    <option name="LAST_COMMIT_MESSAGE" value="系统性能调优分析" />
   </component>
 </project>
