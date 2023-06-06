@@ -4,19 +4,40 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="【JVM】自定义类加载器">
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230605192545099.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230605194530059.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230605194533039.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230605195059484.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230605200112977.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230605200324481.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230605200451945.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230605201548824.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230605203141376.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230605203936604.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230605205301857.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230605210849940.png" afterDir="false" />
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="【JVM】运行时数据区">
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606090843305.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606091153273.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606091255223.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606092447799.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606092605989.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606092744824.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606101628034.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606102733403.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606103229320.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606104302555.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606104307252.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606104314338.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606104940337.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606105004759.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606105007607.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606105117255.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606105953614.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606111302701.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606111541158.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606111722971.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606112402471.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606112641161.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606112643437.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606113236419.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606113354123.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606113505021.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606114024193.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606114046349.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606114048708.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606114121205.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606115455639.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606120036409.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606120354473.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.md" beforeDir="false" afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.md" afterDir="false" />
     </list>
@@ -158,14 +179,7 @@
       <workItem from="1679486816246" duration="852000" />
       <workItem from="1680174912454" duration="1303000" />
       <workItem from="1685946318951" duration="33000" />
-      <workItem from="1685955222137" duration="3007000" />
-    </task>
-    <task id="LOCAL-00034" summary="HashMap">
-      <created>1676897387681</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1676897387681</updated>
+      <workItem from="1685955222137" duration="3970000" />
     </task>
     <task id="LOCAL-00035" summary="Hashtable">
       <created>1676899451642</created>
@@ -503,7 +517,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685959831236</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="【JVM】运行时数据区">
+      <created>1685970773046</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1685970773046</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -522,7 +543,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="ES" />
     <MESSAGE value="MQ" />
     <MESSAGE value="0-1背包" />
     <MESSAGE value="微服务保护-Sentinel" />
@@ -547,6 +567,7 @@
     <MESSAGE value="更新笔记" />
     <MESSAGE value="系统性能调优分析" />
     <MESSAGE value="【JVM】自定义类加载器" />
-    <option name="LAST_COMMIT_MESSAGE" value="【JVM】自定义类加载器" />
+    <MESSAGE value="【JVM】运行时数据区" />
+    <option name="LAST_COMMIT_MESSAGE" value="【JVM】运行时数据区" />
   </component>
 </project>
