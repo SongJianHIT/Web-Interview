@@ -4,42 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="【JVM】运行时数据区">
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606090843305.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606091153273.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606091255223.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606092447799.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606092605989.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606092744824.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606101628034.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606102733403.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606103229320.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606104302555.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606104307252.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606104314338.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606104940337.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606105004759.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606105007607.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606105117255.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606105953614.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606111302701.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606111541158.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606111722971.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606112402471.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606112641161.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606112643437.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606113236419.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606113354123.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606113505021.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606114024193.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606114046349.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606114048708.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606114121205.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606115455639.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606120036409.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.assets/image-20230606120354473.png" afterDir="false" />
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="【JVM】整理完成">
+      <change afterPath="$PROJECT_DIR$/并发编程/java/DemoTickets.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并发编程/java/ThreadDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】基本概念.assets/image-20230606150904192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】基本概念.assets/image-20230606150909473.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】基本概念.assets/image-20230606151403347.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】基本概念.assets/image-20230606151404934.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】基本概念.assets/image-20230606152211347.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】基本概念.assets/image-20230606152715169.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】基本概念.assets/image-20230606163342892.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】基本概念.assets/image-20230606171609612.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】基本概念.assets/image-20230606172449172.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】基本概念.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.md" beforeDir="false" afterPath="$PROJECT_DIR$/JVM/【JVM】Java虚拟机.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web-Interview.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Web-Interview.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +77,21 @@
       <recent name="tech.songjian.classloader" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.DemoTickets (1)">
+    <configuration name="DemoTickets (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="DemoTickets" />
+      <module name="Web-Interview" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DemoTickets" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="DemoTickets" />
+      <module name="Web-Interview" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TestMyClassLoader" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="tech.songjian.classloader.TestMyClassLoader" />
       <module name="Web-Interview" />
@@ -112,8 +105,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ThreadDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="ThreadDemo" />
+      <module name="Web-Interview" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.DemoTickets" />
+      <item itemvalue="Application.DemoTickets (1)" />
+      <item itemvalue="Application.TestMyClassLoader" />
+      <item itemvalue="Application.ThreadDemo" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.DemoTickets (1)" />
+        <item itemvalue="Application.DemoTickets" />
+        <item itemvalue="Application.ThreadDemo" />
         <item itemvalue="Application.TestMyClassLoader" />
       </list>
     </recent_temporary>
@@ -179,14 +190,9 @@
       <workItem from="1679486816246" duration="852000" />
       <workItem from="1680174912454" duration="1303000" />
       <workItem from="1685946318951" duration="33000" />
-      <workItem from="1685955222137" duration="3970000" />
-    </task>
-    <task id="LOCAL-00035" summary="Hashtable">
-      <created>1676899451642</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1676899451642</updated>
+      <workItem from="1685955222137" duration="6811000" />
+      <workItem from="1686040092481" duration="34000" />
+      <workItem from="1686040140776" duration="1287000" />
     </task>
     <task id="LOCAL-00036" summary="Docker">
       <created>1676954118020</created>
@@ -524,7 +530,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685970773046</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="【JVM】整理完成">
+      <created>1686024756083</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1686024756083</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -543,7 +556,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="MQ" />
     <MESSAGE value="0-1背包" />
     <MESSAGE value="微服务保护-Sentinel" />
     <MESSAGE value="Jmeter" />
@@ -568,6 +580,7 @@
     <MESSAGE value="系统性能调优分析" />
     <MESSAGE value="【JVM】自定义类加载器" />
     <MESSAGE value="【JVM】运行时数据区" />
-    <option name="LAST_COMMIT_MESSAGE" value="【JVM】运行时数据区" />
+    <MESSAGE value="【JVM】整理完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="【JVM】整理完成" />
   </component>
 </project>
