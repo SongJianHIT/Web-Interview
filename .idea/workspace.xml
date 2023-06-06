@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="【并发编程】synchronized的原理、锁升级">
-      <change beforePath="$PROJECT_DIR$/并发编程/【并发编程】Synchronized.md" beforeDir="false" afterPath="$PROJECT_DIR$/并发编程/【并发编程】Synchronized.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并发编程/java/VolatileDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】Volatile.assets/image-20230606221418682.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】Volatile.assets/image-20230606221420424.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】Volatile.assets/image-20230606221627427.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】Volatile.assets/image-20230606223050277.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】Volatile.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +70,7 @@
       <recent name="tech.songjian.classloader" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DemoTickets (1)">
+  <component name="RunManager" selected="Application.VolatileDemo">
     <configuration name="DemoTickets (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="DemoTickets" />
       <module name="Web-Interview" />
@@ -101,7 +107,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="VolatileDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="VolatileDemo" />
+      <module name="Web-Interview" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
+      <item itemvalue="Application.VolatileDemo" />
       <item itemvalue="Application.DemoTickets" />
       <item itemvalue="Application.DemoTickets (1)" />
       <item itemvalue="Application.TestMyClassLoader" />
@@ -109,6 +123,7 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.VolatileDemo" />
         <item itemvalue="Application.DemoTickets (1)" />
         <item itemvalue="Application.DemoTickets" />
         <item itemvalue="Application.ThreadDemo" />
@@ -180,14 +195,7 @@
       <workItem from="1685955222137" duration="6811000" />
       <workItem from="1686040092481" duration="34000" />
       <workItem from="1686040140776" duration="2401000" />
-      <workItem from="1686051781136" duration="1512000" />
-    </task>
-    <task id="LOCAL-00038" summary="SpringCloud">
-      <created>1676983911329</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1676983911329</updated>
+      <workItem from="1686051781136" duration="2769000" />
     </task>
     <task id="LOCAL-00039" summary="SpringCloud">
       <created>1677053878852</created>
@@ -525,7 +533,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686057421016</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="【并发编程】synchronized的原理、锁升级">
+      <created>1686057974158</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1686057974158</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
