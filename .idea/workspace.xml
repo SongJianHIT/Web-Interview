@@ -4,9 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="【并发编程】ThreadLocal原理">
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】Future与FutureTask.assets/image-20230607160345647.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】Future与FutureTask.md" afterDir="false" />
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="【并发编程】Future未来任务">
+      <change afterPath="$PROJECT_DIR$/basic.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/new_basic.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/java/TestNIO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/java/chat/ChatClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/java/chat/ChatServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/java/chat/TestChat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】BIO、NIO与AIO.assets/image-20230607215140670.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】BIO、NIO与AIO.assets/image-20230607215516101.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】BIO、NIO与AIO.assets/image-20230607220701811.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】BIO、NIO与AIO.assets/image-20230607220704023.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】BIO、NIO与AIO.assets/image-20230607220835172.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】BIO、NIO与AIO.assets/image-20230607220840950.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】BIO、NIO与AIO.assets/image-20230607220955965.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】BIO、NIO与AIO.assets/image-20230607221524902.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】BIO、NIO与AIO.assets/image-20230607222744237.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】BIO、NIO与AIO.assets/image-20230607232304398.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】BIO、NIO与AIO.assets/image-20230607233001258.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】BIO、NIO与AIO.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】基本知识.assets/image-20230607190536825.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】基本知识.assets/image-20230607190554044.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】基本知识.assets/image-20230607190601521.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】基本知识.assets/image-20230607190607486.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】基本知识.assets/image-20230607190628047.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】基本知识.assets/image-20230607192455968.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】基本知识.assets/image-20230607192504860.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】基本知识.assets/image-20230607192513072.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】基本知识.assets/image-20230607192520580.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web-Interview.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Web-Interview.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/网络编程/【网络编程】基本知识.md" beforeDir="false" afterPath="$PROJECT_DIR$/网络编程/【网络编程】基本知识.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,22 +62,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/mac/IdeaProjects/Web-Interview/Java/技术笔记&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/mac/IdeaProjects/Web-Interview/Java/技术笔记",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Java/技术笔记" />
@@ -65,62 +97,111 @@
       <recent name="tech.songjian.classloader" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DemoReentrantLock">
-    <configuration name="DemoReentrantLock" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="DemoReentrantLock" />
+  <component name="RunManager" selected="Application.TestChat（刘备）">
+    <configuration name="ChatServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chat.ChatServer" />
       <module name="Web-Interview" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="chat.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DemoTickets (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="DemoTickets" />
+    <configuration name="TestChat（刘备）" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="chat.TestChat" />
       <module name="Web-Interview" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="chat.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DemoTickets" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="DemoTickets" />
+    <configuration name="TestChat（关羽）" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="chat.TestChat" />
       <module name="Web-Interview" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="chat.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ThreadDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="17" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="ThreadDemo" />
+    <configuration name="TestChat（张飞）" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="chat.TestChat" />
       <module name="Web-Interview" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="chat.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VolatileDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="VolatileDemo" />
+    <configuration name="TestNIO.test1" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="Web-Interview" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestNIO" />
+      <option name="METHOD_NAME" value="test1" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestNIO.test2" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Web-Interview" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestNIO" />
+      <option name="METHOD_NAME" value="test2" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestNIO.test3" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Web-Interview" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestNIO" />
+      <option name="METHOD_NAME" value="test3" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.DemoReentrantLock" />
-      <item itemvalue="Application.VolatileDemo" />
-      <item itemvalue="Application.DemoTickets" />
-      <item itemvalue="Application.DemoTickets (1)" />
-      <item itemvalue="Application.ThreadDemo" />
+      <item itemvalue="Application.TestChat（关羽）" />
+      <item itemvalue="Application.TestChat（张飞）" />
+      <item itemvalue="Application.ChatServer" />
+      <item itemvalue="Application.TestChat（刘备）" />
+      <item itemvalue="TestNG.TestNIO.test1" />
+      <item itemvalue="TestNG.TestNIO.test2" />
+      <item itemvalue="TestNG.TestNIO.test3" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.DemoReentrantLock" />
-        <item itemvalue="Application.VolatileDemo" />
-        <item itemvalue="Application.DemoTickets (1)" />
-        <item itemvalue="Application.DemoTickets" />
-        <item itemvalue="Application.ThreadDemo" />
+        <item itemvalue="Application.TestChat（刘备）" />
+        <item itemvalue="Application.ChatServer" />
+        <item itemvalue="TestNG.TestNIO.test3" />
+        <item itemvalue="TestNG.TestNIO.test2" />
+        <item itemvalue="TestNG.TestNIO.test1" />
       </list>
     </recent_temporary>
   </component>
@@ -188,21 +269,7 @@
       <workItem from="1685955222137" duration="6811000" />
       <workItem from="1686040092481" duration="34000" />
       <workItem from="1686040140776" duration="2401000" />
-      <workItem from="1686051781136" duration="10009000" />
-    </task>
-    <task id="LOCAL-00044" summary="业务场景">
-      <created>1677150760075</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1677150760075</updated>
-    </task>
-    <task id="LOCAL-00045" summary="SpringCloud">
-      <created>1677150998888</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1677150998888</updated>
+      <workItem from="1686051781136" duration="18636000" />
     </task>
     <task id="LOCAL-00046" summary="ES">
       <created>1677224036845</created>
@@ -533,7 +600,21 @@
       <option name="project" value="LOCAL" />
       <updated>1686124779516</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="【并发编程】Future未来任务">
+      <created>1686125425481</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1686125425481</updated>
+    </task>
+    <task id="LOCAL-00094" summary="【并发编程】Future未来任务">
+      <created>1686125492126</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1686125492126</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -552,7 +633,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="观察者模式" />
     <MESSAGE value="背包问题" />
     <MESSAGE value="JVM" />
     <MESSAGE value="JAVA线程" />
@@ -577,6 +657,7 @@
     <MESSAGE value="【并发编程】并发容器、线程协作工具" />
     <MESSAGE value="【并发编程】线程池" />
     <MESSAGE value="【并发编程】ThreadLocal原理" />
-    <option name="LAST_COMMIT_MESSAGE" value="【并发编程】ThreadLocal原理" />
+    <MESSAGE value="【并发编程】Future未来任务" />
+    <option name="LAST_COMMIT_MESSAGE" value="【并发编程】Future未来任务" />
   </component>
 </project>
