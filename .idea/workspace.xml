@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="【并发编程】线程池">
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】ThreadLocal.assets/image-20230607153725438.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】ThreadLocal.assets/image-20230607153730901.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】ThreadLocal.assets/image-20230607153748622.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】ThreadLocal.assets/image-20230607154235301.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】ThreadLocal.assets/image-20230607155333231.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】ThreadLocal.assets/image-20230607155630118.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】ThreadLocal.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="【并发编程】ThreadLocal原理">
+      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】Future与FutureTask.assets/image-20230607160345647.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】Future与FutureTask.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,14 +188,7 @@
       <workItem from="1685955222137" duration="6811000" />
       <workItem from="1686040092481" duration="34000" />
       <workItem from="1686040140776" duration="2401000" />
-      <workItem from="1686051781136" duration="9371000" />
-    </task>
-    <task id="LOCAL-00043" summary="如何设计一个扫码登入功能？">
-      <created>1677078277048</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1677078277048</updated>
+      <workItem from="1686051781136" duration="10009000" />
     </task>
     <task id="LOCAL-00044" summary="业务场景">
       <created>1677150760075</created>
@@ -539,7 +526,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686123212156</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="【并发编程】ThreadLocal原理">
+      <created>1686124779516</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1686124779516</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -558,7 +552,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="策略模式" />
     <MESSAGE value="观察者模式" />
     <MESSAGE value="背包问题" />
     <MESSAGE value="JVM" />
@@ -583,6 +576,7 @@
     <MESSAGE value="【并发编程】ReentrantLock原理、锁优化、AQS原理" />
     <MESSAGE value="【并发编程】并发容器、线程协作工具" />
     <MESSAGE value="【并发编程】线程池" />
-    <option name="LAST_COMMIT_MESSAGE" value="【并发编程】线程池" />
+    <MESSAGE value="【并发编程】ThreadLocal原理" />
+    <option name="LAST_COMMIT_MESSAGE" value="【并发编程】ThreadLocal原理" />
   </component>
 </project>
