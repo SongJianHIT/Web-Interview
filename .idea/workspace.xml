@@ -4,29 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="【并发编程】volatile原理、缺点">
-      <change afterPath="$PROJECT_DIR$/并发编程/java/DemoReentrantLock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230606224112464.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230606224235832.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230606224721320.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230607093807250.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230607093911161.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230607094445654.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230607095055363.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230607100021157.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230607100155069.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230607100240097.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230607100513848.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230607100514796.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230607100737188.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230607101831015.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230607105844310.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230607113013948.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230607113232152.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230607114033523.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/并发编程/java/ThreadDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/并发编程/java/ThreadDemo.java" afterDir="false" />
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="【并发编程】ReentrantLock原理、锁优化、AQS原理">
+      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230607141104245.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230607142055961.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230607143104290.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230607143846655.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230607143900212.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/并发编程/【并发编程】JUC.md" beforeDir="false" afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,14 +192,7 @@
       <workItem from="1685955222137" duration="6811000" />
       <workItem from="1686040092481" duration="34000" />
       <workItem from="1686040140776" duration="2401000" />
-      <workItem from="1686051781136" duration="7138000" />
-    </task>
-    <task id="LOCAL-00040" summary="java基础类">
-      <created>1677068822064</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1677068822064</updated>
+      <workItem from="1686051781136" duration="7840000" />
     </task>
     <task id="LOCAL-00041" summary="StringBuilder">
       <created>1677072653473</created>
@@ -553,7 +530,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686062304735</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="【并发编程】ReentrantLock原理、锁优化、AQS原理">
+      <created>1686110707250</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1686110707250</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -572,7 +556,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Mysql" />
     <MESSAGE value="分布式事务" />
     <MESSAGE value="Java" />
     <MESSAGE value="策略模式" />
@@ -597,6 +580,7 @@
     <MESSAGE value="【并发编程】多线程概念、三大特性、线程安全问题" />
     <MESSAGE value="【并发编程】synchronized的原理、锁升级" />
     <MESSAGE value="【并发编程】volatile原理、缺点" />
-    <option name="LAST_COMMIT_MESSAGE" value="【并发编程】volatile原理、缺点" />
+    <MESSAGE value="【并发编程】ReentrantLock原理、锁优化、AQS原理" />
+    <option name="LAST_COMMIT_MESSAGE" value="【并发编程】ReentrantLock原理、锁优化、AQS原理" />
   </component>
 </project>
