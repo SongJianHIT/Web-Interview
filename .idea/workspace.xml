@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="【并发编程】ReentrantLock原理、锁优化、AQS原理">
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230607141104245.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230607142055961.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230607143104290.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230607143846655.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.assets/image-20230607143900212.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/并发编程/【并发编程】JUC.md" beforeDir="false" afterPath="$PROJECT_DIR$/并发编程/【并发编程】JUC.md" afterDir="false" />
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="【并发编程】并发容器、线程协作工具">
+      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】线程池.assets/image-20230607145156034.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】线程池.assets/image-20230607145828071.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】线程池.assets/image-20230607145831669.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并发编程/【并发编程】线程池.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,14 +190,7 @@
       <workItem from="1685955222137" duration="6811000" />
       <workItem from="1686040092481" duration="34000" />
       <workItem from="1686040140776" duration="2401000" />
-      <workItem from="1686051781136" duration="7840000" />
-    </task>
-    <task id="LOCAL-00041" summary="StringBuilder">
-      <created>1677072653473</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1677072653473</updated>
+      <workItem from="1686051781136" duration="8459000" />
     </task>
     <task id="LOCAL-00042" summary="容器">
       <created>1677075890014</created>
@@ -537,7 +528,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686110707250</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="【并发编程】并发容器、线程协作工具">
+      <created>1686120431284</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1686120431284</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -556,7 +554,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="分布式事务" />
     <MESSAGE value="Java" />
     <MESSAGE value="策略模式" />
     <MESSAGE value="观察者模式" />
@@ -581,6 +578,7 @@
     <MESSAGE value="【并发编程】synchronized的原理、锁升级" />
     <MESSAGE value="【并发编程】volatile原理、缺点" />
     <MESSAGE value="【并发编程】ReentrantLock原理、锁优化、AQS原理" />
-    <option name="LAST_COMMIT_MESSAGE" value="【并发编程】ReentrantLock原理、锁优化、AQS原理" />
+    <MESSAGE value="【并发编程】并发容器、线程协作工具" />
+    <option name="LAST_COMMIT_MESSAGE" value="【并发编程】并发容器、线程协作工具" />
   </component>
 </project>
