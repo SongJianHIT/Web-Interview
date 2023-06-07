@@ -28,13 +28,13 @@ get 方法的行为取决于 Callable 任务的状态，只有以下 5 种情况
 
 ## 2 使用案例
 
-**Future 用法 01 —— **用线程池 `submit` 方法提交任务，返回值 `Future` 任务结果
+**Future 用法 01 —— ** 用线程池 `submit` 方法提交任务，返回值 `Future` 任务结果
 
 - 用线程池提交任务，线程池会立即返回一个空的 Future 容器
 - 当线程的任务执行完成，线程池会将该任务执行结果填入 Future 中 
 - 此时就可以从 Future 获取执行结果
 
-**Future 用法 02 —— **用 `FutureTask` 来封装任务，获取 Future 任务的结果
+**Future 用法 02 ——  ** 用 `FutureTask` 来封装任务，获取 Future 任务的结果
 
 - 用 FutureTask 包装任务，FutureTask 是 Future 和 Runnable 接口的实现类
 - 可以使用new Thread().start()或线程池执行FutureTask
