@@ -4,6 +4,8 @@
  * @className PACKAGE_NAME.ThreadDemo
  */
 
+import java.util.concurrent.locks.AbstractQueuedSynchronizer;
+
 /**
  * ThreadDemo
  * @description 测试线程
@@ -13,6 +15,7 @@
  */
 public class ThreadDemo {
     public static void main(String[] args) {
+
         Runnable r = new Runnable() {
             @Override
             public void run() {
