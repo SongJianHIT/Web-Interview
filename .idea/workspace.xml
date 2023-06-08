@@ -4,38 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="【并发编程】Future未来任务">
-      <change afterPath="$PROJECT_DIR$/basic.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/new_basic.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/java/TestNIO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/java/chat/ChatClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/java/chat/ChatServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/java/chat/TestChat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】BIO、NIO与AIO.assets/image-20230607215140670.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】BIO、NIO与AIO.assets/image-20230607215516101.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】BIO、NIO与AIO.assets/image-20230607220701811.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】BIO、NIO与AIO.assets/image-20230607220704023.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】BIO、NIO与AIO.assets/image-20230607220835172.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】BIO、NIO与AIO.assets/image-20230607220840950.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】BIO、NIO与AIO.assets/image-20230607220955965.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】BIO、NIO与AIO.assets/image-20230607221524902.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】BIO、NIO与AIO.assets/image-20230607222744237.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】BIO、NIO与AIO.assets/image-20230607232304398.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】BIO、NIO与AIO.assets/image-20230607233001258.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】BIO、NIO与AIO.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】基本知识.assets/image-20230607190536825.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】基本知识.assets/image-20230607190554044.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】基本知识.assets/image-20230607190601521.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】基本知识.assets/image-20230607190607486.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】基本知识.assets/image-20230607190628047.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】基本知识.assets/image-20230607192455968.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】基本知识.assets/image-20230607192504860.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】基本知识.assets/image-20230607192513072.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】基本知识.assets/image-20230607192520580.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web-Interview.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Web-Interview.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/网络编程/【网络编程】基本知识.md" beforeDir="false" afterPath="$PROJECT_DIR$/网络编程/【网络编程】基本知识.md" afterDir="false" />
-    </list>
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="【网络编程】NIO实现多人聊天室" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -269,14 +238,7 @@
       <workItem from="1685955222137" duration="6811000" />
       <workItem from="1686040092481" duration="34000" />
       <workItem from="1686040140776" duration="2401000" />
-      <workItem from="1686051781136" duration="18636000" />
-    </task>
-    <task id="LOCAL-00046" summary="ES">
-      <created>1677224036845</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1677224036845</updated>
+      <workItem from="1686051781136" duration="19258000" />
     </task>
     <task id="LOCAL-00047" summary="算法">
       <created>1677380623681</created>
@@ -614,7 +576,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686125492126</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="【网络编程】NIO实现多人聊天室">
+      <created>1686157055323</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1686157055323</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -633,7 +602,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="背包问题" />
     <MESSAGE value="JVM" />
     <MESSAGE value="JAVA线程" />
     <MESSAGE value="背包" />
@@ -658,6 +626,7 @@
     <MESSAGE value="【并发编程】线程池" />
     <MESSAGE value="【并发编程】ThreadLocal原理" />
     <MESSAGE value="【并发编程】Future未来任务" />
-    <option name="LAST_COMMIT_MESSAGE" value="【并发编程】Future未来任务" />
+    <MESSAGE value="【网络编程】NIO实现多人聊天室" />
+    <option name="LAST_COMMIT_MESSAGE" value="【网络编程】NIO实现多人聊天室" />
   </component>
 </project>
