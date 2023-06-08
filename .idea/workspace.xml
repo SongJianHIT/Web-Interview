@@ -4,7 +4,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="【网络编程】NIO实现多人聊天室" />
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="【网络编程】阻塞、非阻塞、同步、异步概念">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io-netty/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io-netty/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io-netty/src/main/java/tech/songjian/netty/demo1/NettyClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io-netty/src/main/java/tech/songjian/netty/demo1/NettyClientHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io-netty/src/main/java/tech/songjian/netty/demo1/NettyServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io-netty/src/main/java/tech/songjian/netty/demo1/NettyServerHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io-netty/src/main/java/tech/songjian/netty/demoGcoderc/Book.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io-netty/src/main/java/tech/songjian/netty/demoGcoderc/BookMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io-netty/src/main/java/tech/songjian/netty/demoGcoderc/NettyClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io-netty/src/main/java/tech/songjian/netty/demoGcoderc/NettyEncoderDecoderClientHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io-netty/src/main/java/tech/songjian/netty/demoGcoderc/NettyEncoderDecoderServerHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io-netty/src/main/java/tech/songjian/netty/demoGcoderc/NettyServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/io-netty/src/test/java/org/example/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】Netty.assets/image-20230608090159150.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】Netty.assets/image-20230608090320627.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】Netty.assets/image-20230608090702207.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】Netty.assets/image-20230608090745739.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】Netty.assets/image-20230608093445415.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】Netty.assets/image-20230608093630035.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】Netty.assets/image-20230608093631202.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】Netty.assets/image-20230608094002166.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】Netty.assets/image-20230608095009415.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】Netty.assets/image-20230608103733790.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】Netty.assets/image-20230608103752554.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】Netty.assets/image-20230608111706343.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】Netty.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,14 +72,16 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "jdk.selected.JAVA_MODULE": "1.8",
     "last_opened_file_path": "/Users/mac/IdeaProjects/Web-Interview/Java/技术笔记",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "settings.editor.selected.configurable": "configurable.group.build",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -63,16 +97,43 @@
       <recent name="$PROJECT_DIR$/Java" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="tech.songjian.netty.demoGcoderc" />
       <recent name="tech.songjian.classloader" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.TestChat（刘备）">
+  <component name="RunManager" selected="Application.NettyClient">
     <configuration name="ChatServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="chat.ChatServer" />
       <module name="Web-Interview" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="chat.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NettyClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="tech.songjian.netty.demo1.NettyClient" />
+      <module name="io-netty" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tech.songjian.netty.demo1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NettyServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="tech.songjian.netty.demo1.NettyServer" />
+      <module name="io-netty" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tech.songjian.netty.demo1.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -119,30 +180,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestNIO.test1" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="Web-Interview" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestNIO" />
-      <option name="METHOD_NAME" value="test1" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestNIO.test2" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="Web-Interview" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestNIO" />
-      <option name="METHOD_NAME" value="test2" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="TestNIO.test3" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="Web-Interview" />
       <option name="PACKAGE_NAME" value="" />
@@ -158,19 +195,19 @@
     <list>
       <item itemvalue="Application.TestChat（关羽）" />
       <item itemvalue="Application.TestChat（张飞）" />
+      <item itemvalue="Application.NettyClient" />
+      <item itemvalue="Application.NettyServer" />
       <item itemvalue="Application.ChatServer" />
       <item itemvalue="Application.TestChat（刘备）" />
-      <item itemvalue="TestNG.TestNIO.test1" />
-      <item itemvalue="TestNG.TestNIO.test2" />
       <item itemvalue="TestNG.TestNIO.test3" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.NettyClient" />
+        <item itemvalue="Application.NettyServer" />
         <item itemvalue="Application.TestChat（刘备）" />
         <item itemvalue="Application.ChatServer" />
         <item itemvalue="TestNG.TestNIO.test3" />
-        <item itemvalue="TestNG.TestNIO.test2" />
-        <item itemvalue="TestNG.TestNIO.test1" />
       </list>
     </recent_temporary>
   </component>
@@ -238,21 +275,7 @@
       <workItem from="1685955222137" duration="6811000" />
       <workItem from="1686040092481" duration="34000" />
       <workItem from="1686040140776" duration="2401000" />
-      <workItem from="1686051781136" duration="19258000" />
-    </task>
-    <task id="LOCAL-00047" summary="算法">
-      <created>1677380623681</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1677380623681</updated>
-    </task>
-    <task id="LOCAL-00048" summary="ES">
-      <created>1677388239290</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1677388239290</updated>
+      <workItem from="1686051781136" duration="24504000" />
     </task>
     <task id="LOCAL-00049" summary="MQ">
       <created>1677396808857</created>
@@ -583,7 +606,21 @@
       <option name="project" value="LOCAL" />
       <updated>1686157055323</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="【网络编程】阻塞、非阻塞、同步、异步概念">
+      <created>1686185432965</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1686185432965</updated>
+    </task>
+    <task id="LOCAL-00097" summary="【网络编程】阻塞、非阻塞、同步、异步概念">
+      <created>1686185454617</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1686185454617</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -602,7 +639,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="JVM" />
     <MESSAGE value="JAVA线程" />
     <MESSAGE value="背包" />
     <MESSAGE value="容器" />
@@ -627,6 +663,7 @@
     <MESSAGE value="【并发编程】ThreadLocal原理" />
     <MESSAGE value="【并发编程】Future未来任务" />
     <MESSAGE value="【网络编程】NIO实现多人聊天室" />
-    <option name="LAST_COMMIT_MESSAGE" value="【网络编程】NIO实现多人聊天室" />
+    <MESSAGE value="【网络编程】阻塞、非阻塞、同步、异步概念" />
+    <option name="LAST_COMMIT_MESSAGE" value="【网络编程】阻塞、非阻塞、同步、异步概念" />
   </component>
 </project>
