@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_5">
+    <output url="file://$MODULE_DIR$/网络编程/io-netty/target/classes" />
+    <output-test url="file://$MODULE_DIR$/网络编程/io-netty/target/test-classes" />
+    <content url="file://$MODULE_DIR$/网络编程/io-netty">
+      <sourceFolder url="file://$MODULE_DIR$/网络编程/io-netty/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/网络编程/io-netty/src/test/java" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/网络编程/io-netty/target" />
+    </content>
+    <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: io.netty:netty-all:4.1.8.Final" level="project" />
+    <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.6.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: junit:junit:3.8.1" level="project" />
+  </component>
+</module>

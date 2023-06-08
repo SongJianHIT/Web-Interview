@@ -5,6 +5,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/io-netty/pom.xml" />
+        <option value="$PROJECT_DIR$/JianRPC/pom.xml" />
       </list>
     </option>
   </component>

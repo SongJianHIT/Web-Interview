@@ -6,8 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Jian-consumer" />
         <module name="io-netty" />
+        <module name="Jian-producer" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="io-netty" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>

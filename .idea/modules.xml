@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Web-Interview.iml" filepath="$PROJECT_DIR$/Web-Interview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/io-netty.iml" filepath="$PROJECT_DIR$/io-netty.iml" />
     </modules>
   </component>
 </project>
