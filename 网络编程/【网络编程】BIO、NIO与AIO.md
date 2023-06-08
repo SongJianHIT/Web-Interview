@@ -242,13 +242,46 @@ ServerSocketChannel 用来在 **服务器端** 监听 **新的客户端 Socket �
 
 见代码 `java/chat` 目录下。
 
+## 3 AIO
 
+JDK 7 引入了 Asynchronous IO，即 AIO，叫做异步不阻塞的 IO，也可以叫做NIO2。在进行 IO 编程中，常用到两种模式：Reactor 模式 和 Proactor模 式。
 
+- NIO 采用 Reactor 模式，**当有事件触发时，服务器端得到通知，进行相应的处理**。
 
+  ![image-20230608084105166](./【网络编程】BIO、NIO与AIO.assets/image-20230608084105166.png)
 
+  - Reactor 对象的作用是监听和分发事件；
+  - Acceptor 对象的作用是获取连接；
+  - Handler 对象的作用是处理业务；
 
+- AIO 采用 Proactor 模式，引入 **异步通道** 的概念， 简化了程序编写，一个有效的请求才启动一个线程，它的**特点是先由操作系统完成后，才通知服务端程序启动线程去处理** ，一般适用于连接数较多且连接时间较长的应用。
 
+  ![image-20230608084448581](./【网络编程】BIO、NIO与AIO.assets/image-20230608084448581.png)
 
+  Proactor 模式的工作流程：
 
+  - Proactor Initiator 负责创建 Proactor 和 Handler 对象，并将 Proactor 和 Handler 都通过
+    Asynchronous Operation Processor 注册到内核；
+  - Asynchronous Operation Processor 负责处理注册请求，并处理 I/O 操作；
+  - Asynchronous Operation Processor 完成 I/O 操作后通知 Proactor；
+  - Proactor 根据不同的事件类型回调不同的 Handler 进行业务处理；
+  - Handler 完成业务处理
 
+## 补：阻塞、非阻塞、同步、异步 I/O
+
+**阻塞 IO** ：当用户程序执行 `read` ，线程会被阻塞，一直等到内核数据准备好，并把数据从内核缓冲区拷贝到应用程序的缓冲区中，当拷贝过程完成，`read` 才会返回。
+
+![image-20230608084732840](./【网络编程】BIO、NIO与AIO.assets/image-20230608084732840.png)
+
+**非阻塞 IO** ：非阻塞的 `read` 请求在数据未准备好的情况下 **立即返回** ，可以继续往下执行，此时应用程序不断轮询内核，直到数据准备好，内核将数据拷贝到应用程序缓冲区，`read` 调用才可以获取到结果。
+
+![image-20230608084826905](./【网络编程】BIO、NIO与AIO.assets/image-20230608084826905.png)
+
+**这里最后一次 `read` 调用，获取数据的过程，是一个 同步 的过程，是需要等待的过程。这里的同步指的是内核态的数据拷贝到用户程序的缓存区这个过程** 。
+
+**异步 I/O** 是「内核数据准备好」和「数据从内核态拷贝到用户态」这 **两个过程都不用等待**。
+
+发起 `aio_read` （异步 I/O） 之后，就立即返回，**内核自动将数据从内核空间拷贝到用户空间** ，这个拷贝过程同样是异步的，内核自动完成的，和前面的同步操作不一样，**应用程序并不需要主动发起拷贝动作** 。
+
+![image-20230608084957678](./【网络编程】BIO、NIO与AIO.assets/image-20230608084957678.png)
 
