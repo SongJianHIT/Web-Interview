@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Jian-consumer.iml" filepath="$PROJECT_DIR$/Jian-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Jian-producer.iml" filepath="$PROJECT_DIR$/Jian-producer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JianRPC.iml" filepath="$PROJECT_DIR$/JianRPC.iml" />
       <module fileurl="file://$PROJECT_DIR$/Web-Interview.iml" filepath="$PROJECT_DIR$/Web-Interview.iml" />
       <module fileurl="file://$PROJECT_DIR$/io-netty.iml" filepath="$PROJECT_DIR$/io-netty.iml" />
     </modules>

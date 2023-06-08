@@ -4,30 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="【网络编程】Netty">
-      <change afterPath="$PROJECT_DIR$/JianRPC/Jian-consumer/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JianRPC/Jian-consumer/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JianRPC/Jian-consumer/src/main/java/tech/songjian/rpc/TestJianRPC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JianRPC/Jian-consumer/src/main/java/tech/songjian/rpc/consumer/SkuService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JianRPC/Jian-consumer/src/main/java/tech/songjian/rpc/consumer/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JianRPC/Jian-consumer/src/main/java/tech/songjian/rpc/consumerStub/JianRPCProxy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JianRPC/Jian-consumer/src/main/java/tech/songjian/rpc/consumerStub/ResultHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JianRPC/Jian-producer/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JianRPC/Jian-producer/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JianRPC/Jian-producer/src/main/java/tech/songjian/rpc/producer/SkuService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JianRPC/Jian-producer/src/main/java/tech/songjian/rpc/producer/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JianRPC/Jian-producer/src/main/java/tech/songjian/rpc/producer/impl/SkuServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JianRPC/Jian-producer/src/main/java/tech/songjian/rpc/producer/impl/UserServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JianRPC/Jian-producer/src/main/java/tech/songjian/rpc/producerStub/ClassInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JianRPC/Jian-producer/src/main/java/tech/songjian/rpc/producerStub/InvokeHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JianRPC/Jian-producer/src/main/java/tech/songjian/rpc/producerStub/JianRPCServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JianRPC/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/io-netty.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】手写RPC框架.assets/image-20230608145949867.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】手写RPC框架.assets/image-20230608150909357.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】手写RPC框架.assets/image-20230608161541445.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】手写RPC框架.assets/image-20230608163509849.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】手写RPC框架.md" afterDir="false" />
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="【网络编程】手写RPC">
+      <change afterPath="$PROJECT_DIR$/Jian-consumer.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Jian-producer.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JianRPC.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/disruptor/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/disruptor/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/disruptor/src/main/java/tech/songjian/disruptor/demo/OrderEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/disruptor/src/main/java/tech/songjian/disruptor/demo/OrderEventFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/disruptor/src/main/java/tech/songjian/disruptor/demo/OrderEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/disruptor/src/main/java/tech/songjian/disruptor/demo/OrderEventProducer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/disruptor/src/main/java/tech/songjian/disruptor/demo/TestDisruptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/disruptor/src/main/java/tech/songjian/disruptor/multi/ConsumerHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/disruptor/src/main/java/tech/songjian/disruptor/multi/Order.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/disruptor/src/main/java/tech/songjian/disruptor/multi/Producer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/disruptor/src/main/java/tech/songjian/disruptor/multi/TestMultiDisruptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/disruptor/src/test/java/org/example/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】Disruptor.assets/image-20230608165741320.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】Disruptor.assets/image-20230608165744345.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】Disruptor.assets/image-20230608194338362.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】Disruptor.assets/image-20230608194546692.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】Disruptor.assets/image-20230608194614326.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】Disruptor.assets/image-20230608201615379.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/网络编程/【网络编程】Disruptor.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
@@ -43,6 +42,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -73,7 +73,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "1.8",
-    "last_opened_file_path": "/Users/mac/IdeaProjects/Web-Interview/JianRPC/Jian-producer/src/main/java/tech/songjian/rpc/producerStub",
+    "last_opened_file_path": "/Users/mac/IdeaProjects/Web-Interview/网络编程",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -85,11 +85,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/网络编程" />
       <recent name="$PROJECT_DIR$/JianRPC/Jian-producer/src/main/java/tech/songjian/rpc/producerStub" />
       <recent name="$PROJECT_DIR$/JianRPC/Jian-producer/src/main/java/tech/songjian/rpc/producer" />
       <recent name="$PROJECT_DIR$/JianRPC/Jian-consumer/src/main/java/tech/songjian/rpc/consumerStub" />
       <recent name="$PROJECT_DIR$/Java/技术笔记" />
-      <recent name="$PROJECT_DIR$/Java" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/网络编程" />
@@ -103,7 +103,7 @@
       <recent name="tech.songjian.classloader" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.TestJianRPC">
+  <component name="RunManager" selected="Application.TestMultiDisruptor">
     <configuration name="JianRPCServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="tech.songjian.rpc.producerStub.JianRPCServer" />
       <module name="Jian-producer" />
@@ -123,32 +123,6 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="tech.songjian.netty.demo1.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="NettyServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="tech.songjian.netty.demo1.NettyServer" />
-      <module name="io-netty" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tech.songjian.netty.demo1.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestChat（刘备）" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="chat.TestChat" />
-      <module name="Web-Interview" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="chat.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -182,6 +156,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestDisruptor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="tech.songjian.disruptor.demo.TestDisruptor" />
+      <module name="disruptor" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tech.songjian.disruptor.demo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TestJianRPC" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="tech.songjian.rpc.TestJianRPC" />
       <module name="Jian-consumer" />
@@ -195,22 +182,35 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestMultiDisruptor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="tech.songjian.disruptor.multi.TestMultiDisruptor" />
+      <module name="disruptor" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tech.songjian.disruptor.multi.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.TestChat（关羽）" />
       <item itemvalue="Application.TestChat（张飞）" />
       <item itemvalue="Application.JianRPCServer" />
       <item itemvalue="Application.NettyClient" />
-      <item itemvalue="Application.NettyServer" />
+      <item itemvalue="Application.TestDisruptor" />
       <item itemvalue="Application.TestJianRPC" />
-      <item itemvalue="Application.TestChat（刘备）" />
+      <item itemvalue="Application.TestMultiDisruptor" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.TestMultiDisruptor" />
+        <item itemvalue="Application.TestDisruptor" />
         <item itemvalue="Application.TestJianRPC" />
         <item itemvalue="Application.JianRPCServer" />
         <item itemvalue="Application.NettyClient" />
-        <item itemvalue="Application.NettyServer" />
-        <item itemvalue="Application.TestChat（刘备）" />
       </list>
     </recent_temporary>
   </component>
@@ -278,14 +278,7 @@
       <workItem from="1685955222137" duration="6811000" />
       <workItem from="1686040092481" duration="34000" />
       <workItem from="1686040140776" duration="2401000" />
-      <workItem from="1686051781136" duration="30323000" />
-    </task>
-    <task id="LOCAL-00050" summary="MQ">
-      <created>1677425589835</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1677425589836</updated>
+      <workItem from="1686051781136" duration="36704000" />
     </task>
     <task id="LOCAL-00051" summary="MQ">
       <created>1677426102061</created>
@@ -623,7 +616,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686195299386</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="【网络编程】手写RPC">
+      <created>1686213540284</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1686213540284</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -642,7 +642,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="背包" />
     <MESSAGE value="容器" />
     <MESSAGE value="juc" />
     <MESSAGE value="JUC" />
@@ -667,6 +666,7 @@
     <MESSAGE value="【网络编程】NIO实现多人聊天室" />
     <MESSAGE value="【网络编程】阻塞、非阻塞、同步、异步概念" />
     <MESSAGE value="【网络编程】Netty" />
-    <option name="LAST_COMMIT_MESSAGE" value="【网络编程】Netty" />
+    <MESSAGE value="【网络编程】手写RPC" />
+    <option name="LAST_COMMIT_MESSAGE" value="【网络编程】手写RPC" />
   </component>
 </project>

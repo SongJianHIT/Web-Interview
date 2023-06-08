@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="disruptor" />
         <module name="Jian-consumer" />
         <module name="io-netty" />
         <module name="Jian-producer" />
@@ -13,6 +14,9 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="io-netty" target="1.5" />
+      <module name="Jian-consumer" target="1.8" />
+      <module name="Jian-producer" target="1.8" />
+      <module name="JianRPC" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
