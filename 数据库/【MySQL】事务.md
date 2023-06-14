@@ -72,7 +72,7 @@ CREATE TABLE `tab_user` (
 Insert into tab_user(id,name,age,address) values (1, '刘备', 10, 蜀国);
 ```
 
-![image-20230320204039944](./【MySQL】事务.assets/image-20230320204039944.png)
+![](./assets/t87_hf9xfh.png)
 
 ### 2.1 丢失更新问题
 
@@ -82,7 +82,7 @@ Insert into tab_user(id,name,age,address) values (1, '刘备', 10, 蜀国);
 
 转账和查询总额操作的时序图如下：
 
-![image-20230320205359167](./【MySQL】事务.assets/image-20230320205359167.png)
+![](./assets/hp1gqtp92_.png)
 
 ### 2.2 解决方法一：基于锁的并发控制
 
@@ -92,7 +92,7 @@ Insert into tab_user(id,name,age,address) values (1, '刘备', 10, 蜀国);
 
 查询总额事务会对 **读取的「行」加锁，等到操作结束后再释放「所有行」上的锁** 。因为用户 A 的存款被锁，导致转账操作被阻塞，直到查询总额事务提交并将所有锁都释放。
 
-![image-20230320205811003](./【MySQL】事务.assets/image-20230320205811003.png)
+![](./assets/zgusw0e8y3.png)
 
 这种方案比较简单粗暴，**就是一个事务去读取一条数据的时候，就上锁，不允许其他事务来操作**。
 
@@ -104,11 +104,11 @@ Insert into tab_user(id,name,age,address) values (1, '刘备', 10, 蜀国);
 
 > MVCC：读不加锁、读写不冲突
 
-使用 **版本的并发控制 MVCC（Multi Version Concurrency Control）机制** 也可以解决这个问题。
+使用 **多版本的并发控制 MVCC（Multi Version Concurrency Control）机制** 也可以解决这个问题。
 
 查询总额事务先读取了用户 A 的账户存款，然后转账事务会修改用户 A 和用户 B 账户存款，查询总额事务读取用户 B 存款时不会读取转账事务修改后的数据，而是 **读取本事务开始时的副本数据「快照数据」**。
 
-![image-20230320210114361](./【MySQL】事务.assets/image-20230320210114361.png)
+![](./assets/ofpsv5mkym.png)
 
 **MVCC 使得普通的 Select 请求不加锁，读写不冲突，显著提升了数据库的并发处理能力。**
 
@@ -134,9 +134,9 @@ Insert into tab_user(id,name,age,address) values (1, '刘备', 10, 蜀国);
 
 MVCC 的实现依赖于 **Undo 日志** 与 **Read View** 。
 
-InnoDB下的表有 **默认字段** 和 **可见字段** ，默认字段是实现 MVCC 的关键，默认字段是隐藏的列。默认字段最关键的两个列，**一个保存了行的事务ID，一个保存了行的回滚指针** 。每开始新的事务，都会 **自动递增** 产生一个新的事务 id。事务开始后，生成当前事务影响行的ReadView。当查询时，需要用当前查询的事务 id 与 ReadView 确定要查询的数据版本。
+InnoDB 下的表有 **默认字段** 和 **可见字段** ，默认字段是实现 MVCC 的关键，默认字段是隐藏的列。默认字段最关键的两个列，**一个保存了行的事务ID，一个保存了行的回滚指针** 。每开始新的事务，都会 **自动递增** 产生一个新的事务 id。事务开始后，生成当前事务影响行的 ReadView。当查询时，需要用当前查询的事务 id 与 ReadView 确定要查询的数据版本。
 
-![image-20230320211533123](./【MySQL】事务.assets/image-20230320211533123.png)
+![](./assets/ig04h58dqs.png)
 
 ### 3.1 Undo 日志
 
@@ -160,7 +160,7 @@ Insert 操作的记录只对事务本身可见，对于其它事务此记录是�
 Insert into tab_user(id,name,age,address) values (10,'麦麦',23,'beijing')
 ```
 
-![image-20230322102142445](./【MySQL】事务.assets/image-20230322102142445.png)
+![](./assets/gzvjv0-d5p.png)
 
 #### Update Undo Log ：是 Update 或 Delete 操作中产生的 Undo 日志
 
@@ -174,7 +174,7 @@ update tab_user set name='雄雄',age=18 where id=10;
 # 当事务2使用Update语句修改该行数据时，会首先使用写锁锁定目标行，将该行当前的值复制到Undo 中，然后再真正地修改当前行的值，最后填写事务ID，使用回滚指针指向Undo中修改前的行。
 ```
 
-![image-20230322102417271](./【MySQL】事务.assets/image-20230322102417271.png)
+![](./assets/02f2pnyl1m.png)
 
 当事务 3 进行修改与事务 2 的处理过程类似，如下图所示（第二次修改）：
 
@@ -183,7 +183,7 @@ update tab_user set name='雄雄',age=18 where id=10;
 update tab_user set name='迪迪',age=16 where id=10;
 ```
 
-![image-20230322102556280](./【MySQL】事务.assets/image-20230322102556280.png)
+![](./assets/-up9_uwelk.png)
 
 ### 3.2 ReadView
 
@@ -200,7 +200,7 @@ ReadView 是张 **存储事务 id 的表**，主要包含当前系统中有哪�
 - **m_up_limit_id** ：事务 id 上限，表示生成 ReadView 时，系统中应该分配给下一个事务的 id 值 
 - **m_creator_trx_id**：表示生成该 ReadView 的事务的事务 id
 
-![image-20230322103028002](./【MySQL】事务.assets/image-20230322103028002.png)
+![](./assets/6qd68f65aa.png)
 
 #### ReadView怎么产生，什么时候产生？
 
@@ -226,11 +226,22 @@ ReadView 是张 **存储事务 id 的表**，主要包含当前系统中有哪�
 
 **每次读取数据前都生成一个 ReadView**，默认 tab_user 表中只有一条数据，数据内容是刘备。
 
-![image-20230322104823543](./【MySQL】事务.assets/image-20230322104823543.png)
+| 时间 | 事务01【db_trx_id=100】 | 事务02【db_trx_id=200】 | 事务03【db_trx_id=300】      |
+| ---- | ----------------------- | ----------------------- | ---------------------------- |
+| T1   | 开启事务                | 开启事务                | 开启事务                     |
+| T2   | 更新为关羽              | ...                     | ...                          |
+| T3   | 更新为张飞              | ...                     | ...                          |
+| T4   |                         | 更新为赵云              |                              |
+| T5   |                         | 更新为诸葛亮            |                              |
+| T6   |                         |                         | SELECT01，id=1，name为刘备   |
+| T7   | 提交事务01              |                         |                              |
+| T8   |                         |                         | SELECT02，id=1，name为张飞   |
+| T9   |                         | 提交事务02              |                              |
+| T10  |                         |                         | SELECT03，id=1，name为诸葛亮 |
 
 T3 时刻，表 tab_user 中 id 为 1 的记录得到的版本链表如下所示：
 
-![image-20230322111843204](./【MySQL】事务.assets/image-20230322111843204.png)
+![image-20221011181739586](./assets/mj-3zls27i.png)
 
 这个 `SELECT01` 的执行过程如下：
 
@@ -243,7 +254,7 @@ T3 时刻，表 tab_user 中 id 为 1 的记录得到的版本链表如下所示
 
 T5 时刻，表 tab_user 中 id 为 1 的记录的版本链就长这样：
 
-![image-20230322112105180](./【MySQL】事务.assets/image-20230322112105180.png)
+![image-20221011182211543](./assets/upy64m5-u1.png)
 
 这个 `SELECT02` 的执行过程如下：
 
@@ -267,7 +278,7 @@ T5 时刻，表 tab_user 中 id 为 1 的记录的版本链就长这样：
 
 T3 时刻，表 t 中 id 为 1 的记录得到的版本链表如下所示：
 
-![image-20230322112646961](./【MySQL】事务.assets/image-20230322112646961.png)
+![image-20221011181739586](./assets/mj-3zls27i-1686731357717-21.png)
 
 这个 SELECT1 的执行过程如下：
 
@@ -280,7 +291,7 @@ T3 时刻，表 t 中 id 为 1 的记录得到的版本链表如下所示：
 
 T5 时刻，表 t 中 id 为 1 的记录的版本链就长这样：
 
-![image-20230322112752098](./【MySQL】事务.assets/image-20230322112752098.png)
+![image-20221011182211543](./assets/upy64m5-u1-1686731361732-24.png)
 
 这个 SELECT02 的执行过程如下：
 
@@ -339,7 +350,7 @@ delete from table where ?;# 加写锁
 update table set ? where ?;
 ```
 
-![image-20230322115033845](./【MySQL】事务.assets/image-20230322115033845.png)
+![](./assets/s06rjeinyw.png)
 
 从图中可以看到：
 

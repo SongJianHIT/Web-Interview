@@ -7,9 +7,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="disruptor" />
-        <module name="Jian-consumer" />
-        <module name="io-netty" />
-        <module name="Jian-producer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
