@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="redis的基本数据结构与对象">
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="redis的网络模型">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -267,14 +267,7 @@
       <workItem from="1686051781136" duration="36704000" />
       <workItem from="1686729359766" duration="32000" />
       <workItem from="1686729425065" duration="12000" />
-      <workItem from="1686729468312" duration="2877000" />
-    </task>
-    <task id="LOCAL-00053" summary="微服务保护-Sentinel">
-      <created>1677497190095</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1677497190095</updated>
+      <workItem from="1686729468312" duration="2902000" />
     </task>
     <task id="LOCAL-00054" summary="Jmeter">
       <created>1677497225374</created>
@@ -612,7 +605,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686749510436</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="redis的网络模型">
+      <created>1686754587527</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1686754587527</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -631,7 +631,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="JUC" />
     <MESSAGE value="MYSQL" />
     <MESSAGE value="更新" />
     <MESSAGE value="数位dp" />
@@ -656,7 +655,8 @@
     <MESSAGE value="【网络编程】手写RPC" />
     <MESSAGE value="【Mysql】索引" />
     <MESSAGE value="redis的基本数据结构与对象" />
-    <option name="LAST_COMMIT_MESSAGE" value="redis的基本数据结构与对象" />
+    <MESSAGE value="redis的网络模型" />
+    <option name="LAST_COMMIT_MESSAGE" value="redis的网络模型" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
