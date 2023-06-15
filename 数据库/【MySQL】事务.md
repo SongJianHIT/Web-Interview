@@ -364,9 +364,9 @@ update table set ? where ?;
 
 ## 4 总结
 
-- MVCC指在使用 RC、RR 隔离级别下，使不同事务的 `读-写` 、 `写-读` 操作并发执行，提升系统性能
-- MVCC核心思想是 **读不加锁，读写不冲突**
+- MVCC 旨在使用 RC、RR 隔离级别下，使不同事务的 `读-写` 、 `写-读` 操作并发执行，提升系统性能
+- MVCC 核心思想是 **读不加锁，读写不冲突**
 - RC、RR 这两个隔离级别的一个很大不同就是 **生成 ReadView 的时机不同**
-  - RC在每一次进行普通 SELECT 操作前都会生成一个 ReadView
-  - RR在第一次进行普通 SELECT 操作前生成一个 ReadView ，之后的查询操作都重复这个 ReadView 
+  - RC 在每一次进行普通 SELECT 操作前都会生成一个 ReadView
+  - RR 在第一次进行普通 SELECT 操作前生成一个 ReadView ，之后的查询操作都重复这个 ReadView 
 
