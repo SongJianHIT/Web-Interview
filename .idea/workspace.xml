@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="redis基本使用与事务">
+    <list default="true" id="b62d6b8d-790a-4f44-8e6a-8428ce9a8017" name="Changes" comment="mysql高可用">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/数据库/【MySQL】事务.md" beforeDir="false" afterPath="$PROJECT_DIR$/数据库/【MySQL】事务.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/数据库/【MySQL】索引.md" beforeDir="false" afterPath="$PROJECT_DIR$/数据库/【MySQL】索引.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/数据库/【MySQL】锁.md" beforeDir="false" afterPath="$PROJECT_DIR$/数据库/【MySQL】锁.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,19 +169,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="Jian-consumer" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="Jian-consumer" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.TestChat（关羽）" />
       <item itemvalue="Application.JianRPCServer" />
@@ -271,28 +255,8 @@
       <workItem from="1686729359766" duration="32000" />
       <workItem from="1686729425065" duration="12000" />
       <workItem from="1686729468312" duration="2902000" />
-      <workItem from="1686795934814" duration="642000" />
-    </task>
-    <task id="LOCAL-00055" summary="Mysql">
-      <created>1677548377963</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1677548377963</updated>
-    </task>
-    <task id="LOCAL-00056" summary="Mysql">
-      <created>1677553889202</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1677553889202</updated>
-    </task>
-    <task id="LOCAL-00057" summary="分布式事务">
-      <created>1677671906107</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1677671906107</updated>
+      <workItem from="1686795934814" duration="1353000" />
+      <workItem from="1686815308795" duration="11000" />
     </task>
     <task id="LOCAL-00058" summary="更新">
       <created>1678071708861</created>
@@ -616,7 +580,28 @@
       <option name="project" value="LOCAL" />
       <updated>1686795965746</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="mysql">
+      <created>1686808343744</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1686808343744</updated>
+    </task>
+    <task id="LOCAL-00105" summary="mysql">
+      <created>1686808413350</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1686808413350</updated>
+    </task>
+    <task id="LOCAL-00106" summary="mysql高可用">
+      <created>1686813493383</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1686813493383</updated>
+    </task>
+    <option name="localTasksCounter" value="107" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -635,8 +620,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="更新" />
-    <MESSAGE value="数位dp" />
     <MESSAGE value="事务" />
     <MESSAGE value="算法" />
     <MESSAGE value="更新笔记" />
@@ -660,7 +643,9 @@
     <MESSAGE value="redis的基本数据结构与对象" />
     <MESSAGE value="redis的网络模型" />
     <MESSAGE value="redis基本使用与事务" />
-    <option name="LAST_COMMIT_MESSAGE" value="redis基本使用与事务" />
+    <MESSAGE value="mysql" />
+    <MESSAGE value="mysql高可用" />
+    <option name="LAST_COMMIT_MESSAGE" value="mysql高可用" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
